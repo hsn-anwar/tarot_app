@@ -3,6 +3,7 @@ import 'package:tarot_app/global/background_template.dart';
 import 'package:tarot_app/global/card_spread.dart';
 import 'package:tarot_app/global/top_bar.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:tarot_app/screens/reading_screen.dart';
 import 'package:tarot_app/services/size_config.dart';
 
 class StartReadingScreen extends StatefulWidget {
@@ -39,7 +40,12 @@ class _StartReadingScreenState extends State<StartReadingScreen> {
             CardSpread(
               cardFormation: widget.cardFormation,
               message: widget.message,
-              opPressed: () {},
+              opPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ReadingScreen()),
+                );
+              },
               height: SizeConfig.blockSizeVertical * getHeight(),
             ),
           ],

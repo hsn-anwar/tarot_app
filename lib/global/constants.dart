@@ -29,6 +29,14 @@ class ImagePath {
   static const String kTable = kImagePath + 'Table.png';
 }
 
+class CharacterCardPath {
+  static const String kImagePath = 'assets/characters/';
+  static const String ambael = kImagePath + 'Ambael.png';
+  static const String adrasteia = kImagePath + 'Adrasteia.png';
+  static const String diana = kImagePath + 'Diana.png';
+  static const String earth = kImagePath + 'Earth.png';
+}
+
 class MusicPath {
   static const String kMusicPath = 'assets/';
   static const String _ext = '.mp3';

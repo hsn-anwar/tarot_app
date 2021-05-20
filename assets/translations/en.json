@@ -20,5 +20,6 @@
   "meditative": "Meditative",
   "off": "Off",
   "read": "Read",
-    "hide": "Hide"
+  "hide": "Hide",
+  "welcoming_text": "Welcoming text"
 }

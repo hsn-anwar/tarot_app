@@ -13,7 +13,13 @@ class TopBar extends StatelessWidget {
       children: [
         GestureDetector(onTap: showMenu, child: CloseIcon()),
         Spacer(),
-        Text(this.title),
+        Text(
+          this.title,
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 22.0,
+          ),
+        ),
         Spacer(),
         GestureDetector(onTap: showMenu, child: SettingIcon()),
       ],

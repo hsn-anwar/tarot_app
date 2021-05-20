@@ -11,6 +11,7 @@ import 'package:tarot_app/screens/formation_screen.dart';
 import 'package:tarot_app/services/size_config.dart';
 import 'package:morphable_shape/morphable_shape.dart';
 import 'package:audioplayers/audioplayers.dart';
+import 'package:audioplayers/audioplayers.dart';
 
 class HomeScreen extends StatefulWidget {
   static final String id = '/home_screen';
@@ -143,14 +144,20 @@ class _MusicToggleButtonsState extends State<MusicToggleButtons> {
   bool isOffSelected = false;
   AudioPlayer audioPlayer = AudioPlayer();
 
+  AudioPlayer player = AudioPlayer(); //add this
+  AudioCache cache = new AudioCache();
+
   void playMusic() async {
     if (isRelaxingSelected) {
       print(MusicPath.relaxing);
-      int result = await audioPlayer.play('assets/relaxing.mp3', isLocal: true);
-      print(result);
+      player = await cache.loop('relaxing.mp3');
     } else if (isEpicSelected) {
+      player = await cache.loop('epic_option_1.mp3');
     } else if (isMeditativeSelected) {
-    } else if (isOffSelected) {}
+      player = await cache.loop('atmo.mp3');
+    } else if (isOffSelected) {
+      player.stop();
+    }
   }
 
   @override

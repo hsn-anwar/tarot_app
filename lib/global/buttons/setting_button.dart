@@ -31,10 +31,13 @@ class CloseIcon extends StatelessWidget {
     return Align(
       alignment: Alignment.topLeft,
       child: Padding(
-        padding: const EdgeInsets.only(right: 10.0, top: 8.0),
+        padding: const EdgeInsets.only(left: 25.0, top: 8.0),
         child: Container(
-          width: SizeConfig.blockSizeHorizontal * 10,
-          child: Image.asset(ImagePath.kCloseButton),
+          width: SizeConfig.blockSizeHorizontal * 8,
+          child: GestureDetector(
+            child: Image.asset(ImagePath.kCloseButton),
+            onTap: () => Navigator.pop(context),
+          ),
         ),
       ),
     );
