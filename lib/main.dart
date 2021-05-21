@@ -1,8 +1,10 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:tarot_app/screens/browse_cards_screen.dart';
 import 'package:tarot_app/screens/formation_screen.dart';
 import 'package:tarot_app/screens/home_screen.dart';
+import 'package:tarot_app/services/music_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,6 +18,11 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
+
+  AudioPlayer player = MusicService.instance.audioPlayer;
+  AudioCache cache = MusicService.instance.audioCache;
+
+  // audioManager
 
   @override
   Widget build(BuildContext context) {

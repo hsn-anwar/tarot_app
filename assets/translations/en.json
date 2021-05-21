@@ -1,4 +1,6 @@
 {
+  "title": "Goodness Whispering",
+  "welcoming_text": "Welcoming text here",
   "start_a_reading": "Start a Reading",
   "start_reading": "Start Reading",
   "browse_cards": "Browse Cards",
@@ -21,5 +23,5 @@
   "off": "Off",
   "read": "Read",
   "hide": "Hide",
-  "welcoming_text": "Welcoming text"
+  "welcoming_text2": "Welcoming text"
 }

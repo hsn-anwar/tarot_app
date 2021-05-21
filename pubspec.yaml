@@ -19,7 +19,8 @@ dependencies:
   audioplayers: ^0.19.0
   path_provider: ^2.0.1
   circle_list: ^1.0.4
-  flutter_spinwheel: "^1.0.0"
+  flutter_spinwheel: ^0.1.0
+  simple_animations: ^3.1.1
 
 dev_dependencies:
   flutter_test:
@@ -34,5 +35,17 @@ flutter:
     - assets/
     - assets/images/
     - assets/characters/
+    - assets/fonts/
     - assets/music/
     - assets/translations/
+
+  fonts:
+    - family: baskvill
+      fonts:
+        - asset: assets/fonts/BASKVILL.ttf
+    - family: malgun
+      fonts:
+        - asset: assets/fonts/malgun.ttf
+    - family: sherlock
+      fonts:
+        - asset: assets/fonts/Sherlock Vintage.ttf

@@ -46,3 +46,9 @@ class MusicPath {
   static const String epic_2 = kMusicPath + 'epic_option_2' + _ext;
   static const String atmo = kMusicPath + 'atmo' + _ext;
 }
+
+class CustomFonts {
+  static const sherlock = 'sherlock';
+  static const malgun = 'malgun';
+  static const baskvill = 'baskvill';
+}
