@@ -35,6 +35,14 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          setState(() {
+            context.setLocale(Locale('en'));
+          });
+        },
+        child: Text('DEBUG'),
+      ),
       body: BackgroundTemplate(
         child: Stack(
           children: [

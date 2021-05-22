@@ -13,10 +13,10 @@ class MusicToggleButtons extends StatefulWidget {
 }
 
 class _MusicToggleButtonsState extends State<MusicToggleButtons> {
-  bool isRelaxingSelected = true;
+  bool isRelaxingSelected = false;
   bool isEpicSelected = false;
   bool isMeditativeSelected = false;
-  bool isOffSelected = false;
+  bool isOffSelected = true;
   AudioPlayer audioPlayer = AudioPlayer();
 
   // AudioPlayer player = AudioPlayer(); //add this
@@ -29,16 +29,14 @@ class _MusicToggleButtonsState extends State<MusicToggleButtons> {
     // MyApp.of(context).setLocale(Locale.fromSubtags(languageCode: 'de'));
     if (isRelaxingSelected) {
       print(MusicPath.relaxing);
-      player.stop();
-      player = await cache.loop('relaxing.mp3');
+      MusicService.instance.playRelaxingMusic();
     } else if (isEpicSelected) {
       player.stop();
-      player = await cache.loop('epic_option_1.mp3');
+      MusicService.instance.playEpicMusic();
     } else if (isMeditativeSelected) {
-      player.stop();
-      player = await cache.loop('atmo.mp3');
+      MusicService.instance.playMeditativeMusic();
     } else if (isOffSelected) {
-      player.stop();
+      MusicService.instance.stopMusic();
     }
   }
 
@@ -113,6 +111,52 @@ class _MusicToggleButtonsState extends State<MusicToggleButtons> {
               isPressed: isOffSelected,
             ),
           ],
+        ),
+      ],
+    );
+  }
+}
+
+class LanguageToggleButtons extends StatefulWidget {
+  const LanguageToggleButtons({Key key}) : super(key: key);
+
+  @override
+  _LanguageToggleButtonsState createState() => _LanguageToggleButtonsState();
+}
+
+class _LanguageToggleButtonsState extends State<LanguageToggleButtons> {
+  bool isEnglishSelected = true;
+  bool isDutchSelected = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        ToggleButton(
+          onPressed: () {
+            setState(() {
+              isDutchSelected = false;
+              isEnglishSelected = true;
+              context.setLocale(Locale('en'));
+            });
+          },
+          title: 'English',
+          isPressed: isEnglishSelected,
+        ),
+        SizedBox(
+          width: 15,
+        ),
+        ToggleButton(
+          onPressed: () {
+            setState(() {
+              isEnglishSelected = false;
+              isDutchSelected = true;
+              context.setLocale(Locale('de'));
+            });
+          },
+          title: 'Dutch',
+          isPressed: isDutchSelected,
         ),
       ],
     );
@@ -206,6 +250,11 @@ class Menu extends StatelessWidget {
                         style: TextStyle(color: Colors.white, fontSize: 40),
                       ),
                       MusicToggleButtons(),
+                      Text(
+                        'language'.tr(),
+                        style: TextStyle(color: Colors.white, fontSize: 40),
+                      ),
+                      LanguageToggleButtons(),
                     ],
                   ),
                 ),

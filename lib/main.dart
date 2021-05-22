@@ -12,15 +12,12 @@ void main() async {
 
   runApp(EasyLocalization(
       path: 'assets/translations',
-      supportedLocales: [Locale('en')],
+      supportedLocales: [Locale('en'), Locale('de')],
       child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
-
-  AudioPlayer player = MusicService.instance.audioPlayer;
-  AudioCache cache = MusicService.instance.audioCache;
 
   // audioManager
 

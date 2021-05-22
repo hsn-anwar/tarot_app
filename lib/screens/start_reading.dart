@@ -3,6 +3,7 @@ import 'package:tarot_app/global/background_template.dart';
 import 'package:tarot_app/global/card_spread.dart';
 import 'package:tarot_app/global/top_bar.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:tarot_app/global/widgets/menu.dart';
 import 'package:tarot_app/screens/reading_screen.dart';
 import 'package:tarot_app/services/size_config.dart';
 
@@ -27,26 +28,44 @@ class _StartReadingScreenState extends State<StartReadingScreen> {
     }
   }
 
+  void showMenu() {
+    print('tapped');
+    setState(() {
+      showSettingMenu = !showSettingMenu;
+    });
+  }
+
+  bool showSettingMenu = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: BackgroundTemplate(
-        child: Column(
+        child: Stack(
           children: [
-            TopBar(title: 'intentions'.tr()),
-            SizedBox(
-              height: SizeConfig.blockSizeVertical * 15,
+            Column(
+              children: [
+                TopBar(
+                  title: 'intentions'.tr(),
+                  onSettingsTapped: showMenu,
+                ),
+                SizedBox(
+                  height: SizeConfig.blockSizeVertical * 15,
+                ),
+                CardSpread(
+                  cardFormation: widget.cardFormation,
+                  message: widget.message,
+                  opPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => ReadingScreen()),
+                    );
+                  },
+                  height: SizeConfig.blockSizeVertical * getHeight(),
+                ),
+              ],
             ),
-            CardSpread(
-              cardFormation: widget.cardFormation,
-              message: widget.message,
-              opPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => ReadingScreen()),
-                );
-              },
-              height: SizeConfig.blockSizeVertical * getHeight(),
+            Menu(
+              showSettingMenu: showSettingMenu,
             ),
           ],
         ),

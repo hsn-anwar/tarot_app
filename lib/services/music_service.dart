@@ -20,6 +20,25 @@ class MusicService {
     cache = AudioCache();
     return cache;
   }
+
+  void playEpicMusic() async {
+    player.stop();
+    player = await cache.loop('epic_option_1.mp3');
+  }
+
+  void stopMusic() async {
+    player.stop();
+  }
+
+  void playMeditativeMusic() async {
+    player.stop();
+    player = await cache.loop('relaxing.mp3');
+  }
+
+  void playRelaxingMusic() async {
+    player.stop();
+    player = await cache.loop('atmo.mp3');
+  }
 }
 
 // class MusicService {
