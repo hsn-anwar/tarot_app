@@ -4,6 +4,7 @@ import 'package:tarot_app/global/buttons/rounded_button.dart';
 import 'package:tarot_app/global/buttons/setting_button.dart';
 import 'package:tarot_app/global/card_formation.dart';
 import 'package:tarot_app/global/card_spread.dart';
+import 'package:tarot_app/global/constants.dart';
 import 'package:tarot_app/global/top_bar.dart';
 import 'package:tarot_app/global/widgets/menu.dart';
 import 'package:tarot_app/screens/start_reading.dart';
@@ -92,26 +93,31 @@ class _IntentionsScreenState extends State<IntentionsScreen> {
                   SizedBox(
                     height: SizeConfig.blockSizeVertical * 5,
                   ),
-                  RoundedButton(
-                    title: message1,
-                    onPressed: () =>
-                        navigateToStartReading(widget.cardFormation, message1),
-                  ),
-                  RoundedButton(
-                    title: message2,
-                    onPressed: () =>
-                        navigateToStartReading(widget.cardFormation, message2),
-                  ),
-                  RoundedButton(
-                    title: message3,
-                    onPressed: () =>
-                        navigateToStartReading(widget.cardFormation, message3),
-                  ),
-                  RoundedButton(
-                    title: message4,
-                    onPressed: () =>
-                        navigateToStartReading(widget.cardFormation, message4),
-                  ),
+                  Container(
+                      height: SizeConfig.blockSizeVertical * 35,
+                      child: SingleCardSpreadButtons(
+                        formation: widget.cardFormation,
+                      )),
+                  // RoundedButton(
+                  //   title: message1,
+                  //   onPressed: () =>
+                  //       navigateToStartReading(widget.cardFormation, message1),
+                  // ),
+                  // RoundedButton(
+                  //   title: message2,
+                  //   onPressed: () =>
+                  //       navigateToStartReading(widget.cardFormation, message2),
+                  // ),
+                  // RoundedButton(
+                  //   title: message3,
+                  //   onPressed: () =>
+                  //       navigateToStartReading(widget.cardFormation, message3),
+                  // ),
+                  // RoundedButton(
+                  //   title: message4,
+                  //   onPressed: () =>
+                  //       navigateToStartReading(widget.cardFormation, message4),
+                  // ),
                 ],
               ),
             ),
@@ -122,6 +128,91 @@ class _IntentionsScreenState extends State<IntentionsScreen> {
           ],
         ),
       ),
+    );
+  }
+}
+
+class SingleCardSpreadButtons extends StatelessWidget {
+  SingleCardSpreadButtons({Key key, this.formation}) : super(key: key);
+
+  final int formation;
+
+  final List singleCardIntentions = [
+    SingleCardIntentions.intention1,
+    SingleCardIntentions.intention2,
+    SingleCardIntentions.intention3,
+    SingleCardIntentions.intention4,
+    SingleCardIntentions.intention5,
+    SingleCardIntentions.intention6,
+    SingleCardIntentions.intention7,
+    SingleCardIntentions.intention8,
+    SingleCardIntentions.intention9,
+    SingleCardIntentions.intention10,
+    SingleCardIntentions.intention11,
+    SingleCardIntentions.intention12,
+    SingleCardIntentions.intention13,
+    SingleCardIntentions.intention14,
+    SingleCardIntentions.intention15,
+    SingleCardIntentions.intention16,
+    SingleCardIntentions.intention17,
+    SingleCardIntentions.intention18,
+  ];
+
+  final List threeCardIntentions = [
+    ThreeCardIntentions.intention1,
+    ThreeCardIntentions.intention2,
+    ThreeCardIntentions.intention3,
+    ThreeCardIntentions.intention4,
+    ThreeCardIntentions.intention5,
+    ThreeCardIntentions.intention6,
+    ThreeCardIntentions.intention7,
+    ThreeCardIntentions.intention8,
+    ThreeCardIntentions.intention9,
+    ThreeCardIntentions.intention10,
+  ];
+
+  final List sevenCardIntentions = [
+    SevenCardIntentions.intention1,
+    SevenCardIntentions.intention2,
+    SevenCardIntentions.intention3,
+    SevenCardIntentions.intention4,
+    SevenCardIntentions.intention5,
+    SevenCardIntentions.intention6,
+    SevenCardIntentions.intention7,
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    print(this.formation);
+
+    return ListView.builder(
+      itemCount: this.formation == 1
+          ? singleCardIntentions.length - 1
+          : this.formation == 3
+              ? threeCardIntentions.length - 1
+              : sevenCardIntentions.length - 1,
+      itemBuilder: (context, index) {
+        return RoundedButton(
+          title: this.formation == 1
+              ? singleCardIntentions[index]
+              : this.formation == 3
+                  ? threeCardIntentions[index]
+                  : sevenCardIntentions[index],
+          onPressed: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => StartReadingScreen(
+                          cardFormation: this.formation,
+                          message: this.formation == 1
+                              ? singleCardIntentions[index]
+                              : this.formation == 3
+                                  ? threeCardIntentions[index]
+                                  : sevenCardIntentions[index],
+                        )));
+          },
+        );
+      },
     );
   }
 }

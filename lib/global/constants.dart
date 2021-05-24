@@ -52,3 +52,54 @@ class CustomFonts {
   static const malgun = 'malgun';
   static const baskvill = 'baskvill';
 }
+
+class SingleCardIntentions {
+  static const intention1 = 'Daily Card';
+  static const intention2 =
+      'What am I seeing in others that I can’t see in myself?';
+  static const intention3 = 'What is my source?';
+  static const intention4 =
+      'What feelings will I experience when I release this pattern?';
+  static const intention5 =
+      'What do I gain (skill, knowledge) by solving this problem?';
+  static const intention6 = 'Advice';
+  static const intention7 = 'Obstacles or hidden influences';
+  static const intention8 = 'Optimal action for resolution';
+  static const intention9 = 'What areas of my life require more balance?';
+  static const intention10 =
+      'What aspects of shadow should be brought to light';
+  static const intention11 = 'What is my heart’s desire?';
+  static const intention12 = 'What do I need to release to move forward?';
+  static const intention13 = 'What will help me';
+  static const intention14 = 'What my souls wants to tell me';
+  static const intention15 = 'How do I see myself';
+  static const intention16 = 'How do person X sees me';
+  static const intention17 = 'My super power';
+  static const intention18 = 'My next step for my further development';
+}
+
+class ThreeCardIntentions {
+  static const intention1 = 'Situation - Obstacle - Advise/Outcome';
+  static const intention2 = 'Body - Spirit - Soul';
+  static const intention3 = 'Thought - Word - Action';
+  static const intention4 = 'Past - Present - Future';
+  static const intention5 = 'Situation - Focus on this - Outcome';
+  static const intention6 = 'I - Relationship - Partner';
+  static const intention7 =
+      'What brings you together - What pulls you apart - Focus your attention on it';
+  static const intention8 = 'Strengths - Weakness - Advice';
+  static const intention9 =
+      'Conscious Mind - Sub Conscious Mind - Super Conscious Mind';
+  static const intention10 =
+      'Conscious Mind - Sub Conscious Mind - Collective Consciousness';
+}
+
+class SevenCardIntentions {
+  static const intention1 = 'Root Chakra';
+  static const intention2 = 'Sacral Chakra';
+  static const intention3 = 'Solar Plexus Chakra';
+  static const intention4 = 'Heart Chakra';
+  static const intention5 = 'Throat Chakra';
+  static const intention6 = 'Third Eye Chakra';
+  static const intention7 = 'Crown Chakra';
+}

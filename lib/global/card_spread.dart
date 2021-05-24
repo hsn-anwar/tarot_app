@@ -62,6 +62,7 @@ class CardSpread extends StatelessWidget {
           this.message != null
               ? Text(
                   message,
+                  textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 17,
                     color: Colors.white,
