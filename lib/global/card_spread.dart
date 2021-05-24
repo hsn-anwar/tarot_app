@@ -9,22 +9,19 @@ class CardSpread extends StatelessWidget {
   final int cardFormation;
   final Function opPressed;
   final String message;
-  final double height;
 
-  const CardSpread(
-      {Key key,
-      @required this.cardFormation,
-      this.opPressed,
-      this.message,
-      @required this.height})
-      : super(key: key);
+  const CardSpread({
+    Key key,
+    @required this.cardFormation,
+    this.opPressed,
+    this.message,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       color: Color(0xFFF371D61),
       width: SizeConfig.screenWidth,
-      height: SizeConfig.blockSizeVertical * this.height,
       child: Column(
         children: [
           SizedBox(
@@ -35,8 +32,15 @@ class CardSpread extends StatelessWidget {
               BackIcon(),
               Spacer(),
               Text(
-                'card_spreads'.tr(),
-                style: TextStyle(fontSize: 20),
+                this.cardFormation == 1
+                    ? "single_card_spread".tr()
+                    : this.cardFormation == 3
+                        ? "three_card_spread".tr()
+                        : "seven_card_spread".tr(),
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.white,
+                ),
               ),
               Spacer(),
               InfoIcon(),
@@ -45,11 +49,13 @@ class CardSpread extends StatelessWidget {
           SizedBox(
             height: 15.0,
           ),
-          this.cardFormation == 1
-              ? SingleCardFormation()
-              : this.cardFormation == 3
-                  ? ThreeCardFormation()
-                  : SevenCardFormation(),
+          Container(
+            child: this.cardFormation == 1
+                ? SingleCardFormation()
+                : this.cardFormation == 3
+                    ? ThreeCardFormation()
+                    : SevenCardFormation(),
+          ),
           SizedBox(
             height: 15.0,
           ),

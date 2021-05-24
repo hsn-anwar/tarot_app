@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
+import 'package:tarot_app/enums/music.dart';
 import 'package:tarot_app/global/constants.dart';
+import 'package:tarot_app/services/language_service.dart';
 import 'package:tarot_app/services/music_service.dart';
 import 'package:tarot_app/services/size_config.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'dart:ui';
 import 'package:morphable_shape/morphable_shape.dart';
+import 'package:tarot_app/enums/language.dart';
 
 class MusicToggleButtons extends StatefulWidget {
   @override
@@ -38,6 +41,45 @@ class _MusicToggleButtonsState extends State<MusicToggleButtons> {
     } else if (isOffSelected) {
       MusicService.instance.stopMusic();
     }
+  }
+
+  void initializeToggleButtons() {
+    Music musicFile = MusicService.instance.musicFile;
+    if (musicFile == Music.off) {
+      setState(() {
+        isRelaxingSelected = false;
+        isEpicSelected = false;
+        isMeditativeSelected = false;
+        isOffSelected = true;
+      });
+    } else if (musicFile == Music.relaxing) {
+      setState(() {
+        isRelaxingSelected = true;
+        isEpicSelected = false;
+        isMeditativeSelected = false;
+        isOffSelected = false;
+      });
+    } else if (musicFile == Music.epic) {
+      setState(() {
+        isRelaxingSelected = false;
+        isEpicSelected = true;
+        isMeditativeSelected = false;
+        isOffSelected = false;
+      });
+    } else if (musicFile == Music.meditative) {
+      setState(() {
+        isRelaxingSelected = false;
+        isEpicSelected = false;
+        isMeditativeSelected = true;
+        isOffSelected = false;
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    initializeToggleButtons();
+    super.initState();
   }
 
   @override
@@ -128,6 +170,28 @@ class _LanguageToggleButtonsState extends State<LanguageToggleButtons> {
   bool isEnglishSelected = true;
   bool isDutchSelected = false;
 
+  void initializeToggleButtons() {
+    Language selectedLanguage = LanguageService.instance.selectedLanguage;
+
+    if (selectedLanguage == Language.eng) {
+      setState(() {
+        isEnglishSelected = true;
+        isDutchSelected = false;
+      });
+    } else if (selectedLanguage == Language.dut) {
+      setState(() {
+        isEnglishSelected = false;
+        isDutchSelected = true;
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    initializeToggleButtons();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -136,6 +200,7 @@ class _LanguageToggleButtonsState extends State<LanguageToggleButtons> {
         ToggleButton(
           onPressed: () {
             setState(() {
+              LanguageService.instance.selectedLanguage = Language.eng;
               isDutchSelected = false;
               isEnglishSelected = true;
               context.setLocale(Locale('en'));
@@ -150,6 +215,7 @@ class _LanguageToggleButtonsState extends State<LanguageToggleButtons> {
         ToggleButton(
           onPressed: () {
             setState(() {
+              LanguageService.instance.selectedLanguage = Language.dut;
               isEnglishSelected = false;
               isDutchSelected = true;
               context.setLocale(Locale('de'));
@@ -215,11 +281,14 @@ class Menu extends StatelessWidget {
   final double _opacity = 0.2; // from 0-1.0
   @override
   Widget build(BuildContext context) {
-    return Column(
+    SizeConfig().init(context);
+    return Stack(
       children: [
         Visibility(
           visible: showSettingMenu,
           child: Container(
+            height: SizeConfig.screenHeight,
+            width: SizeConfig.screenWidth,
             child: BackdropFilter(
               filter: ImageFilter.blur(sigmaX: _sigmaX, sigmaY: _sigmaY),
               child: Container(
@@ -238,23 +307,72 @@ class Menu extends StatelessWidget {
                 clipBehavior: Clip.antiAlias,
                 child: Container(
                   width: SizeConfig.screenWidth,
-                  height: SizeConfig.blockSizeVertical * 60,
                   color: Color(0xFFF371D61),
                   child: Column(
                     children: [
                       SizedBox(
-                        height: 20,
+                        height: SizeConfig.blockSizeVertical * 5,
                       ),
-                      Text(
-                        'music'.tr(),
-                        style: TextStyle(color: Colors.white, fontSize: 40),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          'music'.tr(),
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: SizeConfig.blockSizeHorizontal * 7,
+                            fontFamily: CustomFonts.baskvill,
+                          ),
+                        ),
                       ),
-                      MusicToggleButtons(),
-                      Text(
-                        'language'.tr(),
-                        style: TextStyle(color: Colors.white, fontSize: 40),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: MusicToggleButtons(),
                       ),
-                      LanguageToggleButtons(),
+                      SizedBox(
+                        height: SizeConfig.blockSizeVertical * 1,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          'language'.tr(),
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: SizeConfig.blockSizeHorizontal * 7,
+                            fontFamily: CustomFonts.baskvill,
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: LanguageToggleButtons(),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          height: SizeConfig.blockSizeVertical * 7,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                'Read ',
+                                style: TextStyle(color: Colors.white),
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  print('tapped');
+                                },
+                                child: Text(
+                                  'Privacy Policy',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    decoration: TextDecoration.underline,
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),

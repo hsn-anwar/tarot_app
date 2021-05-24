@@ -37,7 +37,10 @@ class RoundedButton extends StatelessWidget {
               shadowColor: Color.fromARGB(255, 130, 46, 129),
             ),
             onPressed: this.onPressed,
-            child: Text(this.title)),
+            child: Text(
+              this.title,
+              textAlign: TextAlign.center,
+            )),
       ),
     );
   }

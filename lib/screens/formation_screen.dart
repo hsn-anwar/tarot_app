@@ -40,40 +40,48 @@ class _FormationScreenState extends State<FormationScreen> {
                 SizedBox(
                   height: SizeConfig.blockSizeVertical * 5,
                 ),
-                GestureDetector(
-                  onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) =>
-                            IntentionsScreen(cardFormation: 1)),
-                  ),
-                  child: CardFormation(
-                    title: 'single_card_reading'.tr(),
-                    formation: SingleCardFormation(),
-                  ),
-                ),
-                GestureDetector(
-                  onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) =>
-                            IntentionsScreen(cardFormation: 3)),
-                  ),
-                  child: CardFormation(
-                    title: 'three_card_reading'.tr(),
-                    formation: ThreeCardFormation(),
-                  ),
-                ),
-                GestureDetector(
-                  onTap: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              IntentionsScreen(cardFormation: 7))),
-                  child: CardFormation(
-                    height: SizeConfig.blockSizeVertical * 3.5,
-                    title: 'seven_card_reading'.tr(),
-                    formation: SevenCardFormation(),
+                Flexible(
+                  child: ListView(
+                    primary: false,
+                    children: [
+                      GestureDetector(
+                        onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  IntentionsScreen(cardFormation: 1)),
+                        ),
+                        child: CardFormation(
+                          title: 'single_card_reading'.tr(),
+                          formation: SingleCardFormation(),
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  IntentionsScreen(cardFormation: 3)),
+                        ),
+                        child: CardFormation(
+                          // height: SizeConfig.blockSizeVertical * 3.5,
+                          title: 'three_card_reading'.tr(),
+                          formation: ThreeCardFormation(),
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    IntentionsScreen(cardFormation: 7))),
+                        child: CardFormation(
+                          // height: SizeConfig.blockSizeVertical * 3.5,
+                          title: 'seven_card_reading'.tr(),
+                          formation: SevenCardFormation(),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ],
@@ -81,7 +89,7 @@ class _FormationScreenState extends State<FormationScreen> {
             Menu(
               showSettingMenu: showSettingMenu,
             ),
-            // GestureDetector(onTap: showMenu, child: SettingIcon()),
+            GestureDetector(onTap: showMenu, child: SettingIcon()),
           ],
         ),
       ),

@@ -12,6 +12,7 @@ class ViewCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return Column(
       children: [
         Container(
@@ -19,6 +20,7 @@ class ViewCard extends StatelessWidget {
             children: [
               Container(
                 width: double.infinity,
+                height: SizeConfig.blockSizeVertical * 75,
                 child: Image.asset(
                   this.card.path,
                 ),
@@ -27,6 +29,8 @@ class ViewCard extends StatelessWidget {
                   ? Stack(
                       children: [
                         Container(
+                          width: double.infinity,
+                          height: SizeConfig.blockSizeVertical * 65,
                           child: Center(
                             child: Image.asset(
                               ImagePath.kCardReadingOverlay,

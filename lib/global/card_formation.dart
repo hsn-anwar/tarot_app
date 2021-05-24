@@ -13,41 +13,42 @@ class SingleCardFormation extends StatelessWidget {
 }
 
 class ThreeCardFormation extends StatelessWidget {
-  final double cardHeight = 12.0;
-  final double spaceHeight = 35.0;
+  // final double cardHeight = 12.0;
+  // final double spaceHeight = 35.0;
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Column(
           children: [
             SizedBox(
-              height: spaceHeight,
+              height: SizeConfig.blockSizeVertical * 4,
             ),
             CardIcon(
-              size: cardHeight,
+              size: SizeConfig.blockSizeVertical * 2,
             )
           ],
         ),
         Column(
           children: [
             CardIcon(
-              size: cardHeight,
+              size: SizeConfig.blockSizeVertical * 2,
             ),
             SizedBox(
-              height: spaceHeight,
+              height: SizeConfig.blockSizeVertical * 4,
             ),
           ],
         ),
         Column(
           children: [
             SizedBox(
-              height: spaceHeight,
+              height: SizeConfig.blockSizeVertical * 4,
             ),
             CardIcon(
-              size: cardHeight,
+              size: SizeConfig.blockSizeVertical * 2,
             )
           ],
         ),
@@ -105,8 +106,8 @@ class CardFormation extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
-        height: SizeConfig.blockSizeVertical *
-            (this.height != null ? this.height : 22),
+        // height: SizeConfig.blockSizeVertical *
+        //     (this.height != null ? this.height : 22),
         width: SizeConfig.blockSizeHorizontal * 85,
         child: Card(
           shape: RoundedRectangleBorder(

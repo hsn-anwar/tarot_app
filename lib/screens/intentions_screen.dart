@@ -67,48 +67,58 @@ class _IntentionsScreenState extends State<IntentionsScreen> {
       body: BackgroundTemplate(
         child: Stack(
           children: [
-            Column(
-              children: [
-                TopBar(
-                  title: 'Intentions'.tr(),
-                  onSettingsTapped: showMenu,
-                ),
-                SizedBox(
-                  height: SizeConfig.blockSizeVertical * 5,
-                ),
-                CardSpread(
-                  cardFormation: widget.cardFormation,
-                  height: SizeConfig.blockSizeVertical * getHeight(),
-                ),
-                SizedBox(
-                  height: SizeConfig.blockSizeVertical * 5,
-                ),
-                Text('reading_purpose'.tr()),
-                RoundedButton(
-                  title: message1,
-                  onPressed: () =>
-                      navigateToStartReading(widget.cardFormation, message1),
-                ),
-                RoundedButton(
-                  title: message2,
-                  onPressed: () =>
-                      navigateToStartReading(widget.cardFormation, message2),
-                ),
-                RoundedButton(
-                  title: message3,
-                  onPressed: () =>
-                      navigateToStartReading(widget.cardFormation, message3),
-                ),
-                RoundedButton(
-                  title: message4,
-                  onPressed: () =>
-                      navigateToStartReading(widget.cardFormation, message4),
-                ),
-              ],
+            SingleChildScrollView(
+              primary: false,
+              child: Column(
+                children: [
+                  TopBar(
+                    title: 'Intentions'.tr(),
+                    onSettingsTapped: showMenu,
+                  ),
+                  SizedBox(
+                    height: SizeConfig.blockSizeVertical * 5,
+                  ),
+                  CardSpread(
+                    cardFormation: widget.cardFormation,
+                  ),
+                  SizedBox(
+                    height: SizeConfig.blockSizeVertical * 5,
+                  ),
+                  Text(
+                    'reading_purpose'.tr(),
+                    style: TextStyle(color: Colors.white, fontSize: 17),
+                    textAlign: TextAlign.center,
+                  ),
+                  SizedBox(
+                    height: SizeConfig.blockSizeVertical * 5,
+                  ),
+                  RoundedButton(
+                    title: message1,
+                    onPressed: () =>
+                        navigateToStartReading(widget.cardFormation, message1),
+                  ),
+                  RoundedButton(
+                    title: message2,
+                    onPressed: () =>
+                        navigateToStartReading(widget.cardFormation, message2),
+                  ),
+                  RoundedButton(
+                    title: message3,
+                    onPressed: () =>
+                        navigateToStartReading(widget.cardFormation, message3),
+                  ),
+                  RoundedButton(
+                    title: message4,
+                    onPressed: () =>
+                        navigateToStartReading(widget.cardFormation, message4),
+                  ),
+                ],
+              ),
             ),
             Menu(
               showSettingMenu: showSettingMenu,
             ),
+            GestureDetector(onTap: showMenu, child: SettingIcon()),
           ],
         ),
       ),

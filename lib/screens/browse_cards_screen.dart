@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:tarot_app/global/background_template.dart';
+import 'package:tarot_app/global/buttons/setting_button.dart';
 import 'package:tarot_app/global/buttons/small_rounded_button.dart';
 import 'package:tarot_app/global/constants.dart';
 import 'package:tarot_app/global/top_bar.dart';
@@ -101,6 +102,7 @@ class _BrowseCardsScreenState extends State<BrowseCardsScreen> {
   String swipeDirection;
 
   bool showSettingMenu = false;
+  CharacterCard cardToShow;
 
   void toggleCardInfo() {
     setState(() {
@@ -112,6 +114,22 @@ class _BrowseCardsScreenState extends State<BrowseCardsScreen> {
     setState(() {
       showCharacterCard = false;
       showCardInfo = false;
+    });
+  }
+
+  void onCardTapped(CharacterCard card) {
+    print('tapped');
+    print(card.name);
+    setState(() {
+      cardToShow = card;
+      showCharacterCard = true;
+    });
+  }
+
+  void showMenu() {
+    print('tapped');
+    setState(() {
+      showSettingMenu = !showSettingMenu;
     });
   }
 
@@ -134,15 +152,14 @@ class _BrowseCardsScreenState extends State<BrowseCardsScreen> {
               children: [
                 TopBar(
                   title: 'Browse Cards',
-                  onSettingsTapped: () {
-                    setState(() {
-                      showCardInfo = !showCardInfo;
-                      print(showCardInfo);
-                    });
-                  },
+                  onSettingsTapped: showMenu,
                 ),
                 Text(
                   'welcoming_text'.tr(),
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                  textAlign: TextAlign.center,
                 ),
                 Expanded(
                   child: Stack(
@@ -161,10 +178,8 @@ class _BrowseCardsScreenState extends State<BrowseCardsScreen> {
                                 TopRack(mode: TopRackMode.rackOne),
                                 CardRow(
                                   cards: characterCardsList1,
-                                  onCardTapped: (CharacterCard card) {
-                                    print('tapped');
-                                    print(card.name);
-                                  },
+                                  onCardTapped: (CharacterCard card) =>
+                                      onCardTapped(card),
                                 ),
                                 TopVine(mode: TopVineMode.vineOne)
                               ],
@@ -181,9 +196,8 @@ class _BrowseCardsScreenState extends State<BrowseCardsScreen> {
                                 TopRack(mode: TopRackMode.rackTwo),
                                 CardRow(
                                   cards: characterCardsList2,
-                                  onCardTapped: (CharacterCard card) {
-                                    print(card.name);
-                                  },
+                                  onCardTapped: (CharacterCard card) =>
+                                      onCardTapped(card),
                                 ),
                                 TopVine(mode: TopVineMode.vineTwo)
                               ],
@@ -200,9 +214,8 @@ class _BrowseCardsScreenState extends State<BrowseCardsScreen> {
                                 TopRack(mode: TopRackMode.rackOne),
                                 CardRow(
                                   cards: characterCardsList3,
-                                  onCardTapped: (CharacterCard card) {
-                                    print(card.name);
-                                  },
+                                  onCardTapped: (CharacterCard card) =>
+                                      onCardTapped(card),
                                 ),
                                 TopVine(mode: TopVineMode.vineOne)
                               ],
@@ -227,7 +240,7 @@ class _BrowseCardsScreenState extends State<BrowseCardsScreen> {
                               children: [
                                 GestureDetector(
                                   child: ViewCard(
-                                    card: characterCardsList1[0],
+                                    card: cardToShow,
                                     showInfo: showCardInfo,
                                   ),
                                   onPanUpdate: (details) {
@@ -281,14 +294,15 @@ class _BrowseCardsScreenState extends State<BrowseCardsScreen> {
                               ],
                             )
                           : Container(),
-                      Menu(
-                        showSettingMenu: showSettingMenu,
-                      ),
                     ],
                   ),
                 ),
               ],
             ),
+            Menu(
+              showSettingMenu: showSettingMenu,
+            ),
+            GestureDetector(onTap: showMenu, child: SettingIcon()),
           ],
         ),
       ),
@@ -305,51 +319,62 @@ class CardRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        GestureDetector(
-          onTap: onCardTapped(cards[0]),
-          child: Align(
-            alignment: Alignment.topCenter,
+        Align(
+          alignment: Alignment.topCenter,
+          child: GestureDetector(
+            onTap: () {
+              this.onCardTapped(this.cards[0]);
+            },
             child: Container(
-              // color: Colors.pink,
-              width: 100,
-              height: 100,
-              child: Image.asset(cards[0].path),
+              width: SizeConfig.blockSizeHorizontal * 25,
+              height: SizeConfig.blockSizeHorizontal * 25,
+              child: Image.asset(
+                cards[0].path,
+                fit: BoxFit.contain,
+              ),
             ),
           ),
         ),
         GestureDetector(
-          onTap: onCardTapped(cards[1]),
+          onTap: () {
+            this.onCardTapped(this.cards[1]);
+          },
           child: Align(
             alignment: Alignment.topCenter,
             child: Container(
               // color: Colors.pink,
-              width: 100,
-              height: 100,
+              width: SizeConfig.blockSizeHorizontal * 25,
+              height: SizeConfig.blockSizeHorizontal * 25,
               child: Image.asset(cards[1].path),
             ),
           ),
         ),
         GestureDetector(
-          onTap: onCardTapped(cards[2]),
+          onTap: () {
+            this.onCardTapped(this.cards[2]);
+          },
           child: Align(
             alignment: Alignment.topCenter,
             child: Container(
               // color: Colors.pink,
-              width: 100,
-              height: 100,
+              width: SizeConfig.blockSizeHorizontal * 25,
+              height: SizeConfig.blockSizeHorizontal * 25,
               child: Image.asset(cards[2].path),
             ),
           ),
         ),
         GestureDetector(
-          onTap: onCardTapped(cards[3]),
+          onTap: () {
+            this.onCardTapped(this.cards[3]);
+          },
           child: Align(
             alignment: Alignment.topCenter,
             child: Container(
               // color: Colors.pink,
-              width: 100,
-              height: 100,
+              width: SizeConfig.blockSizeHorizontal * 25,
+              height: SizeConfig.blockSizeHorizontal * 25,
               child: Image.asset(cards[3].path),
             ),
           ),
@@ -369,13 +394,15 @@ class TopVine extends StatelessWidget {
   Widget build(BuildContext context) {
     return Align(
       alignment: Alignment.bottomCenter,
-      child: Container(
-        width: SizeConfig.screenWidth,
-        child: Image.asset(
-          mode == TopVineMode.vineOne
-              ? ImagePath.kCardRackTopVineOne
-              : ImagePath.kCardRackTopVineTwo,
-          fit: BoxFit.fitWidth,
+      child: IgnorePointer(
+        child: Container(
+          width: SizeConfig.screenWidth,
+          child: Image.asset(
+            mode == TopVineMode.vineOne
+                ? ImagePath.kCardRackTopVineOne
+                : ImagePath.kCardRackTopVineTwo,
+            fit: BoxFit.fitWidth,
+          ),
         ),
       ),
     );

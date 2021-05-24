@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tarot_app/services/size_config.dart';
 
 import 'buttons/setting_button.dart';
 
@@ -10,18 +11,27 @@ class TopBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        GestureDetector(onTap: showMenu, child: CloseIcon()),
-        Spacer(),
-        Text(
-          this.title,
-          style: TextStyle(
-              color: Colors.white, fontSize: 25.0, fontFamily: 'baskvill'),
-        ),
-        Spacer(),
-        GestureDetector(onTap: this.onSettingsTapped, child: SettingIcon()),
-      ],
+    return Padding(
+      padding: const EdgeInsets.only(top: 8.0),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          GestureDetector(onTap: showMenu, child: CloseIcon()),
+          Spacer(),
+          Text(
+            this.title,
+            style: TextStyle(
+                color: Colors.white, fontSize: 25.0, fontFamily: 'baskvill'),
+          ),
+          Spacer(),
+          Padding(
+            padding: const EdgeInsets.only(left: 25.0, top: 0.0),
+            child: Container(
+              width: SizeConfig.blockSizeHorizontal * 8,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

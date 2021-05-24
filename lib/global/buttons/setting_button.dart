@@ -31,7 +31,7 @@ class CloseIcon extends StatelessWidget {
     return Align(
       alignment: Alignment.topLeft,
       child: Padding(
-        padding: const EdgeInsets.only(left: 25.0, top: 8.0),
+        padding: const EdgeInsets.only(left: 25.0, top: 0.0),
         child: Container(
           width: SizeConfig.blockSizeHorizontal * 8,
           child: GestureDetector(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tarot_app/global/background_template.dart';
+import 'package:tarot_app/global/buttons/setting_button.dart';
 import 'package:tarot_app/global/card_spread.dart';
 import 'package:tarot_app/global/top_bar.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -60,13 +61,13 @@ class _StartReadingScreenState extends State<StartReadingScreen> {
                       MaterialPageRoute(builder: (context) => ReadingScreen()),
                     );
                   },
-                  height: SizeConfig.blockSizeVertical * getHeight(),
                 ),
               ],
             ),
             Menu(
               showSettingMenu: showSettingMenu,
             ),
+            GestureDetector(onTap: showMenu, child: SettingIcon()),
           ],
         ),
       ),

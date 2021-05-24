@@ -10,6 +10,7 @@ import 'package:tarot_app/global/widgets/menu.dart';
 import 'package:tarot_app/main.dart';
 import 'package:tarot_app/screens/browse_cards_screen.dart';
 import 'package:tarot_app/screens/formation_screen.dart';
+import 'package:tarot_app/services/music_service.dart';
 import 'package:tarot_app/services/size_config.dart';
 import 'package:morphable_shape/morphable_shape.dart';
 import 'package:audioplayers/audioplayers.dart';
@@ -26,6 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void showMenu() {
     print('tapped');
+    print(MusicService.instance.musicFile);
     setState(() {
       showSettingMenu = !showSettingMenu;
     });
@@ -50,14 +52,18 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 SizedBox(height: SizeConfig.blockSizeVertical * 10),
                 Container(
-                  child: Image.asset(ImagePath.kLogoIcon),
+                  child: Image.asset(
+                    ImagePath.kLogoIcon,
+                    width: SizeConfig.blockSizeVertical * 20,
+                  ),
                 ),
                 SizedBox(height: SizeConfig.blockSizeVertical * 5),
                 Text(
                   "title".tr(),
+                  textAlign: TextAlign.center,
                   style: TextStyle(
                     fontFamily: CustomFonts.sherlock,
-                    fontSize: 44,
+                    fontSize: SizeConfig.blockSizeHorizontal * 11,
                     color: Colors.white,
                   ),
                 ),
