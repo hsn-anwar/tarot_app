@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tarot_app/services/size_config.dart';
 
-import 'buttons/setting_button.dart';
+import '../buttons/setting_button.dart';
 
 class TopBar extends StatelessWidget {
   final String title;
@@ -16,7 +16,7 @@ class TopBar extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          GestureDetector(onTap: showMenu, child: CloseIcon()),
+          CloseIcon(),
           Spacer(),
           Text(
             this.title,

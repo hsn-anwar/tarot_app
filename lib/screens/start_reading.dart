@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:tarot_app/global/background_template.dart';
+import 'package:tarot_app/global/widgets/background_template.dart';
 import 'package:tarot_app/global/buttons/setting_button.dart';
-import 'package:tarot_app/global/card_spread.dart';
-import 'package:tarot_app/global/top_bar.dart';
+import 'package:tarot_app/global/widgets/card_spread.dart';
+import 'package:tarot_app/global/widgets/top_bar.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:tarot_app/global/widgets/menu.dart';
 import 'package:tarot_app/screens/reading_screen.dart';

@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.tarot_app">
+    package="com.tarotapp">
    <application
-        android:label="tarot_app"
+        android:label="tarotapp"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

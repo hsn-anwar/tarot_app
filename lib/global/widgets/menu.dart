@@ -221,7 +221,7 @@ class _LanguageToggleButtonsState extends State<LanguageToggleButtons> {
               context.setLocale(Locale('de'));
             });
           },
-          title: 'Dutch',
+          title: 'Deutsch',
           isPressed: isDutchSelected,
         ),
       ],
@@ -304,10 +304,19 @@ class Menu extends StatelessWidget {
               SizedBox(height: SizeConfig.blockSizeVertical * 6),
               Material(
                 shape: rectangle,
+                color: Colors.transparent,
                 clipBehavior: Clip.antiAlias,
                 child: Container(
                   width: SizeConfig.screenWidth,
-                  color: Color(0xFFF371D61),
+                  decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                    begin: Alignment.bottomLeft,
+                    end: Alignment.topRight,
+                    colors: [
+                      Color(0xFFF371D61).withOpacity(0.5),
+                      Color(0xFFF822E81).withOpacity(0.5)
+                    ],
+                  )),
                   child: Column(
                     children: [
                       SizedBox(

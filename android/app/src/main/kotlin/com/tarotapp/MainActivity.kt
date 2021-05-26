@@ -1,4 +1,4 @@
-package com.tarot_app
+package com.tarotapp
 
 import io.flutter.embedding.android.FlutterActivity
 

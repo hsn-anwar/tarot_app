@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tarot_app/global/background_template.dart';
+import 'package:tarot_app/global/widgets/background_template.dart';
 import 'package:tarot_app/global/constants.dart';
 import 'package:tarot_app/models/character_card.dart';
 import 'package:tarot_app/services/size_config.dart';

@@ -1,11 +1,11 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:tarot_app/global/background_template.dart';
+import 'package:tarot_app/global/widgets/background_template.dart';
 import 'package:tarot_app/global/buttons/setting_button.dart';
 import 'package:tarot_app/global/buttons/small_rounded_button.dart';
 import 'package:tarot_app/global/constants.dart';
-import 'package:tarot_app/global/top_bar.dart';
+import 'package:tarot_app/global/widgets/top_bar.dart';
 import 'package:tarot_app/global/widgets/menu.dart';
 import 'package:tarot_app/screens/view_card.dart';
 import 'package:tarot_app/services/size_config.dart';

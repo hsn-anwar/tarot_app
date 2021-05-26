@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tarot_app/services/size_config.dart';
 
-import 'constants.dart';
+import '../constants.dart';
 
 class BackgroundTemplate extends StatelessWidget {
   final Widget child;

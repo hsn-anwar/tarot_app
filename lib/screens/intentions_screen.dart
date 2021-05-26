@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:tarot_app/global/background_template.dart';
+import 'package:tarot_app/global/widgets/background_blur.dart';
+import 'package:tarot_app/global/widgets/background_template.dart';
 import 'package:tarot_app/global/buttons/rounded_button.dart';
 import 'package:tarot_app/global/buttons/setting_button.dart';
-import 'package:tarot_app/global/card_formation.dart';
-import 'package:tarot_app/global/card_spread.dart';
+import 'package:tarot_app/global/widgets/card_formation.dart';
+import 'package:tarot_app/global/widgets/card_spread.dart';
 import 'package:tarot_app/global/constants.dart';
-import 'package:tarot_app/global/top_bar.dart';
+import 'package:tarot_app/global/widgets/top_bar.dart';
 import 'package:tarot_app/global/widgets/menu.dart';
 import 'package:tarot_app/screens/start_reading.dart';
 import 'package:tarot_app/services/size_config.dart';
@@ -68,6 +69,7 @@ class _IntentionsScreenState extends State<IntentionsScreen> {
       body: BackgroundTemplate(
         child: Stack(
           children: [
+            BackgroundBlur(),
             SingleChildScrollView(
               primary: false,
               child: Column(
@@ -173,46 +175,50 @@ class SingleCardSpreadButtons extends StatelessWidget {
 
   final List sevenCardIntentions = [
     SevenCardIntentions.intention1,
-    SevenCardIntentions.intention2,
-    SevenCardIntentions.intention3,
-    SevenCardIntentions.intention4,
-    SevenCardIntentions.intention5,
-    SevenCardIntentions.intention6,
-    SevenCardIntentions.intention7,
   ];
 
   @override
   Widget build(BuildContext context) {
     print(this.formation);
 
-    return ListView.builder(
-      itemCount: this.formation == 1
-          ? singleCardIntentions.length - 1
-          : this.formation == 3
-              ? threeCardIntentions.length - 1
-              : sevenCardIntentions.length - 1,
-      itemBuilder: (context, index) {
-        return RoundedButton(
-          title: this.formation == 1
-              ? singleCardIntentions[index]
-              : this.formation == 3
-                  ? threeCardIntentions[index]
-                  : sevenCardIntentions[index],
-          onPressed: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => StartReadingScreen(
-                          cardFormation: this.formation,
-                          message: this.formation == 1
-                              ? singleCardIntentions[index]
-                              : this.formation == 3
-                                  ? threeCardIntentions[index]
-                                  : sevenCardIntentions[index],
-                        )));
-          },
-        );
-      },
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 16.0),
+      child: ListView.builder(
+        primary: false,
+        itemCount: this.formation == 1
+            ? singleCardIntentions.length
+            : this.formation == 3
+                ? threeCardIntentions.length
+                : sevenCardIntentions.length,
+        itemBuilder: (context, index) {
+          return Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              RoundedButton(
+                height: this.formation == 7 ? 10 : 7,
+                title: this.formation == 1
+                    ? singleCardIntentions[index]
+                    : this.formation == 3
+                        ? threeCardIntentions[index]
+                        : sevenCardIntentions[index],
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => StartReadingScreen(
+                                cardFormation: this.formation,
+                                message: this.formation == 1
+                                    ? singleCardIntentions[index]
+                                    : this.formation == 3
+                                        ? threeCardIntentions[index]
+                                        : sevenCardIntentions[index],
+                              )));
+                },
+              ),
+            ],
+          );
+        },
+      ),
     );
   }
 }

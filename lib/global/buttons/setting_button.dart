@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:tarot_app/services/size_config.dart';
 
@@ -36,7 +38,7 @@ class CloseIcon extends StatelessWidget {
           width: SizeConfig.blockSizeHorizontal * 8,
           child: GestureDetector(
             child: Image.asset(ImagePath.kCloseButton),
-            onTap: () => Navigator.pop(context),
+            onTap: () => Navigator.popUntil(context, (route) => route.isFirst),
           ),
         ),
       ),
@@ -67,8 +69,14 @@ class CardIcon extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
-        width: SizeConfig.blockSizeHorizontal * this.size,
-        child: Image.asset(ImagePath.kCardIcon),
+        child: ClipRRect(
+          // borderRadius: BorderRadius.circular(4.0),
+          child: Image.asset(
+            ImagePath.kCardIcon,
+            fit: BoxFit.fitHeight,
+            width: SizeConfig.blockSizeHorizontal * this.size,
+          ),
+        ),
       ),
     );
   }
@@ -78,10 +86,10 @@ class BackIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(right: 10.0, top: 8.0),
+      padding: const EdgeInsets.only(left: 10.0, top: 8.0),
       child: Container(
         width: SizeConfig.blockSizeHorizontal * 7,
-        child: Image.asset(ImagePath.kInfoButton),
+        child: Image.asset(ImagePath.intentionsBackButton),
       ),
     );
   }

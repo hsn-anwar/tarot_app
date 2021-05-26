@@ -2,7 +2,7 @@ import 'dart:ui';
 import 'package:easy_localization/easy_localization.dart';
 
 import 'package:flutter/material.dart';
-import 'package:tarot_app/global/background_template.dart';
+import 'package:tarot_app/global/widgets/background_template.dart';
 import 'package:tarot_app/global/buttons/rounded_button.dart';
 import 'package:tarot_app/global/buttons/setting_button.dart';
 import 'package:tarot_app/global/constants.dart';
@@ -10,6 +10,7 @@ import 'package:tarot_app/global/widgets/menu.dart';
 import 'package:tarot_app/main.dart';
 import 'package:tarot_app/screens/browse_cards_screen.dart';
 import 'package:tarot_app/screens/formation_screen.dart';
+import 'package:tarot_app/screens/splash_screen.dart';
 import 'package:tarot_app/services/music_service.dart';
 import 'package:tarot_app/services/size_config.dart';
 import 'package:morphable_shape/morphable_shape.dart';
@@ -40,7 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           setState(() {
-            context.setLocale(Locale('en'));
+            Navigator.pushNamed(context, SplashScreen.id);
           });
         },
         child: Text('DEBUG'),

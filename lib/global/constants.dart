@@ -27,6 +27,10 @@ class ImagePath {
   static const String kSettingsButton = kImagePath + 'Settings button.png';
   static const String kTableZoomed = kImagePath + 'Table Zoomed.png';
   static const String kTable = kImagePath + 'Table.png';
+  static const String flame = kImagePath + 'flame.gif';
+  static const String intentionsBackButton =
+      kImagePath + 'Intentions Back Button.png';
+  static const String brazier = kImagePath + 'Brazier.png';
 }
 
 class CharacterCardPath {
@@ -95,11 +99,23 @@ class ThreeCardIntentions {
 }
 
 class SevenCardIntentions {
-  static const intention1 = 'Root Chakra';
-  static const intention2 = 'Sacral Chakra';
-  static const intention3 = 'Solar Plexus Chakra';
-  static const intention4 = 'Heart Chakra';
-  static const intention5 = 'Throat Chakra';
-  static const intention6 = 'Third Eye Chakra';
-  static const intention7 = 'Crown Chakra';
+  static const intention1 =
+      'Root Chakra - Sacral Chakra \n Solar Plexus Chakra - Heart Chakra - Throat Chakra \n Third Eye Chakra - Crown Chakra';
 }
+
+class FormationInfo {
+  static const String single =
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. "
+      "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, ";
+  static const String three =
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. "
+      "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, ";
+  static const String seven =
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. "
+      "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, ";
+}
+
+TextStyle kInfoTextStyle = TextStyle(
+  color: Colors.white,
+  fontSize: 17,
+);

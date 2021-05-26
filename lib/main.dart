@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:tarot_app/screens/browse_cards_screen.dart';
 import 'package:tarot_app/screens/formation_screen.dart';
 import 'package:tarot_app/screens/home_screen.dart';
+import 'package:tarot_app/screens/splash_screen.dart';
 import 'package:tarot_app/services/music_service.dart';
 
 void main() async {
@@ -36,6 +37,7 @@ class MyApp extends StatelessWidget {
         HomeScreen.id: (context) => HomeScreen(),
         FormationScreen.id: (context) => FormationScreen(),
         BrowseCardsScreen.id: (context) => BrowseCardsScreen(),
+        SplashScreen.id: (context) => SplashScreen(),
       },
     );
   }
