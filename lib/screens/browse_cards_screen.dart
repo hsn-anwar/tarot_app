@@ -258,8 +258,17 @@ class _BrowseCardsScreenState extends State<BrowseCardsScreen> {
                                     print(swipeDirection);
                                     if (swipeDirection == 'down') {
                                       toggleShowCardInfo();
-                                    } else if (swipeDirection == 'left') {
-                                      toggleCardInfo();
+                                    } else if (swipeDirection == 'left' &&
+                                        !showCardInfo) {
+                                      // toggleCardInfo();
+                                      setState(() {
+                                        showCardInfo = true;
+                                      });
+                                    } else if (swipeDirection == 'right' &&
+                                        showCardInfo) {
+                                      setState(() {
+                                        showCardInfo = false;
+                                      });
                                     }
                                   },
                                 ),

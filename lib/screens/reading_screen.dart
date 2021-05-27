@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:circle_list/circle_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -93,17 +95,32 @@ class _ReadingScreenState extends State<ReadingScreen> {
                             Spacer(),
                             Stack(
                               children: [
-                                Image.asset(
-                                  ImagePath.kPedestal,
-                                  fit: BoxFit.fitHeight,
+                                Container(
                                   height: SizeConfig.blockSizeVertical * 25,
+                                  margin: EdgeInsets.only(
+                                      top: SizeConfig.blockSizeVertical * 6),
+                                  child: Image.asset(
+                                    ImagePath.kPedestal,
+                                    fit: BoxFit.fill,
+                                  ),
                                 ),
                                 Positioned(
-                                  top: -15,
-                                  left: 0,
-                                  child: Image.asset(
-                                    ImagePath.flame,
-                                    height: 75,
+                                  bottom: SizeConfig.blockSizeVertical * 18,
+                                  left: SizeConfig.blockSizeHorizontal * 20,
+                                  child: Container(
+                                    // color: Colors.pink,
+                                    padding: EdgeInsets.all(8),
+                                    width: SizeConfig.blockSizeHorizontal * 18,
+                                    child: Transform(
+                                      transform: Matrix4.rotationY(pi),
+                                      child: Image.asset(
+                                        ImagePath.brazier,
+                                        fit: BoxFit.fill,
+                                        // height:
+                                        // SizeConfig.blockSizeHorizontal * 10,
+                                        // width: SizeConfig.blockSizeHorizontal * 25,
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ],

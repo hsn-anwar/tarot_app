@@ -96,7 +96,10 @@ class _HomeScreenState extends State<HomeScreen> {
                             Navigator.pushNamed(context, BrowseCardsScreen.id),
                         child: Text(
                           'browse_cards'.tr(),
-                          style: TextStyle(color: Colors.white),
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w700,
+                              fontSize: 14),
                         ),
                       )
                     ],

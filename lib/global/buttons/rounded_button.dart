@@ -40,6 +40,7 @@ class RoundedButton extends StatelessWidget {
             child: Text(
               this.title,
               textAlign: TextAlign.center,
+              style: TextStyle(fontWeight: FontWeight.w700),
             )),
       ),
     );
