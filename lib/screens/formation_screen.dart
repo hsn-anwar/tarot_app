@@ -64,7 +64,17 @@ class _FormationScreenState extends State<FormationScreen> {
                   onSettingsTapped: showMenu,
                 ),
                 SizedBox(
-                  height: SizeConfig.blockSizeVertical * 5,
+                  height: SizeConfig.blockSizeVertical * 2.5,
+                ),
+                Text(
+                  "formation_heading".tr(),
+                  style: TextStyle(
+                      fontSize: 17,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w400),
+                ),
+                SizedBox(
+                  height: SizeConfig.blockSizeVertical * 2.5,
                 ),
                 Flexible(
                   child: ListView(

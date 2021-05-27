@@ -23,73 +23,73 @@ class _BrowseCardsScreenState extends State<BrowseCardsScreen> {
   List<CharacterCard> characterCardsList1 = [
     CharacterCard(
         path: CharacterCardPath.ambael,
-        description: 'some desc here for ambael',
+        description: "ambael_desc".tr(),
         name: 'ambael'),
     CharacterCard(
         path: CharacterCardPath.adrasteia,
-        description: 'some desc here for adrasteia',
+        description: 'adrasteia_desc'.tr(),
         name: 'adrasteia'),
     CharacterCard(
         path: CharacterCardPath.diana,
-        description: 'some desc here for diana',
+        description: 'diana_desc'.tr(),
         name: 'diana'),
     CharacterCard(
         path: CharacterCardPath.earth,
-        description: 'some desc here for earth',
+        description: 'earth_desc'.tr(),
         name: 'earth'),
   ];
   List<CharacterCard> characterCardsList2 = [
     CharacterCard(
         path: CharacterCardPath.ambael,
-        description: 'some desc here for ambael',
+        description: "ambael_desc".tr(),
         name: 'ambael'),
     CharacterCard(
         path: CharacterCardPath.adrasteia,
-        description: 'some desc here for adrasteia',
+        description: 'adrasteia_desc'.tr(),
         name: 'adrasteia'),
     CharacterCard(
         path: CharacterCardPath.diana,
-        description: 'some desc here for diana',
+        description: 'diana_desc'.tr(),
         name: 'diana'),
     CharacterCard(
         path: CharacterCardPath.earth,
-        description: 'some desc here for earth',
+        description: 'earth_desc'.tr(),
         name: 'earth'),
   ];
   List<CharacterCard> characterCardsList3 = [
     CharacterCard(
         path: CharacterCardPath.ambael,
-        description: 'some desc here for ambael',
+        description: "ambael_desc".tr(),
         name: 'ambael'),
     CharacterCard(
         path: CharacterCardPath.adrasteia,
-        description: 'some desc here for adrasteia',
+        description: 'adrasteia_desc'.tr(),
         name: 'adrasteia'),
     CharacterCard(
         path: CharacterCardPath.diana,
-        description: 'some desc here for diana',
+        description: 'diana_desc'.tr(),
         name: 'diana'),
     CharacterCard(
         path: CharacterCardPath.earth,
-        description: 'some desc here for earth',
+        description: 'earth_desc'.tr(),
         name: 'earth'),
   ];
   List<CharacterCard> characterCardsList4 = [
     CharacterCard(
         path: CharacterCardPath.ambael,
-        description: 'some desc here for ambael',
+        description: "ambael_desc".tr(),
         name: 'ambael'),
     CharacterCard(
         path: CharacterCardPath.adrasteia,
-        description: 'some desc here for adrasteia',
+        description: 'adrasteia_desc'.tr(),
         name: 'adrasteia'),
     CharacterCard(
         path: CharacterCardPath.diana,
-        description: 'some desc here for diana',
+        description: 'diana_desc'.tr(),
         name: 'diana'),
     CharacterCard(
         path: CharacterCardPath.earth,
-        description: 'some desc here for earth',
+        description: 'earth_desc'.tr(),
         name: 'earth'),
   ];
 
@@ -155,7 +155,7 @@ class _BrowseCardsScreenState extends State<BrowseCardsScreen> {
                   onSettingsTapped: showMenu,
                 ),
                 Text(
-                  'welcoming_text'.tr(),
+                  'browse_welcoming_text'.tr(),
                   style: TextStyle(
                     color: Colors.white,
                   ),
@@ -236,24 +236,24 @@ class _BrowseCardsScreenState extends State<BrowseCardsScreen> {
                         ),
                       ),
                       Container(),
-                      FlipCard(
-                        key: cardKey,
-                        flipOnTouch: false,
-                        front: Container(
-                          width: double.infinity,
-                          height: SizeConfig.blockSizeVertical * 75,
-                          child: Image.asset(
-                            CharacterCardPath.ambael,
-                          ),
-                        ),
-                        back: Container(
-                          width: double.infinity,
-                          height: SizeConfig.blockSizeVertical * 75,
-                          child: Image.asset(
-                            ImagePath.kCardBack,
-                          ),
-                        ),
-                      ),
+                      // FlipCard(
+                      //   key: cardKey,
+                      //   flipOnTouch: false,
+                      //   front: Container(
+                      //     width: double.infinity,
+                      //     height: SizeConfig.blockSizeVertical * 75,
+                      //     child: Image.asset(
+                      //       CharacterCardPath.ambael,
+                      //     ),
+                      //   ),
+                      //   back: Container(
+                      //     width: double.infinity,
+                      //     height: SizeConfig.blockSizeVertical * 75,
+                      //     child: Image.asset(
+                      //       ImagePath.kCardBack,
+                      //     ),
+                      //   ),
+                      // ),
                       showCharacterCard == true
                           ? Column(
                               children: [

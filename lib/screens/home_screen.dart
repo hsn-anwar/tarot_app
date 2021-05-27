@@ -70,7 +70,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 SizedBox(height: SizeConfig.blockSizeVertical * 5),
                 Text(
-                  "welcoming_text".tr(),
+                  "home_welcoming_text".tr(),
                   style: TextStyle(
                     fontSize: 22,
                     color: Colors.white,

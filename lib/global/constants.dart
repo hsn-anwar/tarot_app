@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class ImagePath {
   static const String kImagePath = 'assets/images/';
@@ -58,64 +59,51 @@ class CustomFonts {
 }
 
 class SingleCardIntentions {
-  static const intention1 = 'Daily Card';
-  static const intention2 =
-      'What am I seeing in others that I can’t see in myself?';
-  static const intention3 = 'What is my source?';
-  static const intention4 =
-      'What feelings will I experience when I release this pattern?';
-  static const intention5 =
-      'What do I gain (skill, knowledge) by solving this problem?';
-  static const intention6 = 'Advice';
-  static const intention7 = 'Obstacles or hidden influences';
-  static const intention8 = 'Optimal action for resolution';
-  static const intention9 = 'What areas of my life require more balance?';
-  static const intention10 =
-      'What aspects of shadow should be brought to light';
-  static const intention11 = 'What is my heart’s desire?';
-  static const intention12 = 'What do I need to release to move forward?';
-  static const intention13 = 'What will help me';
-  static const intention14 = 'What my souls wants to tell me';
-  static const intention15 = 'How do I see myself';
-  static const intention16 = 'How do person X sees me';
-  static const intention17 = 'My super power';
-  static const intention18 = 'My next step for my further development';
+  static final intention1 = 'single_card_int_1'.tr();
+  static final intention2 = 'single_card_int_2'.tr();
+  static final intention3 = 'single_card_int_3'.tr();
+  static final intention4 = 'single_card_int_4'.tr();
+  static final intention5 = 'single_card_int_5'.tr();
+  static final intention6 = 'single_card_int_6'.tr();
+  static final intention7 = 'single_card_int_7'.tr();
+  static final intention8 = 'single_card_int_8'.tr();
+  static final intention9 = 'single_card_int_9'.tr();
+  static final intention10 = 'single_card_int_10'.tr();
+  static final intention11 = 'single_card_int_11'.tr();
+  static final intention12 = 'single_card_int_12'.tr();
+  static final intention13 = 'single_card_int_13'.tr();
+  static final intention14 = 'single_card_int_14'.tr();
+  static final intention15 = 'single_card_int_15'.tr();
+  static final intention16 = 'single_card_int_16'.tr();
+  static final intention17 = 'single_card_int_17'.tr();
+  static final intention18 = 'single_card_int_18'.tr();
 }
 
 class ThreeCardIntentions {
-  static const intention1 = 'Situation - Obstacle - Advise/Outcome';
-  static const intention2 = 'Body - Spirit - Soul';
-  static const intention3 = 'Thought - Word - Action';
-  static const intention4 = 'Past - Present - Future';
-  static const intention5 = 'Situation - Focus on this - Outcome';
-  static const intention6 = 'I - Relationship - Partner';
-  static const intention7 =
-      'What brings you together - What pulls you apart - Focus your attention on it';
-  static const intention8 = 'Strengths - Weakness - Advice';
-  static const intention9 =
-      'Conscious Mind - Sub Conscious Mind - Super Conscious Mind';
-  static const intention10 =
-      'Conscious Mind - Sub Conscious Mind - Collective Consciousness';
+  static final String intention1 = 'three_card_int_1'.tr();
+  static final intention2 = 'three_card_int_2'.tr();
+  static final intention3 = 'three_card_int_3'.tr();
+  static final intention4 = 'three_card_int_4'.tr();
+  static final intention5 = 'three_card_int_5'.tr();
+  static final intention6 = 'three_card_int_6'.tr();
+  static final intention7 = 'three_card_int_7'.tr();
+  static final intention8 = 'three_card_int_8'.tr();
+  static final intention9 = 'three_card_int_9'.tr();
+  static final intention10 = 'three_card_int_10'.tr();
 }
 
 class SevenCardIntentions {
-  static const intention1 =
-      'Root Chakra - Sacral Chakra \n Solar Plexus Chakra - Heart Chakra - Throat Chakra \n Third Eye Chakra - Crown Chakra';
+  static final intention1 = 'seven_card_int_1'.tr();
 }
 
 class FormationInfo {
-  static const String single =
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. "
-      "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, ";
-  static const String three =
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. "
-      "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, ";
-  static const String seven =
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. "
-      "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, ";
+  static final String single = "single_card_info".tr();
+  static final String three = "three_card_info".tr();
+  static final String seven = "seven_card_info".tr();
 }
 
 TextStyle kInfoTextStyle = TextStyle(
   color: Colors.white,
   fontSize: 17,
+  fontFamily: CustomFonts.malgun,
 );
