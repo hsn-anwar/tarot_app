@@ -11,6 +11,7 @@ import 'package:tarot_app/screens/view_card.dart';
 import 'package:tarot_app/services/size_config.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:tarot_app/models/character_card.dart';
+import 'package:flip_card/flip_card.dart';
 
 class BrowseCardsScreen extends StatefulWidget {
   static final String id = '/browse_cards';
@@ -133,6 +134,7 @@ class _BrowseCardsScreenState extends State<BrowseCardsScreen> {
     });
   }
 
+  GlobalKey<FlipCardState> cardKey = GlobalKey<FlipCardState>();
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -140,9 +142,7 @@ class _BrowseCardsScreenState extends State<BrowseCardsScreen> {
       floatingActionButton: FloatingActionButton(
         child: Text('Debug'),
         onPressed: () {
-          setState(() {
-            showCharacterCard = !showCharacterCard;
-          });
+          cardKey.currentState.toggleCard();
         },
       ),
       body: BackgroundTemplate(
@@ -232,6 +232,25 @@ class _BrowseCardsScreenState extends State<BrowseCardsScreen> {
                             child: Container(
                               color: Colors.black.withOpacity(_opacity),
                             ),
+                          ),
+                        ),
+                      ),
+                      Container(),
+                      FlipCard(
+                        key: cardKey,
+                        flipOnTouch: false,
+                        front: Container(
+                          width: double.infinity,
+                          height: SizeConfig.blockSizeVertical * 75,
+                          child: Image.asset(
+                            CharacterCardPath.ambael,
+                          ),
+                        ),
+                        back: Container(
+                          width: double.infinity,
+                          height: SizeConfig.blockSizeVertical * 75,
+                          child: Image.asset(
+                            ImagePath.kCardBack,
                           ),
                         ),
                       ),
