@@ -7,6 +7,7 @@ import 'package:tarot_app/global/buttons/small_rounded_button.dart';
 import 'package:tarot_app/global/constants.dart';
 import 'package:tarot_app/global/widgets/top_bar.dart';
 import 'package:tarot_app/global/widgets/menu.dart';
+import 'package:tarot_app/screens/card_view.dart';
 import 'package:tarot_app/screens/view_card.dart';
 import 'package:tarot_app/services/size_config.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -42,55 +43,55 @@ class _BrowseCardsScreenState extends State<BrowseCardsScreen> {
     CharacterCard(
         path: CharacterCardPath.ambael,
         description: "ambael_desc".tr(),
-        name: 'ambael'),
+        name: 'ambael1'),
     CharacterCard(
         path: CharacterCardPath.adrasteia,
         description: 'adrasteia_desc'.tr(),
-        name: 'adrasteia'),
+        name: 'adrasteia1'),
     CharacterCard(
         path: CharacterCardPath.diana,
         description: 'diana_desc'.tr(),
-        name: 'diana'),
+        name: 'diana1'),
     CharacterCard(
         path: CharacterCardPath.earth,
         description: 'earth_desc'.tr(),
-        name: 'earth'),
+        name: 'earth1'),
   ];
   List<CharacterCard> characterCardsList3 = [
     CharacterCard(
         path: CharacterCardPath.ambael,
         description: "ambael_desc".tr(),
-        name: 'ambael'),
+        name: 'ambael2'),
     CharacterCard(
         path: CharacterCardPath.adrasteia,
         description: 'adrasteia_desc'.tr(),
-        name: 'adrasteia'),
+        name: 'adrasteia2'),
     CharacterCard(
         path: CharacterCardPath.diana,
         description: 'diana_desc'.tr(),
-        name: 'diana'),
+        name: 'diana2'),
     CharacterCard(
         path: CharacterCardPath.earth,
         description: 'earth_desc'.tr(),
-        name: 'earth'),
+        name: 'earth2'),
   ];
   List<CharacterCard> characterCardsList4 = [
     CharacterCard(
         path: CharacterCardPath.ambael,
         description: "ambael_desc".tr(),
-        name: 'ambael'),
+        name: 'ambael3'),
     CharacterCard(
         path: CharacterCardPath.adrasteia,
         description: 'adrasteia_desc'.tr(),
-        name: 'adrasteia'),
+        name: 'adrasteia3'),
     CharacterCard(
         path: CharacterCardPath.diana,
         description: 'diana_desc'.tr(),
-        name: 'diana'),
+        name: 'diana3'),
     CharacterCard(
         path: CharacterCardPath.earth,
         description: 'earth_desc'.tr(),
-        name: 'earth'),
+        name: 'earth3'),
   ];
 
   bool showCharacterCard = false;
@@ -258,7 +259,7 @@ class _BrowseCardsScreenState extends State<BrowseCardsScreen> {
                           ? Column(
                               children: [
                                 GestureDetector(
-                                  child: ViewCard(
+                                  child: CardView(
                                     card: cardToShow,
                                     showInfo: showCardInfo,
                                   ),
@@ -353,21 +354,38 @@ class CardRow extends StatelessWidget {
           alignment: Alignment.topCenter,
           child: GestureDetector(
             onTap: () {
-              this.onCardTapped(this.cards[0]);
+              // this.onCardTapped(this.cards[0]);
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => ViewCard(
+                          card: this.cards[0],
+                        )),
+              );
             },
             child: Container(
               width: SizeConfig.blockSizeHorizontal * 25,
               height: SizeConfig.blockSizeHorizontal * 25,
-              child: Image.asset(
-                cards[0].path,
-                fit: BoxFit.contain,
+              child: Hero(
+                tag: '${this.cards[0].name}',
+                child: Image.asset(
+                  cards[0].path,
+                  fit: BoxFit.contain,
+                ),
               ),
             ),
           ),
         ),
         GestureDetector(
           onTap: () {
-            this.onCardTapped(this.cards[1]);
+            // this.onCardTapped(this.cards[1]);
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => ViewCard(
+                        card: this.cards[1],
+                      )),
+            );
           },
           child: Align(
             alignment: Alignment.topCenter,
@@ -375,13 +393,22 @@ class CardRow extends StatelessWidget {
               // color: Colors.pink,
               width: SizeConfig.blockSizeHorizontal * 25,
               height: SizeConfig.blockSizeHorizontal * 25,
-              child: Image.asset(cards[1].path),
+              child: Hero(
+                  tag: '${this.cards[1].name}',
+                  child: Image.asset(cards[1].path)),
             ),
           ),
         ),
         GestureDetector(
           onTap: () {
-            this.onCardTapped(this.cards[2]);
+            // this.onCardTapped(this.cards[2]);
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => ViewCard(
+                        card: this.cards[2],
+                      )),
+            );
           },
           child: Align(
             alignment: Alignment.topCenter,
@@ -389,13 +416,22 @@ class CardRow extends StatelessWidget {
               // color: Colors.pink,
               width: SizeConfig.blockSizeHorizontal * 25,
               height: SizeConfig.blockSizeHorizontal * 25,
-              child: Image.asset(cards[2].path),
+              child: Hero(
+                  tag: '${this.cards[2].name}',
+                  child: Image.asset(cards[2].path)),
             ),
           ),
         ),
         GestureDetector(
           onTap: () {
-            this.onCardTapped(this.cards[3]);
+            // this.onCardTapped(this.cards[3]);
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => ViewCard(
+                        card: this.cards[3],
+                      )),
+            );
           },
           child: Align(
             alignment: Alignment.topCenter,
@@ -403,7 +439,9 @@ class CardRow extends StatelessWidget {
               // color: Colors.pink,
               width: SizeConfig.blockSizeHorizontal * 25,
               height: SizeConfig.blockSizeHorizontal * 25,
-              child: Image.asset(cards[3].path),
+              child: Hero(
+                  tag: '${this.cards[3].name}',
+                  child: Image.asset(cards[3].path)),
             ),
           ),
         ),

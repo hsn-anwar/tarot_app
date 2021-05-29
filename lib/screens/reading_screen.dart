@@ -19,13 +19,50 @@ class ReadingScreen extends StatefulWidget {
   _ReadingScreenState createState() => _ReadingScreenState();
 }
 
-class _ReadingScreenState extends State<ReadingScreen> {
+class _ReadingScreenState extends State<ReadingScreen>
+    with SingleTickerProviderStateMixin {
   double lightSize = 15;
+  AnimationController animationController;
+
+  @override
+  void initState() {
+    super.initState();
+    animationController = AnimationController(
+      vsync: this,
+      duration: Duration(seconds: 2),
+    );
+    // animationController.repeat(); //just to show it can be animated
+  }
+
+  @override
+  void dispose() {
+    // Don't forget to dispose the animation controller on class destruction
+    animationController.dispose();
+    super.dispose();
+  }
+
+  bool animateContainer = false;
 
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          if (animationController.isCompleted) {
+            setState(() {
+              animateContainer = false;
+            });
+
+            animationController.reverse();
+          } else {
+            setState(() {
+              animateContainer = true;
+            });
+            animationController.play();
+          }
+        },
+      ),
       body: Container(
         width: SizeConfig.screenWidth,
         height: SizeConfig.screenHeight,
@@ -230,6 +267,115 @@ class _ReadingScreenState extends State<ReadingScreen> {
                                       horizontal: 16.0),
                                   child: Image.asset(
                                     ImagePath.kCardLightInactive,
+                                    width: SizeConfig.blockSizeHorizontal *
+                                        lightSize,
+                                  ),
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                    Container(
+                      child: Positioned(
+                        bottom: SizeConfig.blockSizeVertical * 8,
+                        left: SizeConfig.blockSizeHorizontal * 16,
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          // mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            SizedBox(
+                              height: SizeConfig.blockSizeVertical * 10,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10.0),
+                                  child: Image.asset(
+                                    ImagePath.kCardBack,
+                                    width: SizeConfig.blockSizeHorizontal *
+                                        lightSize,
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10.0),
+                                  child: Image.asset(
+                                    ImagePath.kCardBack,
+                                    width: SizeConfig.blockSizeHorizontal *
+                                        lightSize,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 16.0),
+                                  child: SlideTransition(
+                                    position: Tween<Offset>(
+                                            begin: Offset.zero,
+                                            end: Offset(1.5, -2.5))
+                                        .animate(animationController),
+                                    child: AnimatedContainer(
+                                      width: !animateContainer
+                                          ? SizeConfig.blockSizeHorizontal *
+                                              lightSize
+                                          : SizeConfig.screenWidth,
+                                      duration: Duration(seconds: 2),
+                                      child: Image.asset(
+                                        ImagePath.kCardBack,
+                                        width: SizeConfig.blockSizeHorizontal *
+                                            lightSize,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 16.0),
+                                  child: Image.asset(
+                                    ImagePath.kCardBack,
+                                    width: SizeConfig.blockSizeHorizontal *
+                                        lightSize,
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 16.0),
+                                  child: Image.asset(
+                                    ImagePath.kCardBack,
+                                    width: SizeConfig.blockSizeHorizontal *
+                                        lightSize,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 16.0),
+                                  child: Image.asset(
+                                    ImagePath.kCardBack,
+                                    width: SizeConfig.blockSizeHorizontal *
+                                        lightSize,
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 16.0),
+                                  child: Image.asset(
+                                    ImagePath.kCardBack,
                                     width: SizeConfig.blockSizeHorizontal *
                                         lightSize,
                                   ),
