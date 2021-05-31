@@ -2,6 +2,7 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:tarot_app/screens/browse_cards_screen.dart';
+import 'package:tarot_app/screens/card_reveal.dart';
 import 'package:tarot_app/screens/formation_screen.dart';
 import 'package:tarot_app/screens/home_screen.dart';
 import 'package:tarot_app/screens/splash_screen.dart';
@@ -38,6 +39,7 @@ class MyApp extends StatelessWidget {
         FormationScreen.id: (context) => FormationScreen(),
         BrowseCardsScreen.id: (context) => BrowseCardsScreen(),
         SplashScreen.id: (context) => SplashScreen(),
+        CardRevealScreen.id: (context) => CardRevealScreen(),
       },
     );
   }

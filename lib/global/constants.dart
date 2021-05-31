@@ -18,7 +18,7 @@ class ImagePath {
       kImagePath + 'Card Rack 2 top vine.png';
   static const String kCardRackTwo = kImagePath + 'Card Rack 2.png';
   static const String kCardReadingOverlay =
-      kImagePath + 'Card Reading Overlay.png';
+      kImagePath + 'Card Reading Overlay Shape.png';
   static const String kCloseButton = kImagePath + 'Close button.png';
   static const String kInfoButton = kImagePath + 'Info Button.png';
   static const String kLogoIcon = kImagePath + 'Logo Icon.png';
@@ -90,10 +90,12 @@ class ThreeCardIntentions {
   static final intention8 = 'three_card_int_8'.tr();
   static final intention9 = 'three_card_int_9'.tr();
   static final intention10 = 'three_card_int_10'.tr();
+  static final intention11 = 'three_card_int_11'.tr();
 }
 
 class SevenCardIntentions {
   static final intention1 = 'seven_card_int_1'.tr();
+  static final intention2 = 'seven_card_int_2'.tr();
 }
 
 class FormationInfo {

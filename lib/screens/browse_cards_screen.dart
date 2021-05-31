@@ -357,11 +357,20 @@ class CardRow extends StatelessWidget {
               // this.onCardTapped(this.cards[0]);
               Navigator.push(
                 context,
-                MaterialPageRoute(
-                    builder: (context) => ViewCard(
-                          card: this.cards[0],
-                        )),
+                PageRouteBuilder(
+                  transitionDuration: Duration(seconds: 2),
+                  pageBuilder: (_, __, ___) => ViewCard(
+                    card: this.cards[0],
+                  ),
+                ),
               );
+              // Navigator.push(
+              //   context,
+              //   MaterialPageRoute(
+              //       builder: (context) => ViewCard(
+              //             card: this.cards[0],
+              //           )),
+              // );
             },
             child: Container(
               width: SizeConfig.blockSizeHorizontal * 25,

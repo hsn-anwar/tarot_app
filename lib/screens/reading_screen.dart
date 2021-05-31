@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:tarot_app/global/widgets/background_template.dart';
 import 'package:tarot_app/global/constants.dart';
 import 'package:tarot_app/global/widgets/top_bar.dart';
+import 'package:tarot_app/screens/card_reveal.dart';
 import 'package:tarot_app/services/size_config.dart';
 import 'package:simple_animations/simple_animations.dart';
 import 'package:supercharged/supercharged.dart';
@@ -49,18 +50,14 @@ class _ReadingScreenState extends State<ReadingScreen>
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          if (animationController.isCompleted) {
-            setState(() {
-              animateContainer = false;
-            });
-
-            animationController.reverse();
-          } else {
-            setState(() {
-              animateContainer = true;
-            });
-            animationController.play();
-          }
+          // Navigator.pushNamed(context, CardRevealScreen.id);
+          Navigator.push(
+            context,
+            PageRouteBuilder(
+              transitionDuration: Duration(seconds: 2),
+              pageBuilder: (_, __, ___) => CardRevealScreen(),
+            ),
+          );
         },
       ),
       body: Container(
@@ -319,23 +316,10 @@ class _ReadingScreenState extends State<ReadingScreen>
                                 Padding(
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 16.0),
-                                  child: SlideTransition(
-                                    position: Tween<Offset>(
-                                            begin: Offset.zero,
-                                            end: Offset(1.5, -2.5))
-                                        .animate(animationController),
-                                    child: AnimatedContainer(
-                                      width: !animateContainer
-                                          ? SizeConfig.blockSizeHorizontal *
-                                              lightSize
-                                          : SizeConfig.screenWidth,
-                                      duration: Duration(seconds: 2),
-                                      child: Image.asset(
-                                        ImagePath.kCardBack,
-                                        width: SizeConfig.blockSizeHorizontal *
-                                            lightSize,
-                                      ),
-                                    ),
+                                  child: Image.asset(
+                                    ImagePath.kCardBack,
+                                    width: SizeConfig.blockSizeHorizontal *
+                                        lightSize,
                                   ),
                                 ),
                                 Padding(
@@ -371,13 +355,16 @@ class _ReadingScreenState extends State<ReadingScreen>
                                         lightSize,
                                   ),
                                 ),
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 16.0),
-                                  child: Image.asset(
-                                    ImagePath.kCardBack,
-                                    width: SizeConfig.blockSizeHorizontal *
-                                        lightSize,
+                                Hero(
+                                  tag: 'card1',
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 16.0),
+                                    child: Image.asset(
+                                      ImagePath.kCardBack,
+                                      width: SizeConfig.blockSizeHorizontal *
+                                          lightSize,
+                                    ),
                                   ),
                                 ),
                               ],

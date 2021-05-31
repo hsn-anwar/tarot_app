@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:swipedetector/swipedetector.dart';
 import 'package:tarot_app/global/buttons/small_rounded_button.dart';
 import 'package:tarot_app/global/constants.dart';
 import 'package:tarot_app/global/widgets/background_blur.dart';
@@ -18,14 +20,25 @@ class ViewCard extends StatefulWidget {
 class _ViewCardState extends State<ViewCard> {
   bool showCardInfo = false;
   bool showButtons = false;
-  void toggleShowCardInfo() {}
-  void toggleCardInfo() {}
+
+  void toggleShowCardInfo() {
+    setState(() {
+      showCardInfo = !showCardInfo;
+    });
+  }
+
+  void toggleCardInfo() {
+    setState(() {
+      showCardInfo = !showCardInfo;
+    });
+  }
 
   void initializeScreen() {
-    Future.delayed(const Duration(milliseconds: 500), () {
-      setState(() {
-        showButtons = true;
-      });
+    Future.delayed(const Duration(seconds: 2, microseconds: 200), () {
+      if (mounted)
+        setState(() {
+          showButtons = true;
+        });
     });
   }
 
@@ -38,50 +51,141 @@ class _ViewCardState extends State<ViewCard> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    return Scaffold(
-      body: BackgroundTemplate(
-        child: Stack(
-          children: [
-            BackgroundBlur(),
-            AnimatedPositioned(
-              bottom: !showButtons
-                  ? SizeConfig.blockSizeVertical * 15
-                  : SizeConfig.blockSizeVertical * 5,
-              child: Container(
-                width: SizeConfig.screenWidth,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+    return WillPopScope(
+      onWillPop: () async {
+        setState(() {
+          showButtons = false;
+          showCardInfo = false;
+        });
+        return true;
+      },
+      child: Scaffold(
+        body: BackgroundTemplate(
+          child: Stack(
+            children: [
+              BackgroundBlur(),
+              AnimatedPositioned(
+                bottom: !showButtons
+                    ? SizeConfig.blockSizeVertical * 15
+                    : SizeConfig.blockSizeVertical * 2,
+                child: Visibility(
+                  visible: showButtons,
+                  child: Container(
+                    width: SizeConfig.screenWidth,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              showButtons = false;
+                              showCardInfo = false;
+                            });
+                            Navigator.pop(context);
+                          },
+                          child: Container(
+                            width: SizeConfig.blockSizeHorizontal * 10,
+                            child: Image.asset(ImagePath.kBackButton),
+                          ),
+                        ),
+                        SizedBox(
+                          width: SizeConfig.blockSizeHorizontal * 5,
+                        ),
+                        RoundedButton2(
+                          title:
+                              showCardInfo == false ? "read".tr() : "hide".tr(),
+                          onTap: toggleCardInfo,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                duration: Duration(seconds: 2),
+              ),
+              GestureDetector(
+                onHorizontalDragUpdate: (details) {
+                  // Note: Sensitivity is integer used when you don't want to mess up vertical drag
+                  int sensitivity = 8;
+                  if (details.delta.dx > sensitivity) {
+                    print('swipe right');
+                    setState(() {
+                      showCardInfo = true;
+                    });
+                  } else if (details.delta.dx < -sensitivity) {
+                    print('swipe left');
+                    setState(() {
+                      showCardInfo = false;
+                    });
+                  }
+                },
+                onVerticalDragUpdate: (details) {
+                  int sensitivity = 8;
+                  if (details.delta.dy > sensitivity) {
+                    print('swipe down');
+                    setState(() {
+                      showButtons = false;
+                      showCardInfo = false;
+                      Navigator.pop(context);
+                    });
+                  } else if (details.delta.dy < -sensitivity) {
+                    // Up Swipe
+                  }
+                },
+                child: Stack(
                   children: [
-                    GestureDetector(
-                      onTap: () {
-                        toggleShowCardInfo();
-                      },
-                      child: Container(
-                        width: SizeConfig.blockSizeHorizontal * 10,
-                        child: Image.asset(ImagePath.kBackButton),
+                    Container(
+                      height: SizeConfig.screenHeight,
+                      child: Center(
+                        child: Hero(
+                            tag: '${widget.card.name}',
+                            child: Image.asset(widget.card.path)),
                       ),
                     ),
-                    SizedBox(
-                      width: SizeConfig.blockSizeHorizontal * 5,
+                    Visibility(
+                      visible: showCardInfo,
+                      child: Center(
+                        child: Stack(
+                          children: [
+                            Container(
+                              child: Center(
+                                child: Image.asset(
+                                  ImagePath.kCardReadingOverlay,
+                                  fit: BoxFit.fitWidth,
+                                  width: double.infinity,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
-                    RoundedButton2(
-                      title: showCardInfo == false ? "read".tr() : "hide".tr(),
-                      onTap: toggleCardInfo,
+                    Visibility(
+                      visible: showCardInfo,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            width: SizeConfig.blockSizeHorizontal * 60,
+                            child: Center(
+                              child: Text(
+                                'dashfioas fashoidas sadofhoisdahf osdihfvoisd fihaofiopqe aioshfoieaf fioahfoiea oiahfioaef aifhaeiohf asfoiheafioa oaihfeoaif iofhaeiof aoihfae0hf aoifhaoeihf aofihaoeif aofiehieaof afoihaefoae oiaefhfoiae aoeifaioehf oiaehfoaeif oaifhoiaehf',
+                                style: TextStyle(
+                                  fontFamily: CustomFonts.malgun,
+                                  // color: Colors.white,
+                                  fontSize: SizeConfig.blockSizeHorizontal * 5,
+                                  // fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),
               ),
-              duration: Duration(seconds: 2),
-            ),
-            Container(
-              height: SizeConfig.screenHeight,
-              child: Center(
-                child: Hero(
-                    tag: '${widget.card.name}',
-                    child: Image.asset(widget.card.path)),
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

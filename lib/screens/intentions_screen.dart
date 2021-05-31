@@ -171,10 +171,12 @@ class SingleCardSpreadButtons extends StatelessWidget {
     ThreeCardIntentions.intention8,
     ThreeCardIntentions.intention9,
     ThreeCardIntentions.intention10,
+    ThreeCardIntentions.intention11,
   ];
 
   final List sevenCardIntentions = [
     SevenCardIntentions.intention1,
+    SevenCardIntentions.intention2,
   ];
 
   @override
