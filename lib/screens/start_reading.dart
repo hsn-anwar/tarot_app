@@ -5,7 +5,9 @@ import 'package:tarot_app/global/widgets/card_spread.dart';
 import 'package:tarot_app/global/widgets/top_bar.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:tarot_app/global/widgets/menu.dart';
-import 'package:tarot_app/screens/reading_screen.dart';
+import 'package:tarot_app/screens/seven_formation_reading_screen.dart';
+import 'package:tarot_app/screens/single_card_formation_reading_screen.dart';
+import 'package:tarot_app/screens/three_card_formation_reading_screen.dart';
 import 'package:tarot_app/services/size_config.dart';
 
 class StartReadingScreen extends StatefulWidget {
@@ -56,10 +58,19 @@ class _StartReadingScreenState extends State<StartReadingScreen> {
                   cardFormation: widget.cardFormation,
                   message: widget.message,
                   opPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => ReadingScreen()),
-                    );
+                    if (widget.cardFormation == 3) {
+                      Navigator.pushNamed(context, ThreeCardFormationScreen.id);
+                    } else if (widget.cardFormation == 1) {
+                      Navigator.pushNamed(
+                          context, SingleCardFormationScreen.id);
+                    } else {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => SevenFormationReadingScreen(),
+                        ),
+                      );
+                    }
                   },
                 ),
               ],

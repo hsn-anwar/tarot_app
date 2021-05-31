@@ -41,15 +41,17 @@ class _CardRevealScreenState extends State<CardRevealScreen> {
         child: Stack(
           children: [
             BackgroundBlur(),
-            FlipCard(
-                key: cardKey,
-                front: Hero(
-                  tag: widget.cardIndex,
-                  child: !widget.isRevealed
-                      ? Image.asset(ImagePath.kCardBack)
-                      : Image.asset(widget.card),
-                ),
-                back: Image.asset(widget.card)),
+            Center(
+              child: FlipCard(
+                  key: cardKey,
+                  front: Hero(
+                    tag: widget.cardIndex,
+                    child: !widget.isRevealed
+                        ? Image.asset(ImagePath.kCardBack)
+                        : Image.asset(widget.card),
+                  ),
+                  back: Image.asset(widget.card)),
+            ),
           ],
         ),
       ),
