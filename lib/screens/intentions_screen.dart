@@ -139,7 +139,7 @@ class SingleCardSpreadButtons extends StatelessWidget {
 
   final int formation;
 
-  final List singleCardIntentions = [
+  List<String> singleCardIntentions = [
     SingleCardIntentions.intention1,
     SingleCardIntentions.intention2,
     SingleCardIntentions.intention3,
@@ -160,7 +160,7 @@ class SingleCardSpreadButtons extends StatelessWidget {
     SingleCardIntentions.intention18,
   ];
 
-  final List threeCardIntentions = [
+  List<String> threeCardIntentions = [
     ThreeCardIntentions.intention1,
     ThreeCardIntentions.intention2,
     ThreeCardIntentions.intention3,
@@ -174,7 +174,7 @@ class SingleCardSpreadButtons extends StatelessWidget {
     ThreeCardIntentions.intention11,
   ];
 
-  final List sevenCardIntentions = [
+  List<String> sevenCardIntentions = [
     SevenCardIntentions.intention1,
     SevenCardIntentions.intention2,
   ];
@@ -199,21 +199,29 @@ class SingleCardSpreadButtons extends StatelessWidget {
               RoundedButton(
                 height: this.formation == 7 ? 10 : 7,
                 title: this.formation == 1
-                    ? singleCardIntentions[index]
+                    ? singleCardIntentions[index].tr()
                     : this.formation == 3
-                        ? threeCardIntentions[index]
-                        : sevenCardIntentions[index],
+                        ? threeCardIntentions[index].tr()
+                        : sevenCardIntentions[index].tr(),
                 onPressed: () {
+                  // if (this.formation == 1) {
+                  //   print(singleCardIntentions[index]);
+                  // } else if (this.formation == 3) {
+                  //   print(threeCardIntentions[index]);
+                  // } else {
+                  //   print(sevenCardIntentions[index]);
+                  // }
+
                   Navigator.push(
                       context,
                       MaterialPageRoute(
                           builder: (context) => StartReadingScreen(
                                 cardFormation: this.formation,
                                 message: this.formation == 1
-                                    ? singleCardIntentions[index]
+                                    ? singleCardIntentions[index].tr()
                                     : this.formation == 3
-                                        ? threeCardIntentions[index]
-                                        : sevenCardIntentions[index],
+                                        ? threeCardIntentions[index].tr()
+                                        : sevenCardIntentions[index].tr(),
                               )));
                 },
               ),

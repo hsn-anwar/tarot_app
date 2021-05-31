@@ -59,49 +59,49 @@ class CustomFonts {
 }
 
 class SingleCardIntentions {
-  static final intention1 = 'single_card_int_1'.tr();
-  static final intention2 = 'single_card_int_2'.tr();
-  static final intention3 = 'single_card_int_3'.tr();
-  static final intention4 = 'single_card_int_4'.tr();
-  static final intention5 = 'single_card_int_5'.tr();
-  static final intention6 = 'single_card_int_6'.tr();
-  static final intention7 = 'single_card_int_7'.tr();
-  static final intention8 = 'single_card_int_8'.tr();
-  static final intention9 = 'single_card_int_9'.tr();
-  static final intention10 = 'single_card_int_10'.tr();
-  static final intention11 = 'single_card_int_11'.tr();
-  static final intention12 = 'single_card_int_12'.tr();
-  static final intention13 = 'single_card_int_13'.tr();
-  static final intention14 = 'single_card_int_14'.tr();
-  static final intention15 = 'single_card_int_15'.tr();
-  static final intention16 = 'single_card_int_16'.tr();
-  static final intention17 = 'single_card_int_17'.tr();
-  static final intention18 = 'single_card_int_18'.tr();
+  static String intention1 = 'single_card_int_1';
+  static String intention2 = 'single_card_int_2';
+  static String intention3 = 'single_card_int_3';
+  static String intention4 = 'single_card_int_4';
+  static String intention5 = 'single_card_int_5';
+  static String intention6 = 'single_card_int_6';
+  static String intention7 = 'single_card_int_7';
+  static String intention8 = 'single_card_int_8';
+  static String intention9 = 'single_card_int_9';
+  static String intention10 = 'single_card_int_10';
+  static String intention11 = 'single_card_int_11';
+  static String intention12 = 'single_card_int_12';
+  static String intention13 = 'single_card_int_13';
+  static String intention14 = 'single_card_int_14';
+  static String intention15 = 'single_card_int_15';
+  static String intention16 = 'single_card_int_16';
+  static String intention17 = 'single_card_int_17';
+  static String intention18 = 'single_card_int_18';
 }
 
 class ThreeCardIntentions {
-  static final String intention1 = 'three_card_int_1'.tr();
-  static final intention2 = 'three_card_int_2'.tr();
-  static final intention3 = 'three_card_int_3'.tr();
-  static final intention4 = 'three_card_int_4'.tr();
-  static final intention5 = 'three_card_int_5'.tr();
-  static final intention6 = 'three_card_int_6'.tr();
-  static final intention7 = 'three_card_int_7'.tr();
-  static final intention8 = 'three_card_int_8'.tr();
-  static final intention9 = 'three_card_int_9'.tr();
-  static final intention10 = 'three_card_int_10'.tr();
-  static final intention11 = 'three_card_int_11'.tr();
+  static final String intention1 = 'three_card_int_1';
+  static final intention2 = 'three_card_int_2';
+  static final intention3 = 'three_card_int_3';
+  static final intention4 = 'three_card_int_4';
+  static final intention5 = 'three_card_int_5';
+  static final intention6 = 'three_card_int_6';
+  static final intention7 = 'three_card_int_7';
+  static final intention8 = 'three_card_int_8';
+  static final intention9 = 'three_card_int_9';
+  static final intention10 = 'three_card_int_10';
+  static final intention11 = 'three_card_int_11';
 }
 
 class SevenCardIntentions {
-  static final intention1 = 'seven_card_int_1'.tr();
-  static final intention2 = 'seven_card_int_2'.tr();
+  static final intention1 = 'seven_card_int_1';
+  static final intention2 = 'seven_card_int_2';
 }
 
 class FormationInfo {
-  static final String single = "single_card_info".tr();
-  static final String three = "three_card_info".tr();
-  static final String seven = "seven_card_info".tr();
+  static final String single = "single_card_info";
+  static final String three = "three_card_info";
+  static final String seven = "seven_card_info";
 }
 
 TextStyle kInfoTextStyle = TextStyle(

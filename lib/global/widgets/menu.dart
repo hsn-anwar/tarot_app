@@ -170,15 +170,15 @@ class _LanguageToggleButtonsState extends State<LanguageToggleButtons> {
   bool isEnglishSelected = true;
   bool isDutchSelected = false;
 
-  void initializeToggleButtons() {
-    Language selectedLanguage = LanguageService.instance.selectedLanguage;
-
-    if (selectedLanguage == Language.eng) {
+  void initializeToggleButtons(BuildContext context) {
+    // context.locale;
+    print(context.locale);
+    if (context.locale == Locale('en')) {
       setState(() {
         isEnglishSelected = true;
         isDutchSelected = false;
       });
-    } else if (selectedLanguage == Language.dut) {
+    } else if (context.locale == Locale('de')) {
       setState(() {
         isEnglishSelected = false;
         isDutchSelected = true;
@@ -188,19 +188,27 @@ class _LanguageToggleButtonsState extends State<LanguageToggleButtons> {
 
   @override
   void initState() {
-    initializeToggleButtons();
+    // initializeToggleButtons();
     super.initState();
   }
 
+  bool isLanguageChecked = false;
+
   @override
   Widget build(BuildContext context) {
+    // print(context.locale);
+
+    if (!isLanguageChecked) {
+      initializeToggleButtons(context);
+      isLanguageChecked = true;
+    }
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         ToggleButton(
           onPressed: () {
             setState(() {
-              LanguageService.instance.selectedLanguage = Language.eng;
               isDutchSelected = false;
               isEnglishSelected = true;
               context.setLocale(Locale('en'));
@@ -215,7 +223,6 @@ class _LanguageToggleButtonsState extends State<LanguageToggleButtons> {
         ToggleButton(
           onPressed: () {
             setState(() {
-              LanguageService.instance.selectedLanguage = Language.dut;
               isEnglishSelected = false;
               isDutchSelected = true;
               context.setLocale(Locale('de'));

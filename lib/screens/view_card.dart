@@ -34,7 +34,7 @@ class _ViewCardState extends State<ViewCard> {
   }
 
   void initializeScreen() {
-    Future.delayed(const Duration(seconds: 2, microseconds: 200), () {
+    Future.delayed(const Duration(milliseconds: 700), () {
       if (mounted)
         setState(() {
           showButtons = true;
@@ -67,7 +67,7 @@ class _ViewCardState extends State<ViewCard> {
               AnimatedPositioned(
                 bottom: !showButtons
                     ? SizeConfig.blockSizeVertical * 15
-                    : SizeConfig.blockSizeVertical * 2,
+                    : SizeConfig.blockSizeVertical * 5,
                 child: Visibility(
                   visible: showButtons,
                   child: Container(
@@ -137,8 +137,13 @@ class _ViewCardState extends State<ViewCard> {
                       height: SizeConfig.screenHeight,
                       child: Center(
                         child: Hero(
-                            tag: '${widget.card.name}',
-                            child: Image.asset(widget.card.path)),
+                          tag: '${widget.card.name}',
+                          child: Image.asset(
+                            widget.card.path,
+                            height: SizeConfig.blockSizeVertical * 60,
+                            // fit: BoxFit.fitWidth,
+                          ),
+                        ),
                       ),
                     ),
                     Visibility(
@@ -146,39 +151,35 @@ class _ViewCardState extends State<ViewCard> {
                       child: Center(
                         child: Stack(
                           children: [
-                            Container(
-                              child: Center(
-                                child: Image.asset(
-                                  ImagePath.kCardReadingOverlay,
-                                  fit: BoxFit.fitWidth,
-                                  width: double.infinity,
-                                ),
+                            Center(
+                              child: Image.asset(
+                                ImagePath.kCardReadingOverlay,
+                                height: SizeConfig.blockSizeVertical * 60,
                               ),
                             ),
                           ],
                         ),
                       ),
                     ),
-                    Visibility(
-                      visible: showCardInfo,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            width: SizeConfig.blockSizeHorizontal * 60,
-                            child: Center(
-                              child: Text(
-                                'dashfioas fashoidas sadofhoisdahf osdihfvoisd fihaofiopqe aioshfoieaf fioahfoiea oiahfioaef aifhaeiohf asfoiheafioa oaihfeoaif iofhaeiof aoihfae0hf aoifhaoeihf aofihaoeif aofiehieaof afoihaefoae oiaefhfoiae aoeifaioehf oiaehfoaeif oaifhoiaehf',
-                                style: TextStyle(
-                                  fontFamily: CustomFonts.malgun,
-                                  // color: Colors.white,
-                                  fontSize: SizeConfig.blockSizeHorizontal * 5,
-                                  // fontWeight: FontWeight.bold,
-                                ),
+                    Positioned(
+                      left: SizeConfig.blockSizeHorizontal * 25,
+                      top: SizeConfig.blockSizeVertical * 27,
+                      child: Visibility(
+                        visible: showCardInfo,
+                        child: Container(
+                          width: SizeConfig.blockSizeHorizontal * 50,
+                          child: Center(
+                            child: Text(
+                              widget.card.description * 10,
+                              style: TextStyle(
+                                fontFamily: CustomFonts.malgun,
+                                // color: Colors.white,
+                                fontSize: SizeConfig.blockSizeHorizontal * 4,
+                                // fontWeight: FontWeight.bold,
                               ),
                             ),
                           ),
-                        ],
+                        ),
                       ),
                     ),
                   ],

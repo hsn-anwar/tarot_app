@@ -358,7 +358,7 @@ class CardRow extends StatelessWidget {
               Navigator.push(
                 context,
                 PageRouteBuilder(
-                  transitionDuration: Duration(seconds: 2),
+                  transitionDuration: Duration(seconds: 1),
                   pageBuilder: (_, __, ___) => ViewCard(
                     card: this.cards[0],
                   ),
@@ -390,10 +390,12 @@ class CardRow extends StatelessWidget {
             // this.onCardTapped(this.cards[1]);
             Navigator.push(
               context,
-              MaterialPageRoute(
-                  builder: (context) => ViewCard(
-                        card: this.cards[1],
-                      )),
+              PageRouteBuilder(
+                transitionDuration: Duration(seconds: 1),
+                pageBuilder: (_, __, ___) => ViewCard(
+                  card: this.cards[1],
+                ),
+              ),
             );
           },
           child: Align(
@@ -413,10 +415,12 @@ class CardRow extends StatelessWidget {
             // this.onCardTapped(this.cards[2]);
             Navigator.push(
               context,
-              MaterialPageRoute(
-                  builder: (context) => ViewCard(
-                        card: this.cards[2],
-                      )),
+              PageRouteBuilder(
+                transitionDuration: Duration(seconds: 2),
+                pageBuilder: (_, __, ___) => ViewCard(
+                  card: this.cards[0],
+                ),
+              ),
             );
           },
           child: Align(
@@ -436,10 +440,12 @@ class CardRow extends StatelessWidget {
             // this.onCardTapped(this.cards[3]);
             Navigator.push(
               context,
-              MaterialPageRoute(
-                  builder: (context) => ViewCard(
-                        card: this.cards[3],
-                      )),
+              PageRouteBuilder(
+                transitionDuration: Duration(seconds: 1),
+                pageBuilder: (_, __, ___) => ViewCard(
+                  card: this.cards[3],
+                ),
+              ),
             );
           },
           child: Align(
