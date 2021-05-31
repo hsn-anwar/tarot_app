@@ -67,7 +67,7 @@ class _ViewCardState extends State<ViewCard> {
               AnimatedPositioned(
                 bottom: !showButtons
                     ? SizeConfig.blockSizeVertical * 15
-                    : SizeConfig.blockSizeVertical * 5,
+                    : SizeConfig.blockSizeVertical * 3,
                 child: Visibility(
                   visible: showButtons,
                   child: Container(
@@ -140,7 +140,7 @@ class _ViewCardState extends State<ViewCard> {
                           tag: '${widget.card.name}',
                           child: Image.asset(
                             widget.card.path,
-                            height: SizeConfig.blockSizeVertical * 60,
+                            height: SizeConfig.blockSizeVertical * 75,
                             // fit: BoxFit.fitWidth,
                           ),
                         ),
@@ -154,7 +154,7 @@ class _ViewCardState extends State<ViewCard> {
                             Center(
                               child: Image.asset(
                                 ImagePath.kCardReadingOverlay,
-                                height: SizeConfig.blockSizeVertical * 60,
+                                height: SizeConfig.blockSizeVertical * 75,
                               ),
                             ),
                           ],
