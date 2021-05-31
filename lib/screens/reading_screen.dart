@@ -55,13 +55,26 @@ class _ReadingScreenState extends State<ReadingScreen>
         pageBuilder: (_, __, ___) => CardRevealScreen(
           card: cardPath,
           cardIndex: cardIndex,
-          isRevealed: isOneRevealed,
+          isRevealed: cardRevealed,
         ),
       ),
     );
+
     Future.delayed(const Duration(milliseconds: 500), () {
       setState(() {
-        isOneRevealed = true;
+        if (cardIndex == '1')
+          isOneRevealed = true;
+        else if (cardIndex == '2')
+          isTwoRevealed = true;
+        else if (cardIndex == '3')
+          isThreeRevealed = true;
+        else if (cardIndex == '4')
+          isFourRevealed = true;
+        else if (cardIndex == '5')
+          isFiveRevealed = true;
+        else if (cardIndex == '6')
+          isSixRevealed = true;
+        else if (cardIndex == '7') isSevenRevealed = true;
       });
     });
   }
@@ -78,6 +91,14 @@ class _ReadingScreenState extends State<ReadingScreen>
   bool isFiveRevealed = false;
   bool isSixRevealed = false;
   bool isSevenRevealed = false;
+
+  String selectedCard1 = CharacterCardPath.adrasteia;
+  String selectedCard2 = CharacterCardPath.earth;
+  String selectedCard3 = CharacterCardPath.diana;
+  String selectedCard4 = CharacterCardPath.ambael;
+  String selectedCard5 = CharacterCardPath.diana;
+  String selectedCard6 = CharacterCardPath.adrasteia;
+  String selectedCard7 = CharacterCardPath.earth;
 
   @override
   Widget build(BuildContext context) {
@@ -227,7 +248,9 @@ class _ReadingScreenState extends State<ReadingScreen>
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 10.0),
                                   child: Image.asset(
-                                    ImagePath.kCardLightInactive,
+                                    !isOneRevealed
+                                        ? ImagePath.kCardLightInactive
+                                        : ImagePath.kCardLightActive,
                                     width: SizeConfig.blockSizeHorizontal *
                                         lightSize,
                                   ),
@@ -236,7 +259,9 @@ class _ReadingScreenState extends State<ReadingScreen>
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 10.0),
                                   child: Image.asset(
-                                    ImagePath.kCardLightInactive,
+                                    !isTwoRevealed
+                                        ? ImagePath.kCardLightInactive
+                                        : ImagePath.kCardLightActive,
                                     width: SizeConfig.blockSizeHorizontal *
                                         lightSize,
                                   ),
@@ -251,7 +276,9 @@ class _ReadingScreenState extends State<ReadingScreen>
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 16.0),
                                   child: Image.asset(
-                                    ImagePath.kCardLightInactive,
+                                    !isThreeRevealed
+                                        ? ImagePath.kCardLightInactive
+                                        : ImagePath.kCardLightActive,
                                     width: SizeConfig.blockSizeHorizontal *
                                         lightSize,
                                   ),
@@ -260,7 +287,9 @@ class _ReadingScreenState extends State<ReadingScreen>
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 16.0),
                                   child: Image.asset(
-                                    ImagePath.kCardLightInactive,
+                                    !isFourRevealed
+                                        ? ImagePath.kCardLightInactive
+                                        : ImagePath.kCardLightActive,
                                     width: SizeConfig.blockSizeHorizontal *
                                         lightSize,
                                   ),
@@ -269,7 +298,9 @@ class _ReadingScreenState extends State<ReadingScreen>
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 16.0),
                                   child: Image.asset(
-                                    ImagePath.kCardLightInactive,
+                                    !isFiveRevealed
+                                        ? ImagePath.kCardLightInactive
+                                        : ImagePath.kCardLightActive,
                                     width: SizeConfig.blockSizeHorizontal *
                                         lightSize,
                                   ),
@@ -284,7 +315,9 @@ class _ReadingScreenState extends State<ReadingScreen>
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 16.0),
                                   child: Image.asset(
-                                    ImagePath.kCardLightInactive,
+                                    !isSixRevealed
+                                        ? ImagePath.kCardLightInactive
+                                        : ImagePath.kCardLightActive,
                                     width: SizeConfig.blockSizeHorizontal *
                                         lightSize,
                                   ),
@@ -293,7 +326,9 @@ class _ReadingScreenState extends State<ReadingScreen>
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 16.0),
                                   child: Image.asset(
-                                    ImagePath.kCardLightInactive,
+                                    !isSevenRevealed
+                                        ? ImagePath.kCardLightInactive
+                                        : ImagePath.kCardLightActive,
                                     width: SizeConfig.blockSizeHorizontal *
                                         lightSize,
                                   ),
@@ -324,7 +359,7 @@ class _ReadingScreenState extends State<ReadingScreen>
                                       horizontal: 10.0),
                                   child: GestureDetector(
                                     onTap: () => _navigateToCardRevealScreen(
-                                      CharacterCardPath.adrasteia,
+                                      selectedCard1,
                                       '1',
                                       isOneRevealed,
                                     ),
@@ -333,7 +368,7 @@ class _ReadingScreenState extends State<ReadingScreen>
                                       child: Image.asset(
                                         !isOneRevealed
                                             ? ImagePath.kCardBack
-                                            : CharacterCardPath.adrasteia,
+                                            : selectedCard1,
                                         width: SizeConfig.blockSizeHorizontal *
                                             lightSize,
                                       ),
@@ -343,10 +378,22 @@ class _ReadingScreenState extends State<ReadingScreen>
                                 Padding(
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 10.0),
-                                  child: Image.asset(
-                                    ImagePath.kCardBack,
-                                    width: SizeConfig.blockSizeHorizontal *
-                                        lightSize,
+                                  child: GestureDetector(
+                                    onTap: () => _navigateToCardRevealScreen(
+                                      selectedCard2,
+                                      '2',
+                                      isTwoRevealed,
+                                    ),
+                                    child: Hero(
+                                      tag: '2',
+                                      child: Image.asset(
+                                        !isTwoRevealed
+                                            ? ImagePath.kCardBack
+                                            : selectedCard2,
+                                        width: SizeConfig.blockSizeHorizontal *
+                                            lightSize,
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ],
@@ -358,28 +405,64 @@ class _ReadingScreenState extends State<ReadingScreen>
                                 Padding(
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 16.0),
-                                  child: Image.asset(
-                                    ImagePath.kCardBack,
-                                    width: SizeConfig.blockSizeHorizontal *
-                                        lightSize,
+                                  child: GestureDetector(
+                                    onTap: () => _navigateToCardRevealScreen(
+                                      selectedCard3,
+                                      '3',
+                                      isThreeRevealed,
+                                    ),
+                                    child: Hero(
+                                      tag: '3',
+                                      child: Image.asset(
+                                        !isThreeRevealed
+                                            ? ImagePath.kCardBack
+                                            : selectedCard3,
+                                        width: SizeConfig.blockSizeHorizontal *
+                                            lightSize,
+                                      ),
+                                    ),
                                   ),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 16.0),
-                                  child: Image.asset(
-                                    ImagePath.kCardBack,
-                                    width: SizeConfig.blockSizeHorizontal *
-                                        lightSize,
+                                  child: GestureDetector(
+                                    onTap: () => _navigateToCardRevealScreen(
+                                      selectedCard4,
+                                      '4',
+                                      isFourRevealed,
+                                    ),
+                                    child: Hero(
+                                      tag: '4',
+                                      child: Image.asset(
+                                        !isFourRevealed
+                                            ? ImagePath.kCardBack
+                                            : selectedCard4,
+                                        width: SizeConfig.blockSizeHorizontal *
+                                            lightSize,
+                                      ),
+                                    ),
                                   ),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 16.0),
-                                  child: Image.asset(
-                                    ImagePath.kCardBack,
-                                    width: SizeConfig.blockSizeHorizontal *
-                                        lightSize,
+                                  child: GestureDetector(
+                                    onTap: () => _navigateToCardRevealScreen(
+                                      selectedCard5,
+                                      '5',
+                                      isFiveRevealed,
+                                    ),
+                                    child: Hero(
+                                      tag: '5',
+                                      child: Image.asset(
+                                        !isFiveRevealed
+                                            ? ImagePath.kCardBack
+                                            : selectedCard5,
+                                        width: SizeConfig.blockSizeHorizontal *
+                                            lightSize,
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ],
@@ -391,21 +474,42 @@ class _ReadingScreenState extends State<ReadingScreen>
                                 Padding(
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 16.0),
-                                  child: Image.asset(
-                                    ImagePath.kCardBack,
-                                    width: SizeConfig.blockSizeHorizontal *
-                                        lightSize,
+                                  child: GestureDetector(
+                                    onTap: () => _navigateToCardRevealScreen(
+                                      selectedCard6,
+                                      '6',
+                                      isSixRevealed,
+                                    ),
+                                    child: Hero(
+                                      tag: '6',
+                                      child: Image.asset(
+                                        !isSixRevealed
+                                            ? ImagePath.kCardBack
+                                            : selectedCard6,
+                                        width: SizeConfig.blockSizeHorizontal *
+                                            lightSize,
+                                      ),
+                                    ),
                                   ),
                                 ),
-                                Hero(
-                                  tag: 'card1',
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 16.0),
-                                    child: Image.asset(
-                                      ImagePath.kCardBack,
-                                      width: SizeConfig.blockSizeHorizontal *
-                                          lightSize,
+                                GestureDetector(
+                                  onTap: () => _navigateToCardRevealScreen(
+                                    selectedCard7,
+                                    '7',
+                                    isSevenRevealed,
+                                  ),
+                                  child: Hero(
+                                    tag: '7',
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 16.0),
+                                      child: Image.asset(
+                                        !isSevenRevealed
+                                            ? ImagePath.kCardBack
+                                            : selectedCard7,
+                                        width: SizeConfig.blockSizeHorizontal *
+                                            lightSize,
+                                      ),
                                     ),
                                   ),
                                 ),
