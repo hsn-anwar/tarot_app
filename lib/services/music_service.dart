@@ -8,7 +8,7 @@ class MusicService {
   AudioPlayer player;
   AudioCache cache;
 
-  Music musicFile = Music.off;
+  Music musicFile = Music.relaxing;
 
   AudioPlayer get audioPlayer {
     if (player != null) return player;

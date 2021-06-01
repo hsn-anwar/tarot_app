@@ -9,8 +9,9 @@ import 'package:tarot_app/screens/card_reveal.dart';
 import 'package:tarot_app/services/size_config.dart';
 
 class SevenFormationReadingScreen extends StatefulWidget {
-  const SevenFormationReadingScreen({Key key}) : super(key: key);
+  const SevenFormationReadingScreen({Key key, this.message}) : super(key: key);
   static final String id = 'reading_screen';
+  final String message;
   @override
   _SevenFormationReadingScreenState createState() =>
       _SevenFormationReadingScreenState();
@@ -95,14 +96,37 @@ class _SevenFormationReadingScreenState
   String selectedCard6 = CharacterCardPath.adrasteia;
   String selectedCard7 = CharacterCardPath.earth;
 
+  List<String> words;
+
+  void getMessage() {
+    String w = widget.message.replaceAll("\n", "-");
+    print(w);
+    words = w.split("-");
+    print(words);
+  }
+
+  int wordIndex = 0;
+
+  @override
+  void initState() {
+    getMessage();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
+          // setState(() {
+          //   zoomScreen = !zoomScreen;
+          // });
           setState(() {
-            zoomScreen = !zoomScreen;
+            print(wordIndex);
+            if (wordIndex < 6) {
+              wordIndex++;
+            }
           });
         },
       ),
@@ -119,23 +143,48 @@ class _SevenFormationReadingScreenState
           child: Column(
             children: [
               TopBar(title: '$isOneRevealed'),
-              Visibility(
-                visible: !zoomScreen,
-                child: Container(
-                  height: SizeConfig.blockSizeVertical * 30,
-                  child: CircleList(
-                    origin: Offset(0, 150),
-                    children: List.generate(
-                      10,
-                      (index) {
-                        return Image.asset(ImagePath.kCardBack);
-                        // child: Image.asset(ImagePath.kCardBack)
-                      },
+              // Visibility(
+              //   visible: !zoomScreen,
+              //   child: Container(
+              //     height: SizeConfig.blockSizeVertical * 30,
+              //     child: CircleList(
+              //       origin: Offset(0, 150),
+              //       children: List.generate(
+              //         10,
+              //         (index) {
+              //           return Image.asset(ImagePath.kCardBack);
+              //           // child: Image.asset(ImagePath.kCardBack)
+              //         },
+              //       ),
+              //     ),
+              //   ),
+              // ),
+              Container(
+                padding: EdgeInsets.only(left: 16),
+                width: double.infinity,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      words[wordIndex],
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                        fontFamily: CustomFonts.malgun,
+                      ),
                     ),
-                  ),
+                    Text(
+                      'Scroll thorough the cards and pick the \nones that call out to you',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 14,
+                        fontFamily: CustomFonts.malgun,
+                      ),
+                    ),
+                  ],
                 ),
               ),
-              Spacer(),
+              !zoomScreen ? Spacer() : Container(),
               Container(
                 alignment: Alignment.bottomCenter,
                 height: SizeConfig.blockSizeVertical * 50,

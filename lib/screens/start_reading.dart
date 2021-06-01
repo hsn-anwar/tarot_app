@@ -67,7 +67,9 @@ class _StartReadingScreenState extends State<StartReadingScreen> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => SevenFormationReadingScreen(),
+                          builder: (context) => SevenFormationReadingScreen(
+                            message: widget.message,
+                          ),
                         ),
                       );
                     }

@@ -1,6 +1,7 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:tarot_app/enums/music.dart';
 import 'package:tarot_app/global/widgets/card_formation.dart';
 import 'package:tarot_app/screens/browse_cards_screen.dart';
 import 'package:tarot_app/screens/card_reveal.dart';
@@ -23,8 +24,6 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
-
-  // audioManager
 
   @override
   Widget build(BuildContext context) {

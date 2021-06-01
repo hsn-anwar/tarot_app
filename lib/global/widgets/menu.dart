@@ -16,10 +16,10 @@ class MusicToggleButtons extends StatefulWidget {
 }
 
 class _MusicToggleButtonsState extends State<MusicToggleButtons> {
-  bool isRelaxingSelected = false;
+  bool isRelaxingSelected = true;
   bool isEpicSelected = false;
   bool isMeditativeSelected = false;
-  bool isOffSelected = true;
+  bool isOffSelected = false;
   AudioPlayer audioPlayer = AudioPlayer();
 
   // AudioPlayer player = AudioPlayer(); //add this

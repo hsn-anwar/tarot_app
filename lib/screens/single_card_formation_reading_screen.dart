@@ -15,7 +15,8 @@ class SingleCardFormationScreen extends StatefulWidget {
       _SingleCardFormationScreenState();
 }
 
-class _SingleCardFormationScreenState extends State<SingleCardFormationScreen> {
+class _SingleCardFormationScreenState extends State<SingleCardFormationScreen>
+    with TickerProviderStateMixin {
   double lightSize = 15;
   AnimationController animationController;
 
@@ -102,39 +103,52 @@ class _SingleCardFormationScreenState extends State<SingleCardFormationScreen> {
           child: Column(
             children: [
               TopBar(title: '$isOneRevealed'),
-              Container(
-                height: SizeConfig.blockSizeVertical * 30,
-                child: CircleList(
-                  origin: Offset(0, 150),
-                  children: List.generate(
-                    10,
-                    (index) {
-                      return Image.asset(ImagePath.kCardBack);
-                      // child: Image.asset(ImagePath.kCardBack)
-                    },
+              Visibility(
+                visible: !zoomScreen,
+                child: Container(
+                  height: SizeConfig.blockSizeVertical * 30,
+                  child: CircleList(
+                    origin: Offset(0, 150),
+                    children: List.generate(
+                      10,
+                      (index) {
+                        return Image.asset(ImagePath.kCardBack);
+                        // child: Image.asset(ImagePath.kCardBack)
+                      },
+                    ),
                   ),
                 ),
               ),
-              Spacer(),
+              !zoomScreen
+                  ? Spacer()
+                  : SizedBox(
+                      height: SizeConfig.blockSizeVertical * 7,
+                    ),
               Container(
+                color: Colors.red,
                 alignment: Alignment.bottomCenter,
-                height: SizeConfig.blockSizeVertical * 50,
+                height: SizeConfig.blockSizeVertical * 75,
                 width: double.infinity,
                 child: Stack(
                   children: [
-                    Positioned(
+                    Align(
+                      alignment: Alignment.topCenter,
                       child: Container(
+                        // color: Colors.pink,
+                        width: double.infinity,
                         child: Row(
+                          mainAxisSize: MainAxisSize.min,
                           children: [
                             Stack(
                               children: [
                                 Container(
+                                  color: Colors.green,
                                   height: SizeConfig.blockSizeVertical * 25,
                                   margin: EdgeInsets.only(
                                       top: SizeConfig.blockSizeVertical * 6),
                                   child: Image.asset(
                                     ImagePath.kPedestal,
-                                    fit: BoxFit.fill,
+                                    fit: BoxFit.fitHeight,
                                   ),
                                 ),
                                 Positioned(
@@ -164,7 +178,7 @@ class _SingleCardFormationScreenState extends State<SingleCardFormationScreen> {
                                       top: SizeConfig.blockSizeVertical * 6),
                                   child: Image.asset(
                                     ImagePath.kPedestal,
-                                    fit: BoxFit.fill,
+                                    fit: BoxFit.fitHeight,
                                   ),
                                 ),
                                 Positioned(
@@ -192,39 +206,64 @@ class _SingleCardFormationScreenState extends State<SingleCardFormationScreen> {
                         ),
                       ),
                     ),
-                    Container(
-                      // height: 200,
-                      padding: EdgeInsets.only(
-                          top: SizeConfig.blockSizeVertical * 15),
-                      alignment: Alignment.bottomCenter,
-                      child: Image.asset(
-                        ImagePath.kTable,
-                        width: SizeConfig.screenWidth,
-                        fit: BoxFit.fill,
-                      ),
-                    ),
-                    Positioned(
-                      bottom: SizeConfig.blockSizeVertical * 16,
-                      left: SizeConfig.blockSizeHorizontal * 40,
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                        child: Image.asset(
-                          ImagePath.kCardLightInactive,
-                          width: SizeConfig.blockSizeHorizontal * lightSize,
-                        ),
-                      ),
-                    ),
-                    Positioned(
-                      bottom: SizeConfig.blockSizeVertical * 20,
-                      left: SizeConfig.blockSizeHorizontal * 40,
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                        child: Image.asset(
-                          ImagePath.kCardBack,
-                          width: SizeConfig.blockSizeHorizontal * lightSize,
-                        ),
-                      ),
-                    ),
+                    AnimatedSwitcher(
+                        duration: Duration(seconds: 1),
+                        transitionBuilder:
+                            (Widget child, Animation<double> animation) {
+                          return ScaleTransition(
+                            scale: animation,
+                            child: child,
+                          );
+                        },
+                        child: Container(
+                          height: SizeConfig.blockSizeVertical * 50,
+                          child: !zoomScreen
+                              ? Container(
+                                  // height: 200,
+                                  key: ValueKey<int>(2),
+                                  padding: EdgeInsets.only(
+                                      top: SizeConfig.blockSizeVertical * 15),
+                                  alignment: Alignment.bottomCenter,
+                                  child: Image.asset(
+                                    ImagePath.kTable,
+                                    width: SizeConfig.screenWidth,
+                                    fit: BoxFit.fill,
+                                  ),
+                                )
+                              : Container(
+                                  key: ValueKey<int>(1),
+                                  padding: EdgeInsets.only(
+                                      top: SizeConfig.blockSizeVertical * 15),
+                                  alignment: Alignment.bottomCenter,
+                                  child: Image.asset(
+                                    ImagePath.kTableZoomed,
+                                    width: SizeConfig.screenWidth,
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+                        )),
+                    // Positioned(
+                    //   bottom: SizeConfig.blockSizeVertical * 16,
+                    //   left: SizeConfig.blockSizeHorizontal * 40,
+                    //   child: Padding(
+                    //     padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                    //     child: Image.asset(
+                    //       ImagePath.kCardLightInactive,
+                    //       width: SizeConfig.blockSizeHorizontal * lightSize,
+                    //     ),
+                    //   ),
+                    // ),
+                    // Positioned(
+                    //   bottom: SizeConfig.blockSizeVertical * 20,
+                    //   left: SizeConfig.blockSizeHorizontal * 40,
+                    //   child: Padding(
+                    //     padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                    //     child: Image.asset(
+                    //       ImagePath.kCardBack,
+                    //       width: SizeConfig.blockSizeHorizontal * lightSize,
+                    //     ),
+                    //   ),
+                    // ),
                   ],
                 ),
               ),

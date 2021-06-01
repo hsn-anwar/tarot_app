@@ -67,7 +67,7 @@ class _ViewCardState extends State<ViewCard> {
               AnimatedPositioned(
                 bottom: !showButtons
                     ? SizeConfig.blockSizeVertical * 15
-                    : SizeConfig.blockSizeVertical * 3,
+                    : SizeConfig.blockSizeVertical * 6,
                 child: Visibility(
                   visible: showButtons,
                   child: Container(

@@ -34,6 +34,15 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
+  bool isMusicPlaying;
+
+  AudioPlayer player = MusicService.instance.audioPlayer;
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
