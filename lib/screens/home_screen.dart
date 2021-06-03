@@ -38,8 +38,14 @@ class _HomeScreenState extends State<HomeScreen> {
 
   AudioPlayer player = MusicService.instance.audioPlayer;
 
+  void initializeBackgroundMusic() {
+    MusicService.instance.playRelaxingMusic();
+    print('sadasdasd');
+  }
+
   @override
   void initState() {
+    initializeBackgroundMusic();
     super.initState();
   }
 

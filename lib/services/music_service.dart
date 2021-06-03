@@ -6,7 +6,7 @@ class MusicService {
   MusicService._privateConstructor();
   static final MusicService instance = MusicService._privateConstructor();
   AudioPlayer player;
-  AudioCache cache;
+  AudioCache cache = AudioCache();
 
   Music musicFile = Music.relaxing;
 

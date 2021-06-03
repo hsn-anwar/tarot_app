@@ -99,9 +99,9 @@ class SevenCardIntentions {
 }
 
 class FormationInfo {
-  static final String single = "single_card_info";
-  static final String three = "three_card_info";
-  static final String seven = "seven_card_info";
+  static String single = "single_card_info";
+  static String three = "three_card_info";
+  static String seven = "seven_card_info";
 }
 
 TextStyle kInfoTextStyle = TextStyle(

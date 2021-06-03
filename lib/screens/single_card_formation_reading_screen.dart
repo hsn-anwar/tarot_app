@@ -207,7 +207,7 @@ class _SingleCardFormationScreenState extends State<SingleCardFormationScreen>
                       ),
                     ),
                     AnimatedSwitcher(
-                        duration: Duration(seconds: 1),
+                        duration: Duration(seconds: 10),
                         transitionBuilder:
                             (Widget child, Animation<double> animation) {
                           return ScaleTransition(

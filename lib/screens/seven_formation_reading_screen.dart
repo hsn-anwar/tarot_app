@@ -96,12 +96,17 @@ class _SevenFormationReadingScreenState
   String selectedCard6 = CharacterCardPath.adrasteia;
   String selectedCard7 = CharacterCardPath.earth;
 
-  List<String> words;
+  List<String> words = [];
 
   void getMessage() {
     String w = widget.message.replaceAll("\n", "-");
     print(w);
-    words = w.split("-");
+    List<String> temp = w.split("-");
+
+    for (int i = 0; i <= temp.length - 1; i++) {
+      words.add(temp[i].trim());
+    }
+
     print(words);
   }
 
@@ -165,20 +170,27 @@ class _SevenFormationReadingScreenState
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      words[wordIndex],
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                        fontFamily: CustomFonts.malgun,
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        words[wordIndex],
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 24,
+                          fontWeight: FontWeight.w700,
+                          fontFamily: CustomFonts.malgun,
+                        ),
                       ),
                     ),
-                    Text(
-                      'Scroll thorough the cards and pick the \nones that call out to you',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 14,
-                        fontFamily: CustomFonts.malgun,
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        'Scroll thorough the cards and pick the \nones that call out to you',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                          fontFamily: CustomFonts.malgun,
+                        ),
                       ),
                     ),
                   ],

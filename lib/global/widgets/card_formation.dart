@@ -3,6 +3,7 @@ import 'package:tarot_app/services/size_config.dart';
 
 import '../buttons/setting_button.dart';
 import '../constants.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class SingleCardFormation extends StatelessWidget {
   @override
@@ -185,17 +186,17 @@ class _CardFormationState extends State<CardFormation> {
                       padding: const EdgeInsets.all(16.0),
                       child: this.widget.cardFormation == 1
                           ? Text(
-                              FormationInfo.single,
+                              FormationInfo.single.tr(),
                               style: kInfoTextStyle,
                               textAlign: TextAlign.justify,
                             )
                           : this.widget.cardFormation == 3
                               ? Text(
-                                  FormationInfo.three,
+                                  FormationInfo.three.tr(),
                                   style: kInfoTextStyle,
                                   textAlign: TextAlign.justify,
                                 )
-                              : Text(FormationInfo.seven,
+                              : Text(FormationInfo.seven.tr(),
                                   textAlign: TextAlign.justify,
                                   style: kInfoTextStyle),
                     ),

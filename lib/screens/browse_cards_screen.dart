@@ -418,7 +418,7 @@ class CardRow extends StatelessWidget {
               PageRouteBuilder(
                 transitionDuration: Duration(seconds: 2),
                 pageBuilder: (_, __, ___) => ViewCard(
-                  card: this.cards[0],
+                  card: this.cards[2],
                 ),
               ),
             );

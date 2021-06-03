@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:swipedetector/swipedetector.dart';
 import 'package:tarot_app/global/buttons/small_rounded_button.dart';
 import 'package:tarot_app/global/constants.dart';
 import 'package:tarot_app/global/widgets/background_blur.dart';
@@ -100,26 +99,26 @@ class _ViewCardState extends State<ViewCard> {
                     ),
                   ),
                 ),
-                duration: Duration(seconds: 2),
+                duration: Duration(milliseconds: 850),
               ),
               GestureDetector(
                 onHorizontalDragUpdate: (details) {
                   // Note: Sensitivity is integer used when you don't want to mess up vertical drag
-                  int sensitivity = 8;
+                  int sensitivity = 0;
                   if (details.delta.dx > sensitivity) {
                     print('swipe right');
                     setState(() {
-                      showCardInfo = true;
+                      showCardInfo = false;
                     });
                   } else if (details.delta.dx < -sensitivity) {
                     print('swipe left');
                     setState(() {
-                      showCardInfo = false;
+                      showCardInfo = true;
                     });
                   }
                 },
                 onVerticalDragUpdate: (details) {
-                  int sensitivity = 8;
+                  int sensitivity = 0;
                   if (details.delta.dy > sensitivity) {
                     print('swipe down');
                     setState(() {
