@@ -5,9 +5,9 @@ import 'package:tarot_app/global/widgets/card_spread.dart';
 import 'package:tarot_app/global/widgets/top_bar.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:tarot_app/global/widgets/menu.dart';
-import 'package:tarot_app/screens/seven_formation_reading_screen.dart';
-import 'package:tarot_app/screens/single_card_formation_reading_screen.dart';
-import 'package:tarot_app/screens/three_card_formation_reading_screen.dart';
+import 'package:tarot_app/screens/reading_screens/seven_formation_reading_screen.dart';
+import 'package:tarot_app/screens/reading_screens/single_card_formation_reading_screen.dart';
+import 'package:tarot_app/screens/reading_screens/three_card_formation_reading_screen.dart';
 import 'package:tarot_app/services/size_config.dart';
 
 class StartReadingScreen extends StatefulWidget {

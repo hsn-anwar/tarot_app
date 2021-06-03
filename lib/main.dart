@@ -7,9 +7,9 @@ import 'package:tarot_app/screens/browse_cards_screen.dart';
 import 'package:tarot_app/screens/card_reveal.dart';
 import 'package:tarot_app/screens/formation_screen.dart';
 import 'package:tarot_app/screens/home_screen.dart';
-import 'package:tarot_app/screens/single_card_formation_reading_screen.dart';
+import 'package:tarot_app/screens/reading_screens/single_card_formation_reading_screen.dart';
 import 'package:tarot_app/screens/splash_screen.dart';
-import 'package:tarot_app/screens/three_card_formation_reading_screen.dart';
+import 'package:tarot_app/screens/reading_screens/three_card_formation_reading_screen.dart';
 import 'package:tarot_app/services/music_service.dart';
 
 void main() async {
