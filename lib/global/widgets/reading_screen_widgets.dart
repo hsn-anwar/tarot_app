@@ -181,7 +181,10 @@ class _AnimatedCardState extends State<AnimatedCard> {
       ),
       duration: Duration(seconds: 1),
       alignment: !animateCard
-          ? Alignment(widget.alignmentX, widget.alignmentY)
+          ? Alignment(
+              widget.alignmentX,
+              widget.alignmentY,
+            )
           : Alignment.center,
     );
   }

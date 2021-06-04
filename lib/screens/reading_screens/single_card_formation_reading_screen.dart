@@ -4,10 +4,12 @@ import 'package:flip_card/flip_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tarot_app/global/constants.dart';
+import 'package:tarot_app/global/widgets/reading_screen_widgets.dart';
 import 'package:tarot_app/global/widgets/top_bar.dart';
 import 'package:tarot_app/screens/card_reveal.dart';
 import 'package:tarot_app/screens/reading_screens/single_card_formation_reading_screen_2.dart';
 import 'package:tarot_app/services/size_config.dart';
+import 'package:vector_math/vector_math_64.dart' show Vector3;
 
 class SingleCardFormationScreen extends StatefulWidget {
   const SingleCardFormationScreen({Key key}) : super(key: key);
@@ -81,6 +83,21 @@ class _SingleCardFormationScreenState extends State<SingleCardFormationScreen>
   String selectedCard3 = CharacterCardPath.diana;
 
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+  TransformationController _transformationController =
+      TransformationController();
+  TransformationController _transformationController2 =
+      TransformationController();
+
+  @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
@@ -93,7 +110,28 @@ class _SingleCardFormationScreenState extends State<SingleCardFormationScreen>
           //     cardKey.currentState.toggleCard();
           //   });
           // });
-          Navigator.pushNamed(context, SingleCardReadingFormation2.id);
+          // Navigator.pushNamed(context, SingleCardReadingFormation2.id);
+          // if (_controller.status != AnimationStatus.completed)
+          //   _controller.forward();
+          // else
+          //   _controller.reverse();
+          // setState(() {
+          //   zoomScreen = !zoomScreen;
+          // });
+          if (!zoomScreen) {
+            _transformationController.value =
+                Matrix4.diagonal3(Vector3(1.4, 1.4, 1.0)) *
+                    Matrix4.translationValues(-55, -50, 0);
+            // _transformationController2.value =
+            //     Matrix4.diagonal3(Vector3(1.4, 1.4, 1.0));
+            // _transformationController.alignment = FractionalOffset.center;
+            // _transformationController.value =
+            //     Matrix4.translationValues(100, 0, 0);
+            zoomScreen = true;
+          } else {
+            _transformationController.value = Matrix4.identity();
+            zoomScreen = false;
+          }
         },
       ),
       body: Container(
@@ -106,60 +144,78 @@ class _SingleCardFormationScreenState extends State<SingleCardFormationScreen>
           ),
         ),
         child: SafeArea(
-          child: Hero(
-            tag: 'tag',
-            child: Stack(
-              children: [
-                Column(
-                  children: [
-                    TopBar(title: 'is screen zoomed? $zoomScreen'),
-                    Container(
-                      height: SizeConfig.blockSizeVertical * 30,
-                      child: CircleList(
-                        origin: Offset(0, 150),
-                        children: List.generate(
-                          10,
-                          (index) {
-                            return Image.asset(ImagePath.kCardBack);
-                            // child: Image.asset(ImagePath.kCardBack)
-                          },
-                        ),
+          child: Stack(
+            children: [
+              Column(
+                children: [
+                  TopBar(title: 'is screen zoomed? $zoomScreen'),
+                  Container(
+                    height: SizeConfig.blockSizeVertical * 30,
+                    child: CircleList(
+                      origin: Offset(0, 150),
+                      children: List.generate(
+                        10,
+                        (index) {
+                          return Image.asset(ImagePath.kCardBack);
+                          // child: Image.asset(ImagePath.kCardBack)
+                        },
                       ),
-                    ),
-                    Spacer(),
-                    Container(
-                      alignment: Alignment.bottomCenter,
-                      height: SizeConfig.blockSizeVertical * 50,
-                      width: double.infinity,
-                      child: Stack(
-                        children: [
-                          Pedestals(),
-                          TableTop(),
-                          SingleLight(),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-                AnimatedAlign(
-                  child: AnimatedContainer(
-                    width: !zoomScreen
-                        ? SizeConfig.blockSizeHorizontal * 15
-                        : SizeConfig.screenWidth,
-                    duration: Duration(seconds: 1),
-                    child: FlipCard(
-                      key: cardKey,
-                      flipOnTouch: false,
-                      speed: 1 * 1000,
-                      front: Image.asset(ImagePath.kCardBack),
-                      back: Image.asset(CharacterCardPath.diana),
                     ),
                   ),
-                  duration: Duration(seconds: 1),
-                  alignment: !zoomScreen ? Alignment(0, .5) : Alignment.center,
-                ),
-              ],
-            ),
+                  Spacer(),
+                  Container(
+                    alignment: Alignment.bottomCenter,
+                    height: SizeConfig.blockSizeVertical * 50,
+                    width: double.infinity,
+                    child: Stack(
+                      children: [
+                        InteractiveViewer(
+                          child: Pedestals(),
+                          transformationController: _transformationController2,
+                          boundaryMargin: const EdgeInsets.all(20.0),
+                          minScale: 0.1,
+                          maxScale: 1.6,
+                        ),
+                        // ScaleTransition(scale: _animation, child: TableTop()),
+                        // AnimatedSwitcher(
+                        //   duration: Duration(seconds: 1),
+                        //   transitionBuilder:
+                        //       (Widget child, Animation<double> animation) {
+                        //     return ScaleTransition(
+                        //         child: child, scale: animation);
+                        //   },
+                        //   child: !zoomScreen
+                        //       ? TableTop(
+                        //           key: ValueKey<int>(1),
+                        //         )
+                        //       : ZoomedTableTop(
+                        //           key: ValueKey<int>(2),
+                        //         ),
+                        //   switchInCurve: Curves.easeIn,
+                        //   switchOutCurve: Curves.easeOut,
+                        // ),
+                        InteractiveViewer(
+                          transformationController: _transformationController,
+                          boundaryMargin: const EdgeInsets.all(20.0),
+                          minScale: 0.1,
+                          maxScale: 1.6,
+                          // panEnabled: false,
+                          // scaleEnabled: false,
+                          child: TableTop(),
+                        ),
+                        SingleLight(),
+                      ],
+                    ),
+                  )
+                ],
+              ),
+              AnimatedCard(
+                cardKey: cardKey,
+                onAnimateCallback: (bool value) {},
+                alignmentX: 0,
+                alignmentY: 0.5,
+              )
+            ],
           ),
         ),
       ),
