@@ -8,6 +8,7 @@ import 'package:tarot_app/screens/card_reveal.dart';
 import 'package:tarot_app/screens/formation_screen.dart';
 import 'package:tarot_app/screens/home_screen.dart';
 import 'package:tarot_app/screens/reading_screens/single_card_formation_reading_screen.dart';
+import 'package:tarot_app/screens/reading_screens/single_card_formation_reading_screen_2.dart';
 import 'package:tarot_app/screens/splash_screen.dart';
 import 'package:tarot_app/screens/reading_screens/three_card_formation_reading_screen.dart';
 import 'package:tarot_app/services/music_service.dart';
@@ -44,6 +45,8 @@ class MyApp extends StatelessWidget {
         CardRevealScreen.id: (context) => CardRevealScreen(),
         SingleCardFormationScreen.id: (context) => SingleCardFormationScreen(),
         ThreeCardFormationScreen.id: (context) => ThreeCardFormationScreen(),
+        SingleCardReadingFormation2.id: (context) =>
+            SingleCardReadingFormation2(),
       },
     );
   }

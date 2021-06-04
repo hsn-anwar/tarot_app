@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:tarot_app/global/constants.dart';
 import 'package:tarot_app/global/widgets/top_bar.dart';
 import 'package:tarot_app/screens/card_reveal.dart';
+import 'package:tarot_app/screens/reading_screens/single_card_formation_reading_screen_2.dart';
 import 'package:tarot_app/services/size_config.dart';
-import 'package:animations/animations.dart';
 
 class SingleCardFormationScreen extends StatefulWidget {
   const SingleCardFormationScreen({Key key}) : super(key: key);
@@ -86,13 +86,14 @@ class _SingleCardFormationScreenState extends State<SingleCardFormationScreen>
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          setState(() {
-            zoomScreen = !zoomScreen;
-            isOneRevealed = false;
-            Future.delayed(const Duration(milliseconds: 300), () {
-              cardKey.currentState.toggleCard();
-            });
-          });
+          // setState(() {
+          //   zoomScreen = !zoomScreen;
+          //   isOneRevealed = false;
+          //   Future.delayed(const Duration(milliseconds: 300), () {
+          //     cardKey.currentState.toggleCard();
+          //   });
+          // });
+          Navigator.pushNamed(context, SingleCardReadingFormation2.id);
         },
       ),
       body: Container(
@@ -105,107 +106,60 @@ class _SingleCardFormationScreenState extends State<SingleCardFormationScreen>
           ),
         ),
         child: SafeArea(
-          child: Stack(
-            children: [
-              Column(
-                children: [
-                  TopBar(title: 'is screen zoomed? $zoomScreen'),
-                  Container(
-                    height: SizeConfig.blockSizeVertical * 30,
-                    child: CircleList(
-                      origin: Offset(0, 150),
-                      children: List.generate(
-                        10,
-                        (index) {
-                          return Image.asset(ImagePath.kCardBack);
-                          // child: Image.asset(ImagePath.kCardBack)
-                        },
+          child: Hero(
+            tag: 'tag',
+            child: Stack(
+              children: [
+                Column(
+                  children: [
+                    TopBar(title: 'is screen zoomed? $zoomScreen'),
+                    Container(
+                      height: SizeConfig.blockSizeVertical * 30,
+                      child: CircleList(
+                        origin: Offset(0, 150),
+                        children: List.generate(
+                          10,
+                          (index) {
+                            return Image.asset(ImagePath.kCardBack);
+                            // child: Image.asset(ImagePath.kCardBack)
+                          },
+                        ),
                       ),
                     ),
-                  ),
-                  Spacer(),
-                  Container(
-                    alignment: Alignment.bottomCenter,
-                    height: SizeConfig.blockSizeVertical * 50,
-                    width: double.infinity,
-                    child: Stack(
-                      children: [
-                        Pedestals(),
-                        TableTop(),
-                        SingleLight(),
-                        // Positioned(
-                        //   bottom: SizeConfig.blockSizeVertical * 20,
-                        //   left: SizeConfig.blockSizeHorizontal * 40,
-                        //   child: Container(
-                        //     width: SizeConfig.blockSizeHorizontal * 15,
-                        //     height: SizeConfig.blockSizeHorizontal * 15,
-                        //     child: OpenContainer(
-                        //       closedColor: Colors.transparent,
-                        //       openColor: Colors.transparent.withOpacity(1.0),
-                        //       transitionType:
-                        //           ContainerTransitionType.fadeThrough,
-                        //       transitionDuration: Duration(seconds: 1),
-                        //       closedBuilder: (_, openContainer) {
-                        //         return FlipCard(
-                        //           flipOnTouch: false,
-                        //           front: Image.asset(ImagePath.kCardBack),
-                        //           back: Image.asset(CharacterCardPath.diana),
-                        //         );
-                        //       },
-                        //       openBuilder: (_, closeContainer) => Container(
-                        //         height: 50,
-                        //         width: 50,
-                        //         color: Colors.red,
-                        //       ),
-                        //     ),
-                        //   ),
-                        // ),
-                      ],
-                    ),
-                  )
-                ],
-              ),
-              AnimatedAlign(
-                child: AnimatedContainer(
-                  width: !zoomScreen
-                      ? SizeConfig.blockSizeHorizontal * 15
-                      : SizeConfig.screenWidth,
-                  duration: Duration(seconds: 1),
-                  child: FlipCard(
-                    key: cardKey,
-                    flipOnTouch: false,
-                    speed: 1 * 1000,
-                    front: Image.asset(ImagePath.kCardBack),
-                    back: Image.asset(CharacterCardPath.diana),
-                  ),
+                    Spacer(),
+                    Container(
+                      alignment: Alignment.bottomCenter,
+                      height: SizeConfig.blockSizeVertical * 50,
+                      width: double.infinity,
+                      child: Stack(
+                        children: [
+                          Pedestals(),
+                          TableTop(),
+                          SingleLight(),
+                        ],
+                      ),
+                    )
+                  ],
                 ),
-                duration: Duration(seconds: 1),
-                alignment: !zoomScreen ? Alignment(0, .5) : Alignment.center,
-              ),
-              // Positioned(
-              //   bottom: SizeConfig.blockSizeVertical * 16,
-              //   left: SizeConfig.blockSizeHorizontal * 40,
-              //   child: AnimatedSwitcher(
-              //     duration: Duration(seconds: 1),
-              //     transitionBuilder:
-              //         (Widget child, Animation<double> animation) {
-              //       return ScaleTransition(child: child, scale: animation);
-              //     },
-              //     child: !zoomScreen
-              //         ? SingleCard(
-              //             key: ValueKey<int>(1),
-              //           )
-              //         : Container(
-              //             key: ValueKey<int>(2),
-              //             child: Image.asset(
-              //               ImagePath.kCardBack,
-              //               fit: BoxFit.fitWidth,
-              //               height: SizeConfig.blockSizeHorizontal * 75,
-              //             ),
-              //           ),
-              //   ),
-              // ),
-            ],
+                AnimatedAlign(
+                  child: AnimatedContainer(
+                    width: !zoomScreen
+                        ? SizeConfig.blockSizeHorizontal * 15
+                        : SizeConfig.screenWidth,
+                    duration: Duration(seconds: 1),
+                    child: FlipCard(
+                      key: cardKey,
+                      flipOnTouch: false,
+                      speed: 1 * 1000,
+                      front: Image.asset(ImagePath.kCardBack),
+                      back: Image.asset(CharacterCardPath.diana),
+                    ),
+                  ),
+                  duration: Duration(seconds: 1),
+                  alignment: !zoomScreen ? Alignment(0, .5) : Alignment.center,
+                ),
+              ],
+            ),
           ),
         ),
       ),
