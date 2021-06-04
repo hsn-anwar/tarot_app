@@ -44,13 +44,15 @@ class _CardSpreadState extends State<CardSpread> {
           Row(
             children: [
               GestureDetector(
-                  onTap: () => Navigator.pop(context), child: BackIcon()),
+                onTap: () => Navigator.pop(context),
+                child: BackIcon(),
+              ),
               Spacer(),
               Padding(
                 padding: const EdgeInsets.only(top: 8.0),
                 child: Text(
                   this.widget.cardFormation == 1
-                      ? "single_card_spread".tr()
+                      ? "single_card_reading".tr()
                       : this.widget.cardFormation == 3
                           ? "three_card_spread".tr()
                           : "seven_card_spread".tr(),
@@ -80,15 +82,16 @@ class _CardSpreadState extends State<CardSpread> {
                   child: Container(
                     child: this.widget.cardFormation == 1
                         ? Text(
-                            FormationInfo.single,
+                            FormationInfo.single.tr(),
                             style: kInfoTextStyle,
                           )
                         : this.widget.cardFormation == 3
                             ? Text(
-                                FormationInfo.three,
+                                FormationInfo.three.tr(),
                                 style: kInfoTextStyle,
                               )
-                            : Text(FormationInfo.seven, style: kInfoTextStyle),
+                            : Text(FormationInfo.seven.tr(),
+                                style: kInfoTextStyle),
                   ),
                 ),
           SizedBox(

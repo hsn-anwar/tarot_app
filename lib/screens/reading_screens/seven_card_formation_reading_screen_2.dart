@@ -58,98 +58,100 @@ class _SevenCardReadingFormation2State
               tag: 'tag',
               child: Stack(
                 children: [
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container(
-                        height: SizeConfig.blockSizeVertical * 85,
-                        child: Stack(
-                          children: [
-                            ZoomedPedestals(),
-                            ZoomedTableTop(),
-                            SingleLight(
-                              left: 15,
-                              bottom: 40,
-                            ),
-                            SingleLight(
-                              left: 60,
-                              bottom: 40,
-                            ),
-                            SingleLight(
-                              left: 15,
-                              bottom: 15,
-                            ),
-                            SingleLight(
-                              left: 2,
-                              bottom: 27,
-                            ),
-                            SingleLight(
-                              left: 40,
-                              bottom: 27,
-                            ),
-                            SingleLight(
-                              left: 80,
-                              bottom: 27,
-                            ),
-                            SingleLight(
-                              left: 60,
-                              bottom: 15,
-                            ),
-                            // top left
-                            AnimatedCard(
-                              cardKey: cardKey1,
-                              onAnimateCallback: (bool value) =>
-                                  onCardAnimated(value),
-                              alignmentY: -0.2,
-                              alignmentX: -0.6,
-                            ),
-                            // top right
-                            AnimatedCard(
-                              cardKey: cardKey2,
-                              onAnimateCallback: (bool value) =>
-                                  onCardAnimated(value),
-                              alignmentY: -0.2,
-                              alignmentX: 0.46,
-                            ),
-                            AnimatedCard(
-                              cardKey: cardKey3,
-                              onAnimateCallback: (bool value) =>
-                                  onCardAnimated(value),
-                              alignmentY: 0.16,
-                              alignmentX: -0.9,
-                            ),
-                            AnimatedCard(
-                              cardKey: cardKey4,
-                              onAnimateCallback: (bool value) =>
-                                  onCardAnimated(value),
-                              alignmentY: 0.16,
-                              alignmentX: 0,
-                            ),
-                            AnimatedCard(
-                              cardKey: cardKey5,
-                              onAnimateCallback: (bool value) =>
-                                  onCardAnimated(value),
-                              alignmentY: 0.16,
-                              alignmentX: 0.95,
-                            ),
-                            AnimatedCard(
-                              cardKey: cardKey6,
-                              onAnimateCallback: (bool value) =>
-                                  onCardAnimated(value),
-                              alignmentY: 0.47,
-                              alignmentX: -0.6,
-                            ),
-                            AnimatedCard(
-                              cardKey: cardKey7,
-                              onAnimateCallback: (bool value) =>
-                                  onCardAnimated(value),
-                              alignmentY: 0.47,
-                              alignmentX: 0.46,
-                            ),
-                          ],
-                        ),
-                      )
-                    ],
+                  SingleChildScrollView(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          height: SizeConfig.blockSizeVertical * 85,
+                          child: Stack(
+                            children: [
+                              ZoomedPedestals(),
+                              ZoomedTableTop(),
+                              SingleLight(
+                                left: 15,
+                                bottom: 40,
+                              ),
+                              SingleLight(
+                                left: 60,
+                                bottom: 40,
+                              ),
+                              SingleLight(
+                                left: 15,
+                                bottom: 15,
+                              ),
+                              SingleLight(
+                                left: 2,
+                                bottom: 27,
+                              ),
+                              SingleLight(
+                                left: 40,
+                                bottom: 27,
+                              ),
+                              SingleLight(
+                                left: 80,
+                                bottom: 27,
+                              ),
+                              SingleLight(
+                                left: 60,
+                                bottom: 15,
+                              ),
+                              // top left
+                              AnimatedCard(
+                                cardKey: cardKey1,
+                                onAnimateCallback: (bool value) =>
+                                    onCardAnimated(value),
+                                alignmentY: -0.2,
+                                alignmentX: -0.6,
+                              ),
+                              // top right
+                              AnimatedCard(
+                                cardKey: cardKey2,
+                                onAnimateCallback: (bool value) =>
+                                    onCardAnimated(value),
+                                alignmentY: -0.2,
+                                alignmentX: 0.46,
+                              ),
+                              AnimatedCard(
+                                cardKey: cardKey3,
+                                onAnimateCallback: (bool value) =>
+                                    onCardAnimated(value),
+                                alignmentY: 0.16,
+                                alignmentX: -0.9,
+                              ),
+                              AnimatedCard(
+                                cardKey: cardKey4,
+                                onAnimateCallback: (bool value) =>
+                                    onCardAnimated(value),
+                                alignmentY: 0.16,
+                                alignmentX: 0,
+                              ),
+                              AnimatedCard(
+                                cardKey: cardKey5,
+                                onAnimateCallback: (bool value) =>
+                                    onCardAnimated(value),
+                                alignmentY: 0.16,
+                                alignmentX: 0.95,
+                              ),
+                              AnimatedCard(
+                                cardKey: cardKey6,
+                                onAnimateCallback: (bool value) =>
+                                    onCardAnimated(value),
+                                alignmentY: 0.47,
+                                alignmentX: -0.6,
+                              ),
+                              AnimatedCard(
+                                cardKey: cardKey7,
+                                onAnimateCallback: (bool value) =>
+                                    onCardAnimated(value),
+                                alignmentY: 0.47,
+                                alignmentX: 0.46,
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
                   )
                 ],
               ),

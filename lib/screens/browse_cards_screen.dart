@@ -93,6 +93,150 @@ class _BrowseCardsScreenState extends State<BrowseCardsScreen> {
         description: 'earth_desc'.tr(),
         name: 'earth3'),
   ];
+  List<CharacterCard> characterCardsList5 = [
+    CharacterCard(
+        path: CharacterCardPath.ambael,
+        description: "ambael_desc".tr(),
+        name: 'ambael3'),
+    CharacterCard(
+        path: CharacterCardPath.adrasteia,
+        description: 'adrasteia_desc'.tr(),
+        name: 'adrasteia3'),
+    CharacterCard(
+        path: CharacterCardPath.diana,
+        description: 'diana_desc'.tr(),
+        name: 'diana3'),
+    CharacterCard(
+        path: CharacterCardPath.earth,
+        description: 'earth_desc'.tr(),
+        name: 'earth3'),
+  ];
+  List<CharacterCard> characterCardsList6 = [
+    CharacterCard(
+        path: CharacterCardPath.ambael,
+        description: "ambael_desc".tr(),
+        name: 'ambael3'),
+    CharacterCard(
+        path: CharacterCardPath.adrasteia,
+        description: 'adrasteia_desc'.tr(),
+        name: 'adrasteia3'),
+    CharacterCard(
+        path: CharacterCardPath.diana,
+        description: 'diana_desc'.tr(),
+        name: 'diana3'),
+    CharacterCard(
+        path: CharacterCardPath.earth,
+        description: 'earth_desc'.tr(),
+        name: 'earth3'),
+  ];
+  List<CharacterCard> characterCardsList7 = [
+    CharacterCard(
+        path: CharacterCardPath.ambael,
+        description: "ambael_desc".tr(),
+        name: 'ambael3'),
+    CharacterCard(
+        path: CharacterCardPath.adrasteia,
+        description: 'adrasteia_desc'.tr(),
+        name: 'adrasteia3'),
+    CharacterCard(
+        path: CharacterCardPath.diana,
+        description: 'diana_desc'.tr(),
+        name: 'diana3'),
+    CharacterCard(
+        path: CharacterCardPath.earth,
+        description: 'earth_desc'.tr(),
+        name: 'earth3'),
+  ];
+  List<CharacterCard> characterCardsList8 = [
+    CharacterCard(
+        path: CharacterCardPath.ambael,
+        description: "ambael_desc".tr(),
+        name: 'ambael3'),
+    CharacterCard(
+        path: CharacterCardPath.adrasteia,
+        description: 'adrasteia_desc'.tr(),
+        name: 'adrasteia3'),
+    CharacterCard(
+        path: CharacterCardPath.diana,
+        description: 'diana_desc'.tr(),
+        name: 'diana3'),
+    CharacterCard(
+        path: CharacterCardPath.earth,
+        description: 'earth_desc'.tr(),
+        name: 'earth3'),
+  ];
+  List<CharacterCard> characterCardsList9 = [
+    CharacterCard(
+        path: CharacterCardPath.ambael,
+        description: "ambael_desc".tr(),
+        name: 'ambael3'),
+    CharacterCard(
+        path: CharacterCardPath.adrasteia,
+        description: 'adrasteia_desc'.tr(),
+        name: 'adrasteia3'),
+    CharacterCard(
+        path: CharacterCardPath.diana,
+        description: 'diana_desc'.tr(),
+        name: 'diana3'),
+    CharacterCard(
+        path: CharacterCardPath.earth,
+        description: 'earth_desc'.tr(),
+        name: 'earth3'),
+  ];
+  List<CharacterCard> characterCardsList10 = [
+    CharacterCard(
+        path: CharacterCardPath.ambael,
+        description: "ambael_desc".tr(),
+        name: 'ambael3'),
+    CharacterCard(
+        path: CharacterCardPath.adrasteia,
+        description: 'adrasteia_desc'.tr(),
+        name: 'adrasteia3'),
+    CharacterCard(
+        path: CharacterCardPath.diana,
+        description: 'diana_desc'.tr(),
+        name: 'diana3'),
+    CharacterCard(
+        path: CharacterCardPath.earth,
+        description: 'earth_desc'.tr(),
+        name: 'earth3'),
+  ];
+  List<CharacterCard> characterCardsList11 = [
+    CharacterCard(
+        path: CharacterCardPath.ambael,
+        description: "ambael_desc".tr(),
+        name: 'ambael3'),
+    CharacterCard(
+        path: CharacterCardPath.adrasteia,
+        description: 'adrasteia_desc'.tr(),
+        name: 'adrasteia3'),
+    CharacterCard(
+        path: CharacterCardPath.diana,
+        description: 'diana_desc'.tr(),
+        name: 'diana3'),
+    CharacterCard(
+        path: CharacterCardPath.earth,
+        description: 'earth_desc'.tr(),
+        name: 'earth3'),
+  ];
+  List<CharacterCard> characterCardsList12 = [
+    CharacterCard(
+        path: CharacterCardPath.ambael,
+        description: "ambael_desc".tr(),
+        name: 'ambael3'),
+    CharacterCard(
+        path: CharacterCardPath.adrasteia,
+        description: 'adrasteia_desc'.tr(),
+        name: 'adrasteia3'),
+    CharacterCard(
+        path: CharacterCardPath.diana,
+        description: 'diana_desc'.tr(),
+        name: 'diana3'),
+    CharacterCard(
+        path: CharacterCardPath.earth,
+        description: 'earth_desc'.tr(),
+        name: 'earth3'),
+  ];
 
   bool showCharacterCard = false;
   bool showCardInfo = false;
@@ -222,8 +366,168 @@ class _BrowseCardsScreenState extends State<BrowseCardsScreen> {
                               ],
                             ),
                           ),
+                          Container(
+                            height: 175,
+                            width: double.infinity,
+                            child: Stack(
+                              children: [
+                                TopRack(mode: TopRackMode.rackTwo),
+                                CardRow(
+                                  cards: characterCardsList4,
+                                  onCardTapped: (CharacterCard card) =>
+                                      onCardTapped(card),
+                                ),
+                                TopVine(mode: TopVineMode.vineTwo)
+                              ],
+                            ),
+                          ),
+                          SizedBox(
+                            height: SizeConfig.blockSizeVertical * 2,
+                          ),
+                          Container(
+                            height: 175,
+                            width: double.infinity,
+                            child: Stack(
+                              children: [
+                                TopRack(mode: TopRackMode.rackOne),
+                                CardRow(
+                                  cards: characterCardsList5,
+                                  onCardTapped: (CharacterCard card) =>
+                                      onCardTapped(card),
+                                ),
+                                TopVine(mode: TopVineMode.vineOne)
+                              ],
+                            ),
+                          ),
+                          SizedBox(
+                            height: SizeConfig.blockSizeVertical * 2,
+                          ),
+                          Container(
+                            height: 175,
+                            width: double.infinity,
+                            child: Stack(
+                              children: [
+                                TopRack(mode: TopRackMode.rackTwo),
+                                CardRow(
+                                  cards: characterCardsList6,
+                                  onCardTapped: (CharacterCard card) =>
+                                      onCardTapped(card),
+                                ),
+                                TopVine(mode: TopVineMode.vineTwo)
+                              ],
+                            ),
+                          ),
+                          SizedBox(
+                            height: SizeConfig.blockSizeVertical * 2,
+                          ),
+                          Container(
+                            height: 175,
+                            width: double.infinity,
+                            child: Stack(
+                              children: [
+                                TopRack(mode: TopRackMode.rackOne),
+                                CardRow(
+                                  cards: characterCardsList7,
+                                  onCardTapped: (CharacterCard card) =>
+                                      onCardTapped(card),
+                                ),
+                                TopVine(mode: TopVineMode.vineOne)
+                              ],
+                            ),
+                          ),
+                          SizedBox(
+                            height: SizeConfig.blockSizeVertical * 2,
+                          ),
+                          Container(
+                            height: 175,
+                            width: double.infinity,
+                            child: Stack(
+                              children: [
+                                TopRack(mode: TopRackMode.rackTwo),
+                                CardRow(
+                                  cards: characterCardsList8,
+                                  onCardTapped: (CharacterCard card) =>
+                                      onCardTapped(card),
+                                ),
+                                TopVine(mode: TopVineMode.vineTwo)
+                              ],
+                            ),
+                          ),
+                          SizedBox(
+                            height: SizeConfig.blockSizeVertical * 2,
+                          ),
+                          Container(
+                            height: 175,
+                            width: double.infinity,
+                            child: Stack(
+                              children: [
+                                TopRack(mode: TopRackMode.rackOne),
+                                CardRow(
+                                  cards: characterCardsList9,
+                                  onCardTapped: (CharacterCard card) =>
+                                      onCardTapped(card),
+                                ),
+                                TopVine(mode: TopVineMode.vineOne)
+                              ],
+                            ),
+                          ),
+                          SizedBox(
+                            height: SizeConfig.blockSizeVertical * 2,
+                          ),
+                          Container(
+                            height: 175,
+                            width: double.infinity,
+                            child: Stack(
+                              children: [
+                                TopRack(mode: TopRackMode.rackTwo),
+                                CardRow(
+                                  cards: characterCardsList10,
+                                  onCardTapped: (CharacterCard card) =>
+                                      onCardTapped(card),
+                                ),
+                                TopVine(mode: TopVineMode.vineTwo)
+                              ],
+                            ),
+                          ),
+                          SizedBox(
+                            height: SizeConfig.blockSizeVertical * 2,
+                          ),
+                          Container(
+                            height: 175,
+                            width: double.infinity,
+                            child: Stack(
+                              children: [
+                                TopRack(mode: TopRackMode.rackOne),
+                                CardRow(
+                                  cards: characterCardsList11,
+                                  onCardTapped: (CharacterCard card) =>
+                                      onCardTapped(card),
+                                ),
+                                TopVine(mode: TopVineMode.vineOne)
+                              ],
+                            ),
+                          ),
+                          SizedBox(
+                            height: SizeConfig.blockSizeVertical * 2,
+                          ),
+                          Container(
+                            height: 175,
+                            width: double.infinity,
+                            child: Stack(
+                              children: [
+                                TopRack(mode: TopRackMode.rackTwo),
+                                CardRow(
+                                  cards: characterCardsList12,
+                                  onCardTapped: (CharacterCard card) =>
+                                      onCardTapped(card),
+                                ),
+                                TopVine(mode: TopVineMode.vineTwo)
+                              ],
+                            ),
+                          ),
                         ],
                       ),
+
                       Visibility(
                         visible: showCharacterCard,
                         child: Container(
