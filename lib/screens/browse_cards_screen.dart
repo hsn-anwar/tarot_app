@@ -97,145 +97,145 @@ class _BrowseCardsScreenState extends State<BrowseCardsScreen> {
     CharacterCard(
         path: CharacterCardPath.ambael,
         description: "ambael_desc".tr(),
-        name: 'ambael3'),
+        name: 'ambael4'),
     CharacterCard(
         path: CharacterCardPath.adrasteia,
         description: 'adrasteia_desc'.tr(),
-        name: 'adrasteia3'),
+        name: 'adrasteia4'),
     CharacterCard(
         path: CharacterCardPath.diana,
         description: 'diana_desc'.tr(),
-        name: 'diana3'),
+        name: 'diana4'),
     CharacterCard(
         path: CharacterCardPath.earth,
         description: 'earth_desc'.tr(),
-        name: 'earth3'),
+        name: 'earth4'),
   ];
   List<CharacterCard> characterCardsList6 = [
     CharacterCard(
         path: CharacterCardPath.ambael,
         description: "ambael_desc".tr(),
-        name: 'ambael3'),
+        name: 'ambael5'),
     CharacterCard(
         path: CharacterCardPath.adrasteia,
         description: 'adrasteia_desc'.tr(),
-        name: 'adrasteia3'),
+        name: 'adrasteia5'),
     CharacterCard(
         path: CharacterCardPath.diana,
         description: 'diana_desc'.tr(),
-        name: 'diana3'),
+        name: 'diana5'),
     CharacterCard(
         path: CharacterCardPath.earth,
         description: 'earth_desc'.tr(),
-        name: 'earth3'),
+        name: 'earth5'),
   ];
   List<CharacterCard> characterCardsList7 = [
     CharacterCard(
         path: CharacterCardPath.ambael,
         description: "ambael_desc".tr(),
-        name: 'ambael3'),
+        name: 'ambael6'),
     CharacterCard(
         path: CharacterCardPath.adrasteia,
         description: 'adrasteia_desc'.tr(),
-        name: 'adrasteia3'),
+        name: 'adrasteia6'),
     CharacterCard(
         path: CharacterCardPath.diana,
         description: 'diana_desc'.tr(),
-        name: 'diana3'),
+        name: 'diana6'),
     CharacterCard(
         path: CharacterCardPath.earth,
         description: 'earth_desc'.tr(),
-        name: 'earth3'),
+        name: 'earth6'),
   ];
   List<CharacterCard> characterCardsList8 = [
     CharacterCard(
         path: CharacterCardPath.ambael,
         description: "ambael_desc".tr(),
-        name: 'ambael3'),
+        name: 'ambael7'),
     CharacterCard(
         path: CharacterCardPath.adrasteia,
         description: 'adrasteia_desc'.tr(),
-        name: 'adrasteia3'),
+        name: 'adrasteia7'),
     CharacterCard(
         path: CharacterCardPath.diana,
         description: 'diana_desc'.tr(),
-        name: 'diana3'),
+        name: 'diana7'),
     CharacterCard(
         path: CharacterCardPath.earth,
         description: 'earth_desc'.tr(),
-        name: 'earth3'),
+        name: 'earth7'),
   ];
   List<CharacterCard> characterCardsList9 = [
     CharacterCard(
         path: CharacterCardPath.ambael,
         description: "ambael_desc".tr(),
-        name: 'ambael3'),
+        name: 'ambael8'),
     CharacterCard(
         path: CharacterCardPath.adrasteia,
         description: 'adrasteia_desc'.tr(),
-        name: 'adrasteia3'),
+        name: 'adrasteia8'),
     CharacterCard(
         path: CharacterCardPath.diana,
         description: 'diana_desc'.tr(),
-        name: 'diana3'),
+        name: 'diana8'),
     CharacterCard(
         path: CharacterCardPath.earth,
         description: 'earth_desc'.tr(),
-        name: 'earth3'),
+        name: 'earth8'),
   ];
   List<CharacterCard> characterCardsList10 = [
     CharacterCard(
         path: CharacterCardPath.ambael,
         description: "ambael_desc".tr(),
-        name: 'ambael3'),
+        name: 'ambael9'),
     CharacterCard(
         path: CharacterCardPath.adrasteia,
         description: 'adrasteia_desc'.tr(),
-        name: 'adrasteia3'),
+        name: 'adrasteia9'),
     CharacterCard(
         path: CharacterCardPath.diana,
         description: 'diana_desc'.tr(),
-        name: 'diana3'),
+        name: 'diana9'),
     CharacterCard(
         path: CharacterCardPath.earth,
         description: 'earth_desc'.tr(),
-        name: 'earth3'),
+        name: 'earth9'),
   ];
   List<CharacterCard> characterCardsList11 = [
     CharacterCard(
         path: CharacterCardPath.ambael,
         description: "ambael_desc".tr(),
-        name: 'ambael3'),
+        name: 'ambael10'),
     CharacterCard(
         path: CharacterCardPath.adrasteia,
         description: 'adrasteia_desc'.tr(),
-        name: 'adrasteia3'),
+        name: 'adrasteia10'),
     CharacterCard(
         path: CharacterCardPath.diana,
         description: 'diana_desc'.tr(),
-        name: 'diana3'),
+        name: 'diana10'),
     CharacterCard(
         path: CharacterCardPath.earth,
         description: 'earth_desc'.tr(),
-        name: 'earth3'),
+        name: 'earth10'),
   ];
   List<CharacterCard> characterCardsList12 = [
     CharacterCard(
         path: CharacterCardPath.ambael,
         description: "ambael_desc".tr(),
-        name: 'ambael3'),
+        name: 'ambael11'),
     CharacterCard(
         path: CharacterCardPath.adrasteia,
         description: 'adrasteia_desc'.tr(),
-        name: 'adrasteia3'),
+        name: 'adrasteia11'),
     CharacterCard(
         path: CharacterCardPath.diana,
         description: 'diana_desc'.tr(),
-        name: 'diana3'),
+        name: 'diana11'),
     CharacterCard(
         path: CharacterCardPath.earth,
         description: 'earth_desc'.tr(),
-        name: 'earth3'),
+        name: 'earth11'),
   ];
 
   bool showCharacterCard = false;
