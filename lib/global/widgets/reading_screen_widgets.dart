@@ -173,7 +173,7 @@ class _AnimatedCardState extends State<AnimatedCard> {
           child: FlipCard(
             key: widget.cardKey,
             flipOnTouch: false,
-            speed: 2 * 1000,
+            speed: 1 * 1000,
             front: !isCardRevealed
                 ? Image.asset(ImagePath.kCardBack)
                 : Image.asset(CharacterCardPath.diana),

@@ -85,6 +85,7 @@ class _SingleCardFormationScreenState extends State<SingleCardFormationScreen>
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
+
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
@@ -121,14 +122,11 @@ class _SingleCardFormationScreenState extends State<SingleCardFormationScreen>
             await Future.delayed(const Duration(milliseconds: 105), () {
               _scaleController.play();
               _translateController.play();
-            });
-          } else {
-            setState(() {
-              zoomTableTop = false;
-            });
-            Future.delayed(const Duration(milliseconds: 105), () {
-              _scaleController.play(motion: Motion.reverse);
-              _translateController.play(motion: Motion.reverse);
+            }).then((value) {
+              Future.delayed(const Duration(seconds: 1), () {
+                _scaleController.play(motion: Motion.pause);
+                _translateController.play(motion: Motion.pause);
+              });
             });
           }
 
