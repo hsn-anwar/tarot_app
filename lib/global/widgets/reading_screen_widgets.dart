@@ -132,11 +132,13 @@ class AnimatedCard extends StatefulWidget {
     @required this.onAnimateCallback,
     @required this.alignmentX,
     @required this.alignmentY,
+    this.cardSize,
   }) : super(key: key);
   final GlobalKey<FlipCardState> cardKey;
   final Function onAnimateCallback;
   final double alignmentX;
   final double alignmentY;
+  final double cardSize;
   @override
   _AnimatedCardState createState() => _AnimatedCardState();
 }
@@ -150,7 +152,7 @@ class _AnimatedCardState extends State<AnimatedCard> {
     return AnimatedAlign(
       child: AnimatedContainer(
         width: !animateCard
-            ? SizeConfig.blockSizeHorizontal * 15
+            ? SizeConfig.blockSizeHorizontal * widget.cardSize
             : SizeConfig.screenWidth,
         duration: Duration(seconds: 1),
         child: GestureDetector(

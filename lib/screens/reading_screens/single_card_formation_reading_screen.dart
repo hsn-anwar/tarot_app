@@ -4,16 +4,19 @@ import 'package:flip_card/flip_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tarot_app/global/constants.dart';
+import 'package:tarot_app/global/widgets/background_blur.dart';
 import 'package:tarot_app/global/widgets/reading_screen_widgets.dart';
 import 'package:tarot_app/global/widgets/top_bar.dart';
 import 'package:tarot_app/screens/card_reveal.dart';
 import 'package:tarot_app/screens/reading_screens/single_card_formation_reading_screen_2.dart';
 import 'package:tarot_app/services/size_config.dart';
 import 'package:vector_math/vector_math_64.dart' show Vector3;
+import 'package:spring/spring.dart';
 
 class SingleCardFormationScreen extends StatefulWidget {
-  const SingleCardFormationScreen({Key key}) : super(key: key);
+  const SingleCardFormationScreen({Key key, this.message}) : super(key: key);
   static final String id = '/single_card_formation_screen';
+  final String message;
   @override
   _SingleCardFormationScreenState createState() =>
       _SingleCardFormationScreenState();
@@ -24,42 +27,11 @@ class _SingleCardFormationScreenState extends State<SingleCardFormationScreen>
   double lightSize = 15;
   AnimationController animationController;
 
-  void _navigateToCardRevealScreen(
-      String cardPath, String cardIndex, bool cardRevealed) {
-    print(cardRevealed);
-
-    print(cardRevealed);
-
-    Navigator.push(
-      context,
-      PageRouteBuilder(
-        transitionDuration: Duration(seconds: 1),
-        pageBuilder: (_, __, ___) => CardRevealScreen(
-          card: cardPath,
-          cardIndex: cardIndex,
-          isRevealed: cardRevealed,
-        ),
-      ),
-    );
-
-    Future.delayed(const Duration(milliseconds: 500), () {
-      setState(() {
-        if (cardIndex == '1')
-          isOneRevealed = true;
-        else if (cardIndex == '2')
-          isTwoRevealed = true;
-        else if (cardIndex == '3') isThreeRevealed = true;
-      });
-    });
-  }
-
-  bool zoomScreen = false;
-
   void _onCardSelected() {
     if (formation == 3) {
       //TODO: Zoom screen
       setState(() {
-        zoomScreen = true;
+        zoomTableTop = true;
       });
     } else {
       formation++;
@@ -71,10 +43,8 @@ class _SingleCardFormationScreenState extends State<SingleCardFormationScreen>
   String selectedCard = CharacterCardPath.adrasteia;
   GlobalKey<FlipCardState> cardKey = GlobalKey<FlipCardState>();
   bool isOneRevealed = false;
-  bool isTwoRevealed = false;
-
-  bool isThreeRevealed = false;
-
+  bool zoomTableTop = false;
+  bool animatePedestals = false;
   bool isFormationCompleted = false;
   int formation = 0;
 
@@ -82,8 +52,15 @@ class _SingleCardFormationScreenState extends State<SingleCardFormationScreen>
   String selectedCard2 = CharacterCardPath.earth;
   String selectedCard3 = CharacterCardPath.diana;
 
+  bool isCardOneTapped = false;
+
+  void getMessage() {
+    print(widget.message);
+  }
+
   @override
   void initState() {
+    getMessage();
     super.initState();
   }
 
@@ -97,12 +74,20 @@ class _SingleCardFormationScreenState extends State<SingleCardFormationScreen>
   TransformationController _transformationController2 =
       TransformationController();
 
+  SpringController _scaleController =
+      SpringController(initialAnim: Motion.pause);
+  SpringController _translateController =
+      SpringController(initialAnim: Motion.pause);
+
+  SpringController _cardOneScaleController =
+      SpringController(initialAnim: Motion.pause);
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
+        onPressed: () async {
           // setState(() {
           //   zoomScreen = !zoomScreen;
           //   isOneRevealed = false;
@@ -118,20 +103,46 @@ class _SingleCardFormationScreenState extends State<SingleCardFormationScreen>
           // setState(() {
           //   zoomScreen = !zoomScreen;
           // });
-          if (!zoomScreen) {
-            _transformationController.value =
-                Matrix4.diagonal3(Vector3(1.4, 1.4, 1.0)) *
-                    Matrix4.translationValues(-55, -50, 0);
-            // _transformationController2.value =
-            //     Matrix4.diagonal3(Vector3(1.4, 1.4, 1.0));
-            // _transformationController.alignment = FractionalOffset.center;
-            // _transformationController.value =
-            //     Matrix4.translationValues(100, 0, 0);
-            zoomScreen = true;
+          // if (!zoomTableTop) {
+          //   // _transformationController.
+          //   _transformationController.value =
+          //       Matrix4.diagonal3(Vector3(1.4, 1.4, 1.0)) *
+          //           Matrix4.translationValues(-55, -220, 0);
+          // _transformationController2.value =
+          //     Matrix4.diagonal3(Vector3(1.4, 1.4, 1.0));
+          // _transformationController.alignment = FractionalOffset.center;
+          // _transformationController.value =
+          //     Matrix4.translationValues(100, 0, 0);
+
+          if (!zoomTableTop) {
+            setState(() {
+              zoomTableTop = true;
+            });
+            await Future.delayed(const Duration(milliseconds: 105), () {
+              _scaleController.play();
+              _translateController.play();
+            });
           } else {
-            _transformationController.value = Matrix4.identity();
-            zoomScreen = false;
+            setState(() {
+              zoomTableTop = false;
+            });
+            Future.delayed(const Duration(milliseconds: 105), () {
+              _scaleController.play(motion: Motion.reverse);
+              _translateController.play(motion: Motion.reverse);
+            });
           }
+
+          print('pressed');
+          // _scaleController.play(motion: Motion.play, curve: Curves.easeInOut);
+          // setState(() {
+          //   zoomTableTop = !zoomTableTop;
+          // });
+          // } else {
+          //   _transformationController.value = Matrix4.identity();
+          //   setState(() {
+          //     zoomTableTop = false;
+          //   });
+          // }
         },
       ),
       body: Container(
@@ -148,73 +159,150 @@ class _SingleCardFormationScreenState extends State<SingleCardFormationScreen>
             children: [
               Column(
                 children: [
-                  TopBar(title: 'is screen zoomed? $zoomScreen'),
-                  Container(
-                    height: SizeConfig.blockSizeVertical * 30,
-                    child: CircleList(
-                      origin: Offset(0, 150),
-                      children: List.generate(
-                        10,
-                        (index) {
-                          return Image.asset(ImagePath.kCardBack);
-                          // child: Image.asset(ImagePath.kCardBack)
-                        },
+                  TopBar(title: 'is screen zoomed? $zoomTableTop'),
+
+                  // !zoomTableTop
+                  //     ? Container(
+                  //         height: SizeConfig.blockSizeVertical * 30,
+                  //         child: CircleList(
+                  //           origin: Offset(0, 150),
+                  //           children: List.generate(
+                  //             10,
+                  //             (index) {
+                  //               return Image.asset(ImagePath.kCardBack);
+                  //               // child: Image.asset(ImagePath.kCardBack)
+                  //             },
+                  //           ),
+                  //         ),
+                  //       )
+                  //     : Container(
+                  //         height: SizeConfig.blockSizeVertical * 5,
+                  //       ),
+
+                  Stack(
+                    children: [
+                      Spring.translate(
+                        beginOffset: Offset.zero,
+                        endOffset: Offset(0, -1000),
+                        animDuration: Duration(seconds: 2),
+                        springController: _translateController,
+                        child: Container(
+                          height: SizeConfig.blockSizeVertical * 30,
+                          child: CircleList(
+                            origin: Offset(0, 150),
+                            children: List.generate(
+                              10,
+                              (index) {
+                                return Image.asset(ImagePath.kCardBack);
+                                // child: Image.asset(ImagePath.kCardBack)
+                              },
+                            ),
+                          ),
+                        ),
                       ),
-                    ),
+                      Container(
+                        padding: EdgeInsets.only(left: 16),
+                        width: double.infinity,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                widget.message,
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.w700,
+                                  fontFamily: CustomFonts.malgun,
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                'Scroll thorough the cards and pick the \nones that call out to you',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18,
+                                  fontFamily: CustomFonts.malgun,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
                   Spacer(),
-                  Container(
-                    alignment: Alignment.bottomCenter,
-                    height: SizeConfig.blockSizeVertical * 50,
-                    width: double.infinity,
-                    child: Stack(
-                      children: [
-                        InteractiveViewer(
-                          child: Pedestals(),
-                          transformationController: _transformationController2,
-                          boundaryMargin: const EdgeInsets.all(20.0),
-                          minScale: 0.1,
-                          maxScale: 1.6,
-                        ),
-                        // ScaleTransition(scale: _animation, child: TableTop()),
-                        // AnimatedSwitcher(
-                        //   duration: Duration(seconds: 1),
-                        //   transitionBuilder:
-                        //       (Widget child, Animation<double> animation) {
-                        //     return ScaleTransition(
-                        //         child: child, scale: animation);
-                        //   },
-                        //   child: !zoomScreen
-                        //       ? TableTop(
-                        //           key: ValueKey<int>(1),
-                        //         )
-                        //       : ZoomedTableTop(
-                        //           key: ValueKey<int>(2),
-                        //         ),
-                        //   switchInCurve: Curves.easeIn,
-                        //   switchOutCurve: Curves.easeOut,
-                        // ),
-                        InteractiveViewer(
-                          transformationController: _transformationController,
-                          boundaryMargin: const EdgeInsets.all(20.0),
-                          minScale: 0.1,
-                          maxScale: 1.6,
-                          // panEnabled: false,
-                          // scaleEnabled: false,
-                          child: TableTop(),
-                        ),
-                        SingleLight(),
-                      ],
+                  Spring.translate(
+                    beginOffset: Offset.zero,
+                    endOffset: Offset(0, -110),
+                    springController: _translateController,
+                    animStatus: (AnimStatus status) {
+                      print('translate: $status');
+                    },
+                    child: Container(
+                      alignment: Alignment.bottomCenter,
+                      height: SizeConfig.blockSizeVertical * 50,
+                      width: double.infinity,
+                      child: Stack(
+                        children: [
+                          Spring.translate(
+                            beginOffset: Offset.zero,
+                            endOffset: Offset(0, -50),
+                            springController: _translateController,
+                            child: Spring.scale(
+                              start: 1,
+                              end: 1.2,
+                              springController: _scaleController,
+                              child: Pedestals(),
+                            ),
+                          ),
+                          Spring.scale(
+                              start: 1,
+                              end: 1.5,
+                              springController: _scaleController,
+                              child: TableTop(),
+                              animStatus: (AnimStatus status) {
+                                print('scale: $status');
+                              }),
+                          SingleLight(lightSize: !zoomTableTop ? 15 : 20),
+                          // Spring.scale(
+                          //   start: 1,
+                          //   end: isCardOneTapped ? 1.5 : 1,
+                          //   springController: _cardOneScaleController,
+                          //   child: AnimatedCard(
+                          //     cardKey: cardKey,
+                          //     onAnimateCallback: (bool value) {
+                          //       print(value);
+                          //       setState(() {
+                          //         isCardOneTapped = value;
+                          //         _cardOneScaleController.play();
+                          //       });
+                          //     },
+                          //     alignmentX: 0,
+                          //     alignmentY: zoomTableTop ? -0.20 : 0.5,
+                          //   ),
+                          // )
+                        ],
+                      ),
                     ),
                   )
                 ],
               ),
+              isCardOneTapped ? BackgroundBlur() : Container(),
               AnimatedCard(
                 cardKey: cardKey,
-                onAnimateCallback: (bool value) {},
+                onAnimateCallback: (bool value) {
+                  setState(() {
+                    isCardOneTapped = !isCardOneTapped;
+                  });
+                },
                 alignmentX: 0,
-                alignmentY: 0.5,
-              )
+                alignmentY: zoomTableTop ? 0.0 : 0.4,
+                cardSize: !zoomTableTop ? 15 : 20,
+              ),
             ],
           ),
         ),
@@ -250,7 +338,7 @@ class TableTop extends StatelessWidget {
     return Container(
       // height: 200,
       padding: EdgeInsets.only(top: SizeConfig.blockSizeVertical * 15),
-      alignment: Alignment.bottomCenter,
+      alignment: Alignment.center,
       child: Image.asset(
         ImagePath.kTable,
         width: SizeConfig.screenWidth,
@@ -261,19 +349,17 @@ class TableTop extends StatelessWidget {
 }
 
 class SingleLight extends StatelessWidget {
-  const SingleLight({Key key}) : super(key: key);
-  final double lightSize = 15;
+  const SingleLight({Key key, this.lightSize}) : super(key: key);
+  final double lightSize;
 
   @override
   Widget build(BuildContext context) {
-    return Positioned(
-      bottom: SizeConfig.blockSizeVertical * 16,
-      left: SizeConfig.blockSizeHorizontal * 40,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10.0),
+    return Align(
+      child: AnimatedContainer(
+        width: SizeConfig.blockSizeHorizontal * lightSize,
+        duration: Duration(seconds: 1),
         child: Image.asset(
           ImagePath.kCardLightInactive,
-          width: SizeConfig.blockSizeHorizontal * lightSize,
         ),
       ),
     );
@@ -303,28 +389,60 @@ class Pedestals extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Positioned(
-      child: Container(
-        child: Row(
-          children: [
-            Stack(
-              children: [
-                Container(
-                  height: SizeConfig.blockSizeVertical * 25,
-                  margin:
-                      EdgeInsets.only(top: SizeConfig.blockSizeVertical * 6),
+    return Container(
+      alignment: Alignment.topCenter,
+      child: Row(
+        children: [
+          Stack(
+            children: [
+              Container(
+                height: SizeConfig.blockSizeVertical * 28,
+                margin: EdgeInsets.only(top: SizeConfig.blockSizeVertical * 1),
+                child: Image.asset(
+                  ImagePath.kPedestal,
+                  fit: BoxFit.fill,
+                ),
+              ),
+              Positioned(
+                bottom: SizeConfig.blockSizeVertical * 18,
+                left: SizeConfig.blockSizeHorizontal * 7,
+                child: Container(
+                  // color: Colors.pink,
+                  padding: EdgeInsets.all(8),
+                  width: SizeConfig.blockSizeHorizontal * 18,
                   child: Image.asset(
-                    ImagePath.kPedestal,
+                    ImagePath.brazier,
                     fit: BoxFit.fill,
+                    // height:
+                    // SizeConfig.blockSizeHorizontal * 10,
+                    // width: SizeConfig.blockSizeHorizontal * 25,
                   ),
                 ),
-                Positioned(
-                  bottom: SizeConfig.blockSizeVertical * 18,
-                  left: SizeConfig.blockSizeHorizontal * 7,
-                  child: Container(
-                    // color: Colors.pink,
-                    padding: EdgeInsets.all(8),
-                    width: SizeConfig.blockSizeHorizontal * 18,
+              ),
+            ],
+          ),
+          Expanded(
+            child: SizedBox(),
+          ),
+          Stack(
+            children: [
+              Container(
+                height: SizeConfig.blockSizeVertical * 28,
+                margin: EdgeInsets.only(top: SizeConfig.blockSizeVertical * 1),
+                child: Image.asset(
+                  ImagePath.kPedestal,
+                  fit: BoxFit.fill,
+                ),
+              ),
+              Positioned(
+                bottom: SizeConfig.blockSizeVertical * 18,
+                left: SizeConfig.blockSizeHorizontal * 20,
+                child: Container(
+                  // color: Colors.pink,
+                  padding: EdgeInsets.all(8),
+                  width: SizeConfig.blockSizeHorizontal * 18,
+                  child: Transform(
+                    transform: Matrix4.rotationY(pi),
                     child: Image.asset(
                       ImagePath.brazier,
                       fit: BoxFit.fill,
@@ -334,43 +452,10 @@ class Pedestals extends StatelessWidget {
                     ),
                   ),
                 ),
-              ],
-            ),
-            Spacer(),
-            Stack(
-              children: [
-                Container(
-                  height: SizeConfig.blockSizeVertical * 25,
-                  margin:
-                      EdgeInsets.only(top: SizeConfig.blockSizeVertical * 6),
-                  child: Image.asset(
-                    ImagePath.kPedestal,
-                    fit: BoxFit.fill,
-                  ),
-                ),
-                Positioned(
-                  bottom: SizeConfig.blockSizeVertical * 18,
-                  left: SizeConfig.blockSizeHorizontal * 20,
-                  child: Container(
-                    // color: Colors.pink,
-                    padding: EdgeInsets.all(8),
-                    width: SizeConfig.blockSizeHorizontal * 18,
-                    child: Transform(
-                      transform: Matrix4.rotationY(pi),
-                      child: Image.asset(
-                        ImagePath.brazier,
-                        fit: BoxFit.fill,
-                        // height:
-                        // SizeConfig.blockSizeHorizontal * 10,
-                        // width: SizeConfig.blockSizeHorizontal * 25,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }

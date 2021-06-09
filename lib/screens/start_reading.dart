@@ -61,8 +61,14 @@ class _StartReadingScreenState extends State<StartReadingScreen> {
                     if (widget.cardFormation == 3) {
                       Navigator.pushNamed(context, ThreeCardFormationScreen.id);
                     } else if (widget.cardFormation == 1) {
-                      Navigator.pushNamed(
-                          context, SingleCardFormationScreen.id);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => SingleCardFormationScreen(
+                            message: widget.message,
+                          ),
+                        ),
+                      );
                     } else {
                       Navigator.push(
                         context,
