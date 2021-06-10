@@ -290,16 +290,27 @@ class _SingleCardFormationScreenState extends State<SingleCardFormationScreen>
                 ],
               ),
               isCardOneTapped ? BackgroundBlur() : Container(),
-              AnimatedCard(
+              // AnimatedCard(
+              //   cardKey: cardKey,
+              //   onAnimateCallback: (bool value) {
+              //     setState(() {
+              //       isCardOneTapped = !isCardOneTapped;
+              //     });
+              //   },
+              //   alignmentX: 0,
+              //   alignmentY: zoomTableTop ? 0.0 : 0.4,
+              //   cardSize: !zoomTableTop ? 15 : 20,
+              // ),
+              CardBackground(
+                alignmentX: 0,
                 cardKey: cardKey,
+                cardSize: !zoomTableTop ? 15 : 20,
+                alignmentY: zoomTableTop ? 0.0 : 0.4,
                 onAnimateCallback: (bool value) {
                   setState(() {
                     isCardOneTapped = !isCardOneTapped;
                   });
                 },
-                alignmentX: 0,
-                alignmentY: zoomTableTop ? 0.0 : 0.4,
-                cardSize: !zoomTableTop ? 15 : 20,
               ),
             ],
           ),

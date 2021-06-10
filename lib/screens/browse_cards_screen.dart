@@ -527,7 +527,6 @@ class _BrowseCardsScreenState extends State<BrowseCardsScreen> {
                           ),
                         ],
                       ),
-
                       Visibility(
                         visible: showCharacterCard,
                         child: Container(
@@ -541,24 +540,6 @@ class _BrowseCardsScreenState extends State<BrowseCardsScreen> {
                         ),
                       ),
                       Container(),
-                      // FlipCard(
-                      //   key: cardKey,
-                      //   flipOnTouch: false,
-                      //   front: Container(
-                      //     width: double.infinity,
-                      //     height: SizeConfig.blockSizeVertical * 75,
-                      //     child: Image.asset(
-                      //       CharacterCardPath.ambael,
-                      //     ),
-                      //   ),
-                      //   back: Container(
-                      //     width: double.infinity,
-                      //     height: SizeConfig.blockSizeVertical * 75,
-                      //     child: Image.asset(
-                      //       ImagePath.kCardBack,
-                      //     ),
-                      //   ),
-                      // ),
                       showCharacterCard == true
                           ? Column(
                               children: [
