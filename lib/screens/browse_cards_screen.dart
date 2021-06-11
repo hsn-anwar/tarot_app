@@ -790,7 +790,7 @@ class TopRack extends StatelessWidget {
         child: Image.asset(
           mode == TopRackMode.rackOne
               ? ImagePath.kCardRackOne
-              : ImagePath.kCardRackTwo,
+              : ImagePath.kCardRackOne,
           fit: BoxFit.fitWidth,
         ),
       ),

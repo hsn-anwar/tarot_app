@@ -134,7 +134,7 @@ class _SevenFormationReadingScreenState
           //     wordIndex++;
           //   }
           // });
-          Navigator.pushNamed(context, SevenCardReadingFormation2.id);
+          // Navigator.pushNamed(context, SevenCardReadingFormation2.id);
         },
       ),
       body: Container(
@@ -296,11 +296,11 @@ class _SevenFormationReadingScreenState
                           padding: EdgeInsets.only(
                               top: SizeConfig.blockSizeVertical * 15),
                           alignment: Alignment.bottomCenter,
-                          child: Image.asset(
-                            ImagePath.kTableZoomed,
-                            width: SizeConfig.screenWidth,
-                            fit: BoxFit.fill,
-                          ),
+                          // child: Image.asset(
+                          //   ImagePath.kTableZoomed,
+                          //   width: SizeConfig.screenWidth,
+                          //   fit: BoxFit.fill,
+                          // ),
                         ),
                         duration: Duration(seconds: 1),
                         crossFadeState: !zoomScreen

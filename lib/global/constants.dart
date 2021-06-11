@@ -3,35 +3,31 @@ import 'package:easy_localization/easy_localization.dart';
 
 class ImagePath {
   static const String kImagePath = 'assets/images/';
-  static const String kBg = kImagePath + 'Main BG.png';
+  static const String kBg = kImagePath + 'Home BG.png';
   static const String kCardIcon = kImagePath + 'Card Icon.png';
-  static const String kBackButton = kImagePath + 'Back Button.png';
-  static const String kBrowseCardIcon = kImagePath + 'Browse Card Icon.png';
+  static const String kBackButton = kImagePath + 'Put Card Down Button.png';
+  static const String kBrowseCardIcon = kImagePath + 'Browse Icon.png';
   static const String kCardBack = kImagePath + 'Card Back Final 1080.png';
   static const String kCardLightActive = kImagePath + 'Card Light Active.png';
   static const String kCardLightInactive =
       kImagePath + 'Card Light Inactive.png';
+  static const String kCardRackOne = kImagePath + 'Card Rack.png';
   static const String kCardRackTopVineOne =
-      kImagePath + 'Card Rack 1 top vine.png';
-  static const String kCardRackOne = kImagePath + 'Card Rack 1.png';
+      kImagePath + 'Card Rack Overlay 1.png';
   static const String kCardRackTopVineTwo =
-      kImagePath + 'Card Rack 2 top vine.png';
-  static const String kCardRackTwo = kImagePath + 'Card Rack 2.png';
+      kImagePath + 'Card Rack Overlay 2.png';
   static const String kCardReadingOverlay =
       kImagePath + 'Card Reading Overlay Shape.png';
-  static const String kCloseButton = kImagePath + 'Close button.png';
+  static const String kCloseButton = kImagePath + 'Close Button.png';
   static const String kInfoButton = kImagePath + 'Info Button.png';
-  static const String kLogoIcon = kImagePath + 'Logo Icon.png';
+  static const String kLogoIcon = kImagePath + 'Home Logo Icon.png';
   static const String kLogo = kImagePath + 'Logo.png';
   static const String kPedestal = kImagePath + 'Pedestal.png';
   static const String kReadingBg = kImagePath + 'Reading BG.png';
-  static const String kSettingsButton = kImagePath + 'Settings button.png';
-  static const String kTableZoomed = kImagePath + 'Table Zoomed.png';
+  static const String kSettingsButton = kImagePath + 'Settings Button.png';
   static const String kTable = kImagePath + 'Table.png';
-  static const String flame = kImagePath + 'flame.gif';
-  static const String intentionsBackButton =
-      kImagePath + 'Intentions Back Button.png';
-  static const String brazier = kImagePath + 'Brazier.png';
+  static const String intentionsBackButton = kImagePath + 'Back Button.png';
+  static const String brazier = kImagePath + 'Brazier.tif';
 }
 
 class CharacterCardPath {

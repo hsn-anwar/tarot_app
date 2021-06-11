@@ -43,16 +43,10 @@ class MyApp extends StatelessWidget {
         HomeScreen.id: (context) => HomeScreen(),
         FormationScreen.id: (context) => FormationScreen(),
         BrowseCardsScreen.id: (context) => BrowseCardsScreen(),
-        SplashScreen.id: (context) => SplashScreen(),
+        // SplashScreen.id: (context) => SplashScreen(),
         CardRevealScreen.id: (context) => CardRevealScreen(),
         SingleCardFormationScreen.id: (context) => SingleCardFormationScreen(),
         ThreeCardFormationScreen.id: (context) => ThreeCardFormationScreen(),
-        SingleCardReadingFormation2.id: (context) =>
-            SingleCardReadingFormation2(),
-        ThreeCardReadingFormation2.id: (context) =>
-            ThreeCardReadingFormation2(),
-        SevenCardReadingFormation2.id: (context) =>
-            SevenCardReadingFormation2(),
       },
     );
   }

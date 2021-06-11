@@ -5,12 +5,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tarot_app/global/constants.dart';
 import 'package:tarot_app/global/widgets/background_blur.dart';
-import 'package:tarot_app/global/widgets/reading_screen_widgets.dart';
+import 'package:tarot_app/global/widgets/reading_screen/animated_background.dart';
+import 'package:tarot_app/global/widgets/reading_screen/pedestals.dart';
+import 'package:tarot_app/global/widgets/reading_screen/table_top.dart';
+import 'package:tarot_app/global/widgets/reading_screen/text_title.dart';
 import 'package:tarot_app/global/widgets/top_bar.dart';
-import 'package:tarot_app/screens/card_reveal.dart';
-import 'package:tarot_app/screens/reading_screens/single_card_formation_reading_screen_2.dart';
 import 'package:tarot_app/services/size_config.dart';
-import 'package:vector_math/vector_math_64.dart' show Vector3;
 import 'package:spring/spring.dart';
 
 class SingleCardFormationScreen extends StatefulWidget {
@@ -69,17 +69,9 @@ class _SingleCardFormationScreenState extends State<SingleCardFormationScreen>
     super.dispose();
   }
 
-  TransformationController _transformationController =
-      TransformationController();
-  TransformationController _transformationController2 =
-      TransformationController();
-
   SpringController _scaleController =
       SpringController(initialAnim: Motion.pause);
   SpringController _translateController =
-      SpringController(initialAnim: Motion.pause);
-
-  SpringController _cardOneScaleController =
       SpringController(initialAnim: Motion.pause);
 
   @override
@@ -89,32 +81,6 @@ class _SingleCardFormationScreenState extends State<SingleCardFormationScreen>
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          // setState(() {
-          //   zoomScreen = !zoomScreen;
-          //   isOneRevealed = false;
-          //   Future.delayed(const Duration(milliseconds: 300), () {
-          //     cardKey.currentState.toggleCard();
-          //   });
-          // });
-          // Navigator.pushNamed(context, SingleCardReadingFormation2.id);
-          // if (_controller.status != AnimationStatus.completed)
-          //   _controller.forward();
-          // else
-          //   _controller.reverse();
-          // setState(() {
-          //   zoomScreen = !zoomScreen;
-          // });
-          // if (!zoomTableTop) {
-          //   // _transformationController.
-          //   _transformationController.value =
-          //       Matrix4.diagonal3(Vector3(1.4, 1.4, 1.0)) *
-          //           Matrix4.translationValues(-55, -220, 0);
-          // _transformationController2.value =
-          //     Matrix4.diagonal3(Vector3(1.4, 1.4, 1.0));
-          // _transformationController.alignment = FractionalOffset.center;
-          // _transformationController.value =
-          //     Matrix4.translationValues(100, 0, 0);
-
           if (!zoomTableTop) {
             setState(() {
               zoomTableTop = true;
@@ -129,18 +95,6 @@ class _SingleCardFormationScreenState extends State<SingleCardFormationScreen>
               });
             });
           }
-
-          print('pressed');
-          // _scaleController.play(motion: Motion.play, curve: Curves.easeInOut);
-          // setState(() {
-          //   zoomTableTop = !zoomTableTop;
-          // });
-          // } else {
-          //   _transformationController.value = Matrix4.identity();
-          //   setState(() {
-          //     zoomTableTop = false;
-          //   });
-          // }
         },
       ),
       body: Container(
@@ -157,26 +111,7 @@ class _SingleCardFormationScreenState extends State<SingleCardFormationScreen>
             children: [
               Column(
                 children: [
-                  TopBar(title: 'is screen zoomed? $zoomTableTop'),
-
-                  // !zoomTableTop
-                  //     ? Container(
-                  //         height: SizeConfig.blockSizeVertical * 30,
-                  //         child: CircleList(
-                  //           origin: Offset(0, 150),
-                  //           children: List.generate(
-                  //             10,
-                  //             (index) {
-                  //               return Image.asset(ImagePath.kCardBack);
-                  //               // child: Image.asset(ImagePath.kCardBack)
-                  //             },
-                  //           ),
-                  //         ),
-                  //       )
-                  //     : Container(
-                  //         height: SizeConfig.blockSizeVertical * 5,
-                  //       ),
-
+                  TopBar(title: ''),
                   Stack(
                     children: [
                       Spring.translate(
@@ -198,37 +133,8 @@ class _SingleCardFormationScreenState extends State<SingleCardFormationScreen>
                           ),
                         ),
                       ),
-                      Container(
-                        padding: EdgeInsets.only(left: 16),
-                        width: double.infinity,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(
-                                widget.message,
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 24,
-                                  fontWeight: FontWeight.w700,
-                                  fontFamily: CustomFonts.malgun,
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(
-                                'Scroll thorough the cards and pick the \nones that call out to you',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 18,
-                                  fontFamily: CustomFonts.malgun,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
+                      TitleText(
+                        message: widget.message,
                       ),
                     ],
                   ),
@@ -266,23 +172,6 @@ class _SingleCardFormationScreenState extends State<SingleCardFormationScreen>
                                 print('scale: $status');
                               }),
                           SingleLight(lightSize: !zoomTableTop ? 15 : 20),
-                          // Spring.scale(
-                          //   start: 1,
-                          //   end: isCardOneTapped ? 1.5 : 1,
-                          //   springController: _cardOneScaleController,
-                          //   child: AnimatedCard(
-                          //     cardKey: cardKey,
-                          //     onAnimateCallback: (bool value) {
-                          //       print(value);
-                          //       setState(() {
-                          //         isCardOneTapped = value;
-                          //         _cardOneScaleController.play();
-                          //       });
-                          //     },
-                          //     alignmentX: 0,
-                          //     alignmentY: zoomTableTop ? -0.20 : 0.5,
-                          //   ),
-                          // )
                         ],
                       ),
                     ),
@@ -290,68 +179,24 @@ class _SingleCardFormationScreenState extends State<SingleCardFormationScreen>
                 ],
               ),
               isCardOneTapped ? BackgroundBlur() : Container(),
-              // AnimatedCard(
-              //   cardKey: cardKey,
-              //   onAnimateCallback: (bool value) {
-              //     setState(() {
-              //       isCardOneTapped = !isCardOneTapped;
-              //     });
-              //   },
-              //   alignmentX: 0,
-              //   alignmentY: zoomTableTop ? 0.0 : 0.4,
-              //   cardSize: !zoomTableTop ? 15 : 20,
-              // ),
-              CardBackground(
+              AnimatedBackground(
                 alignmentX: 0,
                 cardKey: cardKey,
                 cardSize: !zoomTableTop ? 15 : 20,
                 alignmentY: zoomTableTop ? 0.0 : 0.4,
+                cardDescription: "desc desc desc desc",
+                characterImagePath: CharacterCardPath.adrasteia,
+                title: widget.message,
                 onAnimateCallback: (bool value) {
+                  print('card tapped');
                   setState(() {
-                    isCardOneTapped = !isCardOneTapped;
+                    isCardOneTapped = value;
                   });
                 },
               ),
             ],
           ),
         ),
-      ),
-    );
-  }
-}
-
-class FinalCard extends StatelessWidget {
-  const FinalCard({Key key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    SizeConfig().init(context);
-    return Center(
-      child: Container(
-        color: Colors.transparent,
-        child: Image.asset(
-          ImagePath.kCardBack,
-          fit: BoxFit.fitWidth,
-          height: SizeConfig.blockSizeVertical * 45,
-        ),
-      ),
-    );
-  }
-}
-
-class TableTop extends StatelessWidget {
-  const TableTop({Key key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      // height: 200,
-      padding: EdgeInsets.only(top: SizeConfig.blockSizeVertical * 15),
-      alignment: Alignment.center,
-      child: Image.asset(
-        ImagePath.kTable,
-        width: SizeConfig.screenWidth,
-        fit: BoxFit.fill,
       ),
     );
   }
@@ -370,101 +215,6 @@ class SingleLight extends StatelessWidget {
         child: Image.asset(
           ImagePath.kCardLightInactive,
         ),
-      ),
-    );
-  }
-}
-
-class SingleCard extends StatelessWidget {
-  const SingleCard({Key key}) : super(key: key);
-  final double cardSize = 15;
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10.0),
-        child: Image.asset(
-          ImagePath.kCardBack,
-          width: SizeConfig.blockSizeHorizontal * cardSize,
-        ),
-      ),
-    );
-  }
-}
-
-class Pedestals extends StatelessWidget {
-  const Pedestals({Key key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      alignment: Alignment.topCenter,
-      child: Row(
-        children: [
-          Stack(
-            children: [
-              Container(
-                height: SizeConfig.blockSizeVertical * 28,
-                margin: EdgeInsets.only(top: SizeConfig.blockSizeVertical * 1),
-                child: Image.asset(
-                  ImagePath.kPedestal,
-                  fit: BoxFit.fill,
-                ),
-              ),
-              Positioned(
-                bottom: SizeConfig.blockSizeVertical * 18,
-                left: SizeConfig.blockSizeHorizontal * 7,
-                child: Container(
-                  // color: Colors.pink,
-                  padding: EdgeInsets.all(8),
-                  width: SizeConfig.blockSizeHorizontal * 18,
-                  child: Image.asset(
-                    ImagePath.brazier,
-                    fit: BoxFit.fill,
-                    // height:
-                    // SizeConfig.blockSizeHorizontal * 10,
-                    // width: SizeConfig.blockSizeHorizontal * 25,
-                  ),
-                ),
-              ),
-            ],
-          ),
-          Expanded(
-            child: SizedBox(),
-          ),
-          Stack(
-            children: [
-              Container(
-                height: SizeConfig.blockSizeVertical * 28,
-                margin: EdgeInsets.only(top: SizeConfig.blockSizeVertical * 1),
-                child: Image.asset(
-                  ImagePath.kPedestal,
-                  fit: BoxFit.fill,
-                ),
-              ),
-              Positioned(
-                bottom: SizeConfig.blockSizeVertical * 18,
-                left: SizeConfig.blockSizeHorizontal * 20,
-                child: Container(
-                  // color: Colors.pink,
-                  padding: EdgeInsets.all(8),
-                  width: SizeConfig.blockSizeHorizontal * 18,
-                  child: Transform(
-                    transform: Matrix4.rotationY(pi),
-                    child: Image.asset(
-                      ImagePath.brazier,
-                      fit: BoxFit.fill,
-                      // height:
-                      // SizeConfig.blockSizeHorizontal * 10,
-                      // width: SizeConfig.blockSizeHorizontal * 25,
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ],
       ),
     );
   }

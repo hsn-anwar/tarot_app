@@ -56,7 +56,7 @@ class _HomeScreenState extends State<HomeScreen> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           setState(() {
-            Navigator.pushNamed(context, SplashScreen.id);
+            // Navigator.pushNamed(context, SplashScreen.id);
           });
         },
         child: Text('DEBUG'),
