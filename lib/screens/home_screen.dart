@@ -102,7 +102,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Image.asset(ImagePath.kBrowseCardIcon),
+                      Container(
+                          width: SizeConfig.blockSizeHorizontal * 10,
+                          child: Image.asset(ImagePath.kBrowseCardIcon)),
                       SizedBox(
                         width: SizeConfig.blockSizeHorizontal * 3,
                       ),
