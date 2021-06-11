@@ -26,22 +26,27 @@ class Pedestals extends StatelessWidget {
                   fit: BoxFit.fill,
                 ),
               ),
-              Positioned(
-                bottom: SizeConfig.blockSizeVertical * 18,
-                left: SizeConfig.blockSizeHorizontal * 7,
-                child: Container(
-                  // color: Colors.pink,
-                  padding: EdgeInsets.all(8),
-                  width: SizeConfig.blockSizeHorizontal * 25,
-                  child: Image.asset(
-                    ImagePath.brazier,
-                    fit: BoxFit.fill,
-                    // height:
-                    // SizeConfig.blockSizeHorizontal * 10,
-                    // width: SizeConfig.blockSizeHorizontal * 25,
-                  ),
-                ),
-              ),
+              this.zoom
+                  ? Positioned(
+                      bottom: SizeConfig.blockSizeVertical * 17,
+                      left: SizeConfig.blockSizeHorizontal * 27,
+                      child: Container(
+                        // color: Colors.pink,
+                        padding: EdgeInsets.all(8),
+                        width: SizeConfig.blockSizeHorizontal * 27,
+                        child: Transform(
+                          transform: Matrix4.rotationY(pi),
+                          child: Image.asset(
+                            ImagePath.brazier,
+                            fit: BoxFit.fill,
+                            // height:
+                            // SizeConfig.blockSizeHorizontal * 10,
+                            // width: SizeConfig.blockSizeHorizontal * 25,
+                          ),
+                        ),
+                      ),
+                    )
+                  : Container(),
             ],
           ),
           Expanded(
@@ -57,25 +62,27 @@ class Pedestals extends StatelessWidget {
                   fit: BoxFit.fill,
                 ),
               ),
-              Positioned(
-                bottom: SizeConfig.blockSizeVertical * 18,
-                left: SizeConfig.blockSizeHorizontal * 20,
-                child: Container(
-                  // color: Colors.pink,
-                  padding: EdgeInsets.all(8),
-                  width: SizeConfig.blockSizeHorizontal * 25,
-                  child: Transform(
-                    transform: Matrix4.rotationY(pi),
-                    child: Image.asset(
-                      ImagePath.brazier,
-                      fit: BoxFit.fill,
-                      // height:
-                      // SizeConfig.blockSizeHorizontal * 10,
-                      // width: SizeConfig.blockSizeHorizontal * 25,
-                    ),
-                  ),
-                ),
-              ),
+              this.zoom
+                  ? Positioned(
+                      bottom: SizeConfig.blockSizeVertical * 17,
+                      left: SizeConfig.blockSizeHorizontal * 20,
+                      child: Container(
+                        // color: Colors.pink,
+                        padding: EdgeInsets.all(8),
+                        width: SizeConfig.blockSizeHorizontal * 27,
+                        child: Transform(
+                          transform: Matrix4.rotationY(pi),
+                          child: Image.asset(
+                            ImagePath.brazier,
+                            fit: BoxFit.fill,
+                            // height:
+                            // SizeConfig.blockSizeHorizontal * 10,
+                            // width: SizeConfig.blockSizeHorizontal * 25,
+                          ),
+                        ),
+                      ),
+                    )
+                  : Container(),
             ],
           ),
         ],

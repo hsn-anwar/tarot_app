@@ -98,7 +98,7 @@ class _SingleCardFormationScreenState extends State<SingleCardFormationScreen>
               });
             });
           } else {
-            _translateController2.play(motion: Motion.play);
+            // _translateController2.play(motion: Motion.play);
           }
         },
       ),
@@ -166,7 +166,9 @@ class _SingleCardFormationScreenState extends State<SingleCardFormationScreen>
                               start: 1,
                               end: 1.2,
                               springController: _scaleController,
-                              child: Pedestals(),
+                              child: Pedestals(
+                                zoom: zoomTableTop,
+                              ),
                             ),
                           ),
                           Spring.translate(
@@ -174,6 +176,17 @@ class _SingleCardFormationScreenState extends State<SingleCardFormationScreen>
                             endOffset: Offset(0, -100),
                             springController: _translateController2,
                             animDuration: Duration(seconds: 1),
+                            animStatus: (AnimStatus status) {
+                              print(status);
+                              if (status == AnimStatus.completed) {
+                                _translateController2.play(
+                                    motion: Motion.pause);
+                              }
+                              if (status == AnimStatus.dismissed) {
+                                _translateController2.play(
+                                    motion: Motion.pause);
+                              }
+                            },
                             child: Spring.scale(
                                 start: 1,
                                 end: 1.5,

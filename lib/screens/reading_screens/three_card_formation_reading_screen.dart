@@ -45,6 +45,8 @@ class _ThreeCardFormationScreenState extends State<ThreeCardFormationScreen> {
   GlobalKey<FlipCardState> cardKey2 = GlobalKey<FlipCardState>();
   GlobalKey<FlipCardState> cardKey3 = GlobalKey<FlipCardState>();
 
+  SpringController _translateController2 =
+      SpringController(initialAnim: Motion.pause);
   List<String> words = [];
   int wordIndex = 0;
 
@@ -124,17 +126,35 @@ class _ThreeCardFormationScreenState extends State<ThreeCardFormationScreen> {
                               start: 1,
                               end: 1.1,
                               springController: _scaleController,
-                              child: Pedestals(),
+                              child: Pedestals(
+                                zoom: zoomTableTop,
+                              ),
                             ),
                           ),
-                          Spring.scale(
-                              start: 1,
-                              end: 1.5,
-                              springController: _scaleController,
-                              child: TableTop(),
-                              animStatus: (AnimStatus status) {
-                                print('scale: $status');
-                              }),
+                          Spring.translate(
+                            beginOffset: Offset.zero,
+                            endOffset: Offset(0, -100),
+                            springController: _translateController2,
+                            animDuration: Duration(seconds: 1),
+                            animStatus: (AnimStatus status) {
+                              if (status == AnimStatus.completed) {
+                                _translateController2.play(
+                                    motion: Motion.pause);
+                              }
+                              if (status == AnimStatus.dismissed) {
+                                _translateController2.play(
+                                    motion: Motion.pause);
+                              }
+                            },
+                            child: Spring.scale(
+                                start: 1,
+                                end: 1.5,
+                                springController: _scaleController,
+                                child: TableTop(),
+                                animStatus: (AnimStatus status) {
+                                  print('scale: $status');
+                                }),
+                          ),
                           // SingleLight(lightSize: !zoomTableTop ? 15 : 20),
                           DeactivatedLight(
                             alignment: Alignment(0, -0.35),
@@ -223,6 +243,15 @@ class _ThreeCardFormationScreenState extends State<ThreeCardFormationScreen> {
   }
 
   void onCardOneTapped(bool value) {
+    if (value) {
+      Future.delayed(const Duration(milliseconds: 800), () {
+        setState(() {
+          _translateController2.play(motion: Motion.play);
+        });
+      });
+    } else {
+      _translateController2.play(motion: Motion.reverse);
+    }
     print('card 1 tapped');
     print('oldValue: $cardOneSelected');
     setState(() {
@@ -235,6 +264,15 @@ class _ThreeCardFormationScreenState extends State<ThreeCardFormationScreen> {
   }
 
   void onCardTwoTapped(bool value) {
+    if (value) {
+      Future.delayed(const Duration(milliseconds: 800), () {
+        setState(() {
+          _translateController2.play(motion: Motion.play);
+        });
+      });
+    } else {
+      _translateController2.play(motion: Motion.reverse);
+    }
     print('card  2 tapped');
     print('cardOneStatus: $cardTwoSelected');
     setState(() {
@@ -249,7 +287,15 @@ class _ThreeCardFormationScreenState extends State<ThreeCardFormationScreen> {
 
   void onCardThreeTapped(bool value) {
     print('cardOneStatus: $cardThreeSelected');
-
+    if (value) {
+      Future.delayed(const Duration(milliseconds: 800), () {
+        setState(() {
+          _translateController2.play(motion: Motion.play);
+        });
+      });
+    } else {
+      _translateController2.play(motion: Motion.reverse);
+    }
     print('card 3 tapped');
     setState(() {
       isCardSelected = value;
