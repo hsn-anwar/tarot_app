@@ -34,7 +34,8 @@ class _CardSpreadState extends State<CardSpread> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Color(0xFFF822E81).withOpacity(0.2),
+      // color: Color(0xFFF822E81).withOpacity(0.2),
+      color: Color.fromARGB(255, 68, 18, 88).withOpacity(0.7),
       width: SizeConfig.screenWidth,
       child: Column(
         children: [

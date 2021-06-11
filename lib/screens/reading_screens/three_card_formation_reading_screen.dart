@@ -1,4 +1,3 @@
-import 'dart:math';
 import 'package:circle_list/circle_list.dart';
 import 'package:flip_card/flip_card.dart';
 import 'package:flutter/cupertino.dart';
@@ -12,13 +11,12 @@ import 'package:tarot_app/global/widgets/reading_screen/pedestals.dart';
 import 'package:tarot_app/global/widgets/reading_screen/table_top.dart';
 import 'package:tarot_app/global/widgets/reading_screen/text_title.dart';
 import 'package:tarot_app/global/widgets/top_bar.dart';
-import 'package:tarot_app/screens/card_reveal.dart';
-import 'package:tarot_app/screens/reading_screens/single_card_formation_reading_screen.dart';
-import 'package:tarot_app/screens/reading_screens/three_card_formation_reading_screen_2.dart';
 import 'package:tarot_app/services/size_config.dart';
 
 class ThreeCardFormationScreen extends StatefulWidget {
-  const ThreeCardFormationScreen({Key key}) : super(key: key);
+  const ThreeCardFormationScreen({Key key, @required this.message})
+      : super(key: key);
+  final String message;
 
   static final String id = '/three_card_formation_screen';
 
@@ -39,25 +37,21 @@ class _ThreeCardFormationScreenState extends State<ThreeCardFormationScreen> {
   bool zoomTableTop = false;
   bool isCardSelected = false;
 
+  bool cardOneSelected = false;
+  bool cardTwoSelected = false;
+  bool cardThreeSelected = false;
+
   GlobalKey<FlipCardState> cardKey1 = GlobalKey<FlipCardState>();
   GlobalKey<FlipCardState> cardKey2 = GlobalKey<FlipCardState>();
   GlobalKey<FlipCardState> cardKey3 = GlobalKey<FlipCardState>();
 
-  void debug() async {
-    if (!zoomTableTop) {
-      setState(() {
-        zoomTableTop = true;
-      });
-      await Future.delayed(const Duration(milliseconds: 105), () {
-        _scaleController.play();
-        _translateController.play();
-      }).then((value) {
-        Future.delayed(const Duration(seconds: 1), () {
-          _scaleController.play(motion: Motion.pause);
-          _translateController.play(motion: Motion.pause);
-        });
-      });
-    }
+  List<String> words = [];
+  int wordIndex = 0;
+
+  @override
+  void initState() {
+    getMessage();
+    super.initState();
   }
 
   @override
@@ -104,7 +98,7 @@ class _ThreeCardFormationScreenState extends State<ThreeCardFormationScreen> {
                         ),
                       ),
                       TitleText(
-                        message: 'TODO',
+                        message: words[wordIndex],
                       ),
                     ],
                   ),
@@ -128,7 +122,7 @@ class _ThreeCardFormationScreenState extends State<ThreeCardFormationScreen> {
                             springController: _translateController,
                             child: Spring.scale(
                               start: 1,
-                              end: 1.2,
+                              end: 1.1,
                               springController: _scaleController,
                               child: Pedestals(),
                             ),
@@ -161,6 +155,33 @@ class _ThreeCardFormationScreenState extends State<ThreeCardFormationScreen> {
                 ],
               ),
               isCardSelected ? BackgroundBlur() : Container(),
+              // !isCardSelected
+              //     ? cardOne()
+              //     : cardOneSelected && !cardTwoSelected && !cardThreeSelected
+              //         ? cardOne()
+              //         : Container(
+              //             color: Colors.pink,
+              //             height: 50,
+              //             width: 50,
+              //           ),
+              // !isCardSelected
+              //     ? cardTwo()
+              //     : !cardOneSelected && cardTwoSelected && !cardThreeSelected
+              //         ? cardTwo()
+              //         : Container(
+              //             color: Colors.red,
+              //             height: 50,
+              //             width: 50,
+              //           ),
+              // !isCardSelected
+              //     ? cardThree()
+              //     : !cardOneSelected && !cardTwoSelected && cardThreeSelected
+              //         ? cardThree()
+              //         : Container(
+              //             color: Colors.green,
+              //             height: 50,
+              //             width: 50,
+              //           ),
               AnimatedBackground(
                 alignmentX: 0,
                 alignmentY: !zoomTableTop ? 0.23 : -0.1,
@@ -168,13 +189,9 @@ class _ThreeCardFormationScreenState extends State<ThreeCardFormationScreen> {
                 cardSize: !zoomTableTop ? 15 : 20,
                 cardDescription: "desc desc desc desc",
                 characterImagePath: CharacterCardPath.adrasteia,
-                title: 'TODO',
-                onAnimateCallback: (bool value) {
-                  print('card tapped');
-                  setState(() {
-                    isCardSelected = value;
-                  });
-                },
+                title: cardOneSelected ? words[0] : '',
+                onAnimateCallback: (bool value) => onCardOneTapped(value),
+                showCard: cardTwoSelected || cardThreeSelected ? false : true,
               ),
               AnimatedBackground(
                 alignmentX: !zoomTableTop ? -0.8 : -0.8,
@@ -183,13 +200,9 @@ class _ThreeCardFormationScreenState extends State<ThreeCardFormationScreen> {
                 cardSize: !zoomTableTop ? 15 : 20,
                 cardDescription: "desc desc desc desc",
                 characterImagePath: CharacterCardPath.earth,
-                title: 'TODO',
-                onAnimateCallback: (bool value) {
-                  print('card tapped');
-                  setState(() {
-                    isCardSelected = value;
-                  });
-                },
+                title: cardTwoSelected ? words[1] : '',
+                onAnimateCallback: (bool value) => onCardTwoTapped(value),
+                showCard: cardOneSelected || cardThreeSelected ? false : true,
               ),
               AnimatedBackground(
                 alignmentX: !zoomTableTop ? 0.8 : 0.8,
@@ -198,18 +211,123 @@ class _ThreeCardFormationScreenState extends State<ThreeCardFormationScreen> {
                 cardSize: !zoomTableTop ? 15 : 20,
                 cardDescription: "desc desc desc desc",
                 characterImagePath: CharacterCardPath.ambael,
-                title: 'TODO',
-                onAnimateCallback: (bool value) {
-                  print('card tapped');
-                  setState(() {
-                    isCardSelected = value;
-                  });
-                },
+                title: cardThreeSelected ? words[2] : '',
+                onAnimateCallback: (bool value) => onCardThreeTapped(value),
+                showCard: cardOneSelected || cardTwoSelected ? false : true,
               ),
             ],
           ),
         ),
       ),
+    );
+  }
+
+  void onCardOneTapped(bool value) {
+    print('card 1 tapped');
+    print('oldValue: $cardOneSelected');
+    setState(() {
+      isCardSelected = value;
+      cardOneSelected = value;
+      cardTwoSelected = false;
+      cardThreeSelected = false;
+    });
+    print('cardOneStatus: $cardOneSelected');
+  }
+
+  void onCardTwoTapped(bool value) {
+    print('card  2 tapped');
+    print('cardOneStatus: $cardTwoSelected');
+    setState(() {
+      isCardSelected = value;
+      cardOneSelected = false;
+      cardTwoSelected = value;
+      cardThreeSelected = false;
+    });
+
+    print('cardOneStatus: $cardTwoSelected');
+  }
+
+  void onCardThreeTapped(bool value) {
+    print('cardOneStatus: $cardThreeSelected');
+
+    print('card 3 tapped');
+    setState(() {
+      isCardSelected = value;
+      cardOneSelected = false;
+      cardTwoSelected = false;
+      cardThreeSelected = value;
+    });
+    print('cardOneStatus: $cardThreeSelected');
+  }
+
+  void getMessage() {
+    String w = widget.message.replaceAll("\n", "-");
+    print(w);
+    List<String> temp = w.split("-");
+
+    for (int i = 0; i <= temp.length - 1; i++) {
+      words.add(temp[i].trim());
+    }
+
+    print(words);
+  }
+
+  void debug() async {
+    if (!zoomTableTop) {
+      setState(() {
+        zoomTableTop = true;
+      });
+      await Future.delayed(const Duration(milliseconds: 105), () {
+        _scaleController.play();
+        _translateController.play();
+      }).then((value) {
+        Future.delayed(const Duration(seconds: 1), () {
+          _scaleController.play(motion: Motion.pause);
+          _translateController.play(motion: Motion.pause);
+        });
+      });
+    }
+  }
+
+  Widget cardOne() {
+    return AnimatedBackground(
+      alignmentX: 0,
+      alignmentY: !zoomTableTop ? 0.23 : -0.1,
+      cardKey: cardKey1,
+      cardSize: !zoomTableTop ? 15 : 20,
+      cardDescription: "desc desc desc desc",
+      characterImagePath: CharacterCardPath.adrasteia,
+      title: cardOneSelected ? words[0] : '',
+      onAnimateCallback: (bool value) => onCardOneTapped(value),
+      showCard: true,
+    );
+  }
+
+  Widget cardTwo() {
+    return AnimatedBackground(
+      alignmentX: !zoomTableTop ? -0.8 : -0.8,
+      alignmentY: !zoomTableTop ? 0.56 : 0.2,
+      cardKey: cardKey2,
+      cardSize: !zoomTableTop ? 15 : 20,
+      cardDescription: "desc desc desc desc",
+      characterImagePath: CharacterCardPath.earth,
+      title: cardTwoSelected ? words[1] : '',
+      onAnimateCallback: (bool value) => onCardTwoTapped(value),
+      showCard: true,
+    );
+  }
+
+  Widget cardThree() {
+    return AnimatedBackground(
+      alignmentX: !zoomTableTop ? 0.8 : 0.8,
+      alignmentY: !zoomTableTop ? 0.56 : 0.2,
+      cardKey: cardKey3,
+      cardSize: !zoomTableTop ? 15 : 20,
+      cardDescription: "desc desc desc desc",
+      characterImagePath: CharacterCardPath.ambael,
+      title: cardThreeSelected ? words[2] : '',
+      onAnimateCallback: (bool value) => onCardThreeTapped(value),
+      showCard: true,
     );
   }
 }

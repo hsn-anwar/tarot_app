@@ -74,6 +74,9 @@ class _SingleCardFormationScreenState extends State<SingleCardFormationScreen>
   SpringController _translateController =
       SpringController(initialAnim: Motion.pause);
 
+  SpringController _translateController2 =
+      SpringController(initialAnim: Motion.pause);
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -94,6 +97,8 @@ class _SingleCardFormationScreenState extends State<SingleCardFormationScreen>
                 _translateController.play(motion: Motion.pause);
               });
             });
+          } else {
+            _translateController2.play(motion: Motion.play);
           }
         },
       ),
@@ -155,6 +160,7 @@ class _SingleCardFormationScreenState extends State<SingleCardFormationScreen>
                           Spring.translate(
                             beginOffset: Offset.zero,
                             endOffset: Offset(0, -50),
+                            animDuration: Duration(milliseconds: 500),
                             springController: _translateController,
                             child: Spring.scale(
                               start: 1,
@@ -163,14 +169,20 @@ class _SingleCardFormationScreenState extends State<SingleCardFormationScreen>
                               child: Pedestals(),
                             ),
                           ),
-                          Spring.scale(
-                              start: 1,
-                              end: 1.5,
-                              springController: _scaleController,
-                              child: TableTop(),
-                              animStatus: (AnimStatus status) {
-                                print('scale: $status');
-                              }),
+                          Spring.translate(
+                            beginOffset: Offset.zero,
+                            endOffset: Offset(0, -100),
+                            springController: _translateController2,
+                            animDuration: Duration(seconds: 1),
+                            child: Spring.scale(
+                                start: 1,
+                                end: 1.5,
+                                springController: _scaleController,
+                                child: TableTop(),
+                                animStatus: (AnimStatus status) {
+                                  print('scale: $status');
+                                }),
+                          ),
                           SingleLight(lightSize: !zoomTableTop ? 15 : 20),
                         ],
                       ),
@@ -188,11 +200,21 @@ class _SingleCardFormationScreenState extends State<SingleCardFormationScreen>
                 characterImagePath: CharacterCardPath.adrasteia,
                 title: widget.message,
                 onAnimateCallback: (bool value) {
+                  if (value) {
+                    Future.delayed(const Duration(milliseconds: 800), () {
+                      setState(() {
+                        _translateController2.play(motion: Motion.play);
+                      });
+                    });
+                  } else {
+                    _translateController2.play(motion: Motion.reverse);
+                  }
                   print('card tapped');
                   setState(() {
                     isCardOneTapped = value;
                   });
                 },
+                showCard: true,
               ),
             ],
           ),
@@ -213,7 +235,7 @@ class SingleLight extends StatelessWidget {
         width: SizeConfig.blockSizeHorizontal * lightSize,
         duration: Duration(seconds: 1),
         child: Image.asset(
-          ImagePath.kCardLightInactive,
+          ImagePath.kCardLightActive,
         ),
       ),
     );

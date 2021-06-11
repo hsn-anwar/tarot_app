@@ -316,14 +316,11 @@ class Menu extends StatelessWidget {
                 child: Container(
                   width: SizeConfig.screenWidth,
                   decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                    begin: Alignment.bottomLeft,
-                    end: Alignment.topRight,
-                    colors: [
-                      Color(0xFFF371D61).withOpacity(0.5),
-                      Color(0xFFF822E81).withOpacity(0.5)
-                    ],
-                  )),
+                    image: DecorationImage(
+                      image: AssetImage(ImagePath.settingsOverlay),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
                   child: Column(
                     children: [
                       SizedBox(

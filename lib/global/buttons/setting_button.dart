@@ -52,7 +52,7 @@ class InfoIcon extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(right: 10.0, top: 8.0),
       child: Container(
-        width: SizeConfig.blockSizeHorizontal * 7,
+        width: SizeConfig.blockSizeHorizontal * 5,
         child: Image.asset(ImagePath.kInfoButton),
       ),
     );

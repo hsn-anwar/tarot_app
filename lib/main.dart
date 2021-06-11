@@ -1,19 +1,10 @@
-import 'package:audioplayers/audioplayers.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:tarot_app/enums/music.dart';
-import 'package:tarot_app/global/widgets/card_formation.dart';
 import 'package:tarot_app/screens/browse_cards_screen.dart';
 import 'package:tarot_app/screens/card_reveal.dart';
 import 'package:tarot_app/screens/formation_screen.dart';
 import 'package:tarot_app/screens/home_screen.dart';
-import 'package:tarot_app/screens/reading_screens/seven_card_formation_reading_screen_2.dart';
 import 'package:tarot_app/screens/reading_screens/single_card_formation_reading_screen.dart';
-import 'package:tarot_app/screens/reading_screens/single_card_formation_reading_screen_2.dart';
-import 'package:tarot_app/screens/reading_screens/three_card_formation_reading_screen_2.dart';
-import 'package:tarot_app/screens/splash_screen.dart';
-import 'package:tarot_app/screens/reading_screens/three_card_formation_reading_screen.dart';
-import 'package:tarot_app/services/music_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -46,7 +37,6 @@ class MyApp extends StatelessWidget {
         // SplashScreen.id: (context) => SplashScreen(),
         CardRevealScreen.id: (context) => CardRevealScreen(),
         SingleCardFormationScreen.id: (context) => SingleCardFormationScreen(),
-        ThreeCardFormationScreen.id: (context) => ThreeCardFormationScreen(),
       },
     );
   }

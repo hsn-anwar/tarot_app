@@ -1,9 +1,17 @@
 import 'dart:math';
 
 import 'package:circle_list/circle_list.dart';
+import 'package:flip_card/flip_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:spring/spring.dart';
 import 'package:tarot_app/global/constants.dart';
+import 'package:tarot_app/global/widgets/background_blur.dart';
+import 'package:tarot_app/global/widgets/reading_screen/animated_background.dart';
+import 'package:tarot_app/global/widgets/reading_screen/deactivated_light.dart';
+import 'package:tarot_app/global/widgets/reading_screen/pedestals.dart';
+import 'package:tarot_app/global/widgets/reading_screen/table_top.dart';
+import 'package:tarot_app/global/widgets/reading_screen/text_title.dart';
 import 'package:tarot_app/global/widgets/top_bar.dart';
 import 'package:tarot_app/screens/card_reveal.dart';
 import 'package:tarot_app/screens/reading_screens/seven_card_formation_reading_screen_2.dart';
@@ -22,95 +30,24 @@ class _SevenFormationReadingScreenState
     extends State<SevenFormationReadingScreen> {
   double lightSize = 15;
   AnimationController animationController;
-
-  void _navigateToCardRevealScreen(
-      String cardPath, String cardIndex, bool cardRevealed) {
-    print(cardRevealed);
-
-    print(cardRevealed);
-
-    Navigator.push(
-      context,
-      PageRouteBuilder(
-        transitionDuration: Duration(seconds: 1),
-        pageBuilder: (_, __, ___) => CardRevealScreen(
-          card: cardPath,
-          cardIndex: cardIndex,
-          isRevealed: cardRevealed,
-        ),
-      ),
-    );
-
-    Future.delayed(const Duration(milliseconds: 500), () {
-      setState(() {
-        if (cardIndex == '1')
-          isOneRevealed = true;
-        else if (cardIndex == '2')
-          isTwoRevealed = true;
-        else if (cardIndex == '3')
-          isThreeRevealed = true;
-        else if (cardIndex == '4')
-          isFourRevealed = true;
-        else if (cardIndex == '5')
-          isFiveRevealed = true;
-        else if (cardIndex == '6')
-          isSixRevealed = true;
-        else if (cardIndex == '7') isSevenRevealed = true;
-      });
-    });
-  }
-
   bool zoomScreen = false;
-
-  void _onCardSelected() {
-    if (formation == 7) {
-      //TODO: Zoom screen
-      setState(() {
-        zoomScreen = true;
-      });
-    } else {
-      formation++;
-    }
-  }
-
   bool animateContainer = false;
+  SpringController _scaleController =
+      SpringController(initialAnim: Motion.pause);
+  SpringController _translateController =
+      SpringController(initialAnim: Motion.pause);
+  bool zoomTableTop = false;
+  bool isCardSelected = false;
 
-  String selectedCard = CharacterCardPath.adrasteia;
+  bool cardOneSelected = false;
+  bool cardTwoSelected = false;
+  bool cardThreeSelected = false;
 
-  bool isOneRevealed = false;
-  bool isTwoRevealed = false;
-
-  bool isThreeRevealed = false;
-  bool isFourRevealed = false;
-  bool isFiveRevealed = false;
-  bool isSixRevealed = false;
-  bool isSevenRevealed = false;
-
-  bool isFormationCompleted = false;
-  int formation = 0;
-
-  String selectedCard1 = CharacterCardPath.adrasteia;
-  String selectedCard2 = CharacterCardPath.earth;
-  String selectedCard3 = CharacterCardPath.diana;
-  String selectedCard4 = CharacterCardPath.ambael;
-  String selectedCard5 = CharacterCardPath.diana;
-  String selectedCard6 = CharacterCardPath.adrasteia;
-  String selectedCard7 = CharacterCardPath.earth;
+  GlobalKey<FlipCardState> cardKey1 = GlobalKey<FlipCardState>();
+  GlobalKey<FlipCardState> cardKey2 = GlobalKey<FlipCardState>();
+  GlobalKey<FlipCardState> cardKey3 = GlobalKey<FlipCardState>();
 
   List<String> words = [];
-
-  void getMessage() {
-    String w = widget.message.replaceAll("\n", "-");
-    print(w);
-    List<String> temp = w.split("-");
-
-    for (int i = 0; i <= temp.length - 1; i++) {
-      words.add(temp[i].trim());
-    }
-
-    print(words);
-  }
-
   int wordIndex = 0;
 
   @override
@@ -124,18 +61,7 @@ class _SevenFormationReadingScreenState
     SizeConfig().init(context);
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // setState(() {
-          //   zoomScreen = !zoomScreen;
-          // });
-          // setState(() {
-          //   print(wordIndex);
-          //   if (wordIndex < 6) {
-          //     wordIndex++;
-          //   }
-          // });
-          // Navigator.pushNamed(context, SevenCardReadingFormation2.id);
-        },
+        onPressed: debug,
       ),
       body: Container(
         width: SizeConfig.screenWidth,
@@ -147,398 +73,219 @@ class _SevenFormationReadingScreenState
           ),
         ),
         child: SafeArea(
-          child: Column(
+          child: Stack(
             children: [
-              TopBar(title: '$isOneRevealed'),
-              // Visibility(
-              //   visible: !zoomScreen,
-              //   child: Container(
-              //     height: SizeConfig.blockSizeVertical * 30,
-              //     child: CircleList(
-              //       origin: Offset(0, 150),
-              //       children: List.generate(
-              //         10,
-              //         (index) {
-              //           return Image.asset(ImagePath.kCardBack);
-              //           // child: Image.asset(ImagePath.kCardBack)
-              //         },
-              //       ),
-              //     ),
-              //   ),
-              // ),
-              Container(
-                padding: EdgeInsets.only(left: 16),
-                width: double.infinity,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        words[wordIndex],
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 24,
-                          fontWeight: FontWeight.w700,
-                          fontFamily: CustomFonts.malgun,
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        'Scroll thorough the cards and pick the \nones that call out to you',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18,
-                          fontFamily: CustomFonts.malgun,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Spacer(),
-              Hero(
-                tag: 'tag',
-                child: Container(
-                  alignment: Alignment.bottomCenter,
-                  height: SizeConfig.blockSizeVertical * 50,
-                  width: double.infinity,
-                  child: Stack(
+              Column(
+                children: [
+                  TopBar(title: ''),
+                  Stack(
                     children: [
-                      Positioned(
+                      Spring.translate(
+                        beginOffset: Offset.zero,
+                        endOffset: Offset(0, -1000),
+                        animDuration: Duration(seconds: 2),
+                        springController: _translateController,
                         child: Container(
-                          child: Row(
-                            children: [
-                              Stack(
-                                children: [
-                                  Container(
-                                    height: SizeConfig.blockSizeVertical * 25,
-                                    margin: EdgeInsets.only(
-                                        top: SizeConfig.blockSizeVertical * 6),
-                                    child: Image.asset(
-                                      ImagePath.kPedestal,
-                                      fit: BoxFit.fill,
-                                    ),
-                                  ),
-                                  Positioned(
-                                    bottom: SizeConfig.blockSizeVertical * 18,
-                                    left: SizeConfig.blockSizeHorizontal * 7,
-                                    child: Container(
-                                      // color: Colors.pink,
-                                      padding: EdgeInsets.all(8),
-                                      width:
-                                          SizeConfig.blockSizeHorizontal * 18,
-                                      child: Image.asset(
-                                        ImagePath.brazier,
-                                        fit: BoxFit.fill,
-                                        // height:
-                                        // SizeConfig.blockSizeHorizontal * 10,
-                                        // width: SizeConfig.blockSizeHorizontal * 25,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Spacer(),
-                              Stack(
-                                children: [
-                                  Container(
-                                    height: SizeConfig.blockSizeVertical * 25,
-                                    margin: EdgeInsets.only(
-                                        top: SizeConfig.blockSizeVertical * 6),
-                                    child: Image.asset(
-                                      ImagePath.kPedestal,
-                                      fit: BoxFit.fill,
-                                    ),
-                                  ),
-                                  Positioned(
-                                    bottom: SizeConfig.blockSizeVertical * 18,
-                                    left: SizeConfig.blockSizeHorizontal * 20,
-                                    child: Container(
-                                      // color: Colors.pink,
-                                      padding: EdgeInsets.all(8),
-                                      width:
-                                          SizeConfig.blockSizeHorizontal * 18,
-                                      child: Transform(
-                                        transform: Matrix4.rotationY(pi),
-                                        child: Image.asset(
-                                          ImagePath.brazier,
-                                          fit: BoxFit.fill,
-                                          // height:
-                                          // SizeConfig.blockSizeHorizontal * 10,
-                                          // width: SizeConfig.blockSizeHorizontal * 25,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
+                          height: SizeConfig.blockSizeVertical * 30,
+                          child: CircleList(
+                            origin: Offset(0, 150),
+                            children: List.generate(
+                              10,
+                              (index) {
+                                return Image.asset(ImagePath.kCardBack);
+                                // child: Image.asset(ImagePath.kCardBack)
+                              },
+                            ),
                           ),
                         ),
                       ),
-
-                      AnimatedCrossFade(
-                        firstChild: Container(
-                          // height: 200,
-                          padding: EdgeInsets.only(
-                              top: SizeConfig.blockSizeVertical * 15),
-                          alignment: Alignment.bottomCenter,
-                          child: Image.asset(
-                            ImagePath.kTable,
-                            width: SizeConfig.screenWidth,
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                        secondChild: Container(
-                          padding: EdgeInsets.only(
-                              top: SizeConfig.blockSizeVertical * 15),
-                          alignment: Alignment.bottomCenter,
-                          // child: Image.asset(
-                          //   ImagePath.kTableZoomed,
-                          //   width: SizeConfig.screenWidth,
-                          //   fit: BoxFit.fill,
-                          // ),
-                        ),
-                        duration: Duration(seconds: 1),
-                        crossFadeState: !zoomScreen
-                            ? CrossFadeState.showFirst
-                            : CrossFadeState.showSecond,
+                      TitleText(
+                        message: words[wordIndex],
                       ),
-                      // Container(
-                      //   alignment: Alignment.topCenter,
-                      //   height: SizeConfig.blockSizeVertical * 45,
-                      // ),
-                      Container(
-                        child: Positioned(
-                          bottom: SizeConfig.blockSizeVertical * 8,
-                          left: SizeConfig.blockSizeHorizontal * 16,
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            // mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              SizedBox(
-                                height: SizeConfig.blockSizeVertical * 10,
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 10.0),
-                                    child: Image.asset(
-                                      !isOneRevealed
-                                          ? ImagePath.kCardLightInactive
-                                          : ImagePath.kCardLightActive,
-                                      width: SizeConfig.blockSizeHorizontal *
-                                          lightSize,
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 10.0),
-                                    child: Image.asset(
-                                      !isTwoRevealed
-                                          ? ImagePath.kCardLightInactive
-                                          : ImagePath.kCardLightActive,
-                                      width: SizeConfig.blockSizeHorizontal *
-                                          lightSize,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 16.0),
-                                    child: Image.asset(
-                                      !isThreeRevealed
-                                          ? ImagePath.kCardLightInactive
-                                          : ImagePath.kCardLightActive,
-                                      width: SizeConfig.blockSizeHorizontal *
-                                          lightSize,
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 16.0),
-                                    child: Image.asset(
-                                      !isFourRevealed
-                                          ? ImagePath.kCardLightInactive
-                                          : ImagePath.kCardLightActive,
-                                      width: SizeConfig.blockSizeHorizontal *
-                                          lightSize,
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 16.0),
-                                    child: Image.asset(
-                                      !isFiveRevealed
-                                          ? ImagePath.kCardLightInactive
-                                          : ImagePath.kCardLightActive,
-                                      width: SizeConfig.blockSizeHorizontal *
-                                          lightSize,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 16.0),
-                                    child: Image.asset(
-                                      !isSixRevealed
-                                          ? ImagePath.kCardLightInactive
-                                          : ImagePath.kCardLightActive,
-                                      width: SizeConfig.blockSizeHorizontal *
-                                          lightSize,
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 16.0),
-                                    child: Image.asset(
-                                      !isSevenRevealed
-                                          ? ImagePath.kCardLightInactive
-                                          : ImagePath.kCardLightActive,
-                                      width: SizeConfig.blockSizeHorizontal *
-                                          lightSize,
-                                    ),
-                                  ),
-                                ],
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                      Container(
-                        child: Positioned(
-                          bottom: SizeConfig.blockSizeVertical * 8,
-                          left: SizeConfig.blockSizeHorizontal * 16,
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            // mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              SizedBox(
-                                height: SizeConfig.blockSizeVertical * 10,
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 10.0),
-                                    child: Image.asset(
-                                      !isOneRevealed
-                                          ? ImagePath.kCardBack
-                                          : selectedCard1,
-                                      width: SizeConfig.blockSizeHorizontal *
-                                          lightSize,
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 10.0),
-                                    child: Image.asset(
-                                      !isTwoRevealed
-                                          ? ImagePath.kCardBack
-                                          : selectedCard2,
-                                      width: SizeConfig.blockSizeHorizontal *
-                                          lightSize,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 16.0),
-                                    child: Image.asset(
-                                      !isThreeRevealed
-                                          ? ImagePath.kCardBack
-                                          : selectedCard3,
-                                      width: SizeConfig.blockSizeHorizontal *
-                                          lightSize,
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 16.0),
-                                    child: Image.asset(
-                                      !isFourRevealed
-                                          ? ImagePath.kCardBack
-                                          : selectedCard4,
-                                      width: SizeConfig.blockSizeHorizontal *
-                                          lightSize,
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 16.0),
-                                    child: Image.asset(
-                                      !isFiveRevealed
-                                          ? ImagePath.kCardBack
-                                          : selectedCard5,
-                                      width: SizeConfig.blockSizeHorizontal *
-                                          lightSize,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 16.0),
-                                    child: Image.asset(
-                                      !isSixRevealed
-                                          ? ImagePath.kCardBack
-                                          : selectedCard6,
-                                      width: SizeConfig.blockSizeHorizontal *
-                                          lightSize,
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 16.0),
-                                    child: Image.asset(
-                                      !isSevenRevealed
-                                          ? ImagePath.kCardBack
-                                          : selectedCard7,
-                                      width: SizeConfig.blockSizeHorizontal *
-                                          lightSize,
-                                    ),
-                                  ),
-                                ],
-                              )
-                            ],
-                          ),
-                        ),
-                      )
                     ],
                   ),
-                ),
-              )
+                  Spacer(),
+                  Spring.translate(
+                    beginOffset: Offset.zero,
+                    endOffset: Offset(0, -110),
+                    springController: _translateController,
+                    animStatus: (AnimStatus status) {
+                      print('translate: $status');
+                    },
+                    child: Container(
+                      alignment: Alignment.bottomCenter,
+                      height: SizeConfig.blockSizeVertical * 50,
+                      width: double.infinity,
+                      child: Stack(
+                        children: [
+                          Spring.translate(
+                            beginOffset: Offset.zero,
+                            endOffset: Offset(0, -50),
+                            springController: _translateController,
+                            child: Spring.scale(
+                              start: 1,
+                              end: 1.2,
+                              springController: _scaleController,
+                              child: Pedestals(),
+                            ),
+                          ),
+                          Spring.scale(
+                              start: 1,
+                              end: 1.5,
+                              springController: _scaleController,
+                              child: TableTop(),
+                              animStatus: (AnimStatus status) {
+                                print('scale: $status');
+                              }),
+                          // SingleLight(lightSize: !zoomTableTop ? 15 : 20),
+                          // First Row
+                          // Left --> Right
+                          DeactivatedLight(
+                            alignment: !zoomTableTop
+                                ? Alignment(-0.4, -0.3)
+                                : Alignment(-0.5, -0.5),
+                            zoom: zoomTableTop,
+                          ),
+                          DeactivatedLight(
+                            alignment: !zoomTableTop
+                                ? Alignment(0.4, -0.3)
+                                : Alignment(0.5, -0.5),
+                            zoom: zoomTableTop,
+                          ),
+                          // Second Row
+                          // Right --> Left
+                          DeactivatedLight(
+                            alignment: !zoomTableTop
+                                ? Alignment(0.7, 0.15)
+                                : Alignment(1, 0.2),
+                            zoom: zoomTableTop,
+                          ),
+                          DeactivatedLight(
+                            alignment: !zoomTableTop
+                                ? Alignment(0.0, 0.15)
+                                : Alignment(0.0, 0.2),
+                            zoom: zoomTableTop,
+                          ),
+                          DeactivatedLight(
+                            alignment: !zoomTableTop
+                                ? Alignment(-0.7, 0.15)
+                                : Alignment(-1, 0.2),
+                            zoom: zoomTableTop,
+                          ),
+                          // Third Row
+                          // Left --> Right
+                          DeactivatedLight(
+                            alignment: !zoomTableTop
+                                ? Alignment(-0.4, 0.56)
+                                : Alignment(-0.5, 0.9),
+                            zoom: zoomTableTop,
+                          ),
+                          DeactivatedLight(
+                            alignment: !zoomTableTop
+                                ? Alignment(0.4, 0.56)
+                                : Alignment(0.5, 0.9),
+                            zoom: zoomTableTop,
+                          ),
+                        ],
+                      ),
+                    ),
+                  )
+                ],
+              ),
+              isCardSelected ? BackgroundBlur() : Container(),
+              AnimatedBackground(
+                alignmentX: !zoomTableTop ? -0.39 : -0.5,
+                alignmentY: !zoomTableTop ? 0.27 : -0.19,
+                cardKey: cardKey1,
+                cardSize: !zoomTableTop ? 11 : 15,
+                cardDescription: "desc desc desc desc",
+                characterImagePath: CharacterCardPath.adrasteia,
+                title: cardOneSelected ? words[0] : '',
+                onAnimateCallback: (bool value) => onCardOneTapped(value),
+              ),
+              AnimatedBackground(
+                alignmentX: !zoomTableTop ? 0.39 : 0.5,
+                alignmentY: !zoomTableTop ? 0.27 : -0.19,
+                cardKey: cardKey2,
+                cardSize: !zoomTableTop ? 11 : 15,
+                cardDescription: "desc desc desc desc",
+                characterImagePath: CharacterCardPath.earth,
+                title: cardTwoSelected ? words[1] : '',
+                onAnimateCallback: (bool value) => onCardTwoTapped(value),
+              ),
+              // AnimatedBackground(
+              //   alignmentX: !zoomTableTop ? 0.8 : 0.8,
+              //   alignmentY: !zoomTableTop ? 0.56 : 0.2,
+              //   cardKey: cardKey3,
+              //   cardSize: !zoomTableTop ? 15 : 20,
+              //   cardDescription: "desc desc desc desc",
+              //   characterImagePath: CharacterCardPath.ambael,
+              //   title: cardThreeSelected ? words[2] : '',
+              //   onAnimateCallback: (bool value) => onCardThreeTapped(value),
+              // ),
             ],
           ),
         ),
       ),
     );
+  }
+
+  void onCardOneTapped(bool value) {
+    print('card 1 tapped');
+    setState(() {
+      isCardSelected = value;
+      cardOneSelected = value;
+      cardTwoSelected = false;
+      cardThreeSelected = false;
+    });
+  }
+
+  void onCardTwoTapped(bool value) {
+    print('card  2 tapped');
+    setState(() {
+      isCardSelected = value;
+      cardOneSelected = false;
+      cardTwoSelected = value;
+      cardThreeSelected = false;
+    });
+  }
+
+  void onCardThreeTapped(bool value) {
+    print('card 3 tapped');
+    setState(() {
+      isCardSelected = value;
+      cardOneSelected = false;
+      cardTwoSelected = false;
+      cardThreeSelected = value;
+    });
+  }
+
+  void getMessage() {
+    String w = widget.message.replaceAll("\n", "-");
+    print(w);
+    List<String> temp = w.split("-");
+
+    for (int i = 0; i <= temp.length - 1; i++) {
+      words.add(temp[i].trim());
+    }
+
+    print(words);
+  }
+
+  void debug() async {
+    if (!zoomTableTop) {
+      setState(() {
+        zoomTableTop = true;
+      });
+      await Future.delayed(const Duration(milliseconds: 105), () {
+        _scaleController.play();
+        _translateController.play();
+      }).then((value) {
+        Future.delayed(const Duration(seconds: 1), () {
+          _scaleController.play(motion: Motion.pause);
+          _translateController.play(motion: Motion.pause);
+        });
+      });
+    }
   }
 }

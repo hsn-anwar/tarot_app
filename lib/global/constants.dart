@@ -27,7 +27,8 @@ class ImagePath {
   static const String kSettingsButton = kImagePath + 'Settings Button.png';
   static const String kTable = kImagePath + 'Table.png';
   static const String intentionsBackButton = kImagePath + 'Back Button.png';
-  static const String brazier = kImagePath + 'Brazier.tif';
+  static const String brazier = kImagePath + 'Brazier.png';
+  static const String settingsOverlay = kImagePath + 'Settings Overlay.png';
 }
 
 class CharacterCardPath {

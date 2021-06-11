@@ -155,7 +155,8 @@ class _CardFormationState extends State<CardFormation> {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20.0),
         ),
-        color: Color(0xFFF371D61).withOpacity(0.7),
+        // color: Color(0xFFF371D61).withOpacity(0.7),
+        color: Color.fromARGB(255, 74, 19, 94).withOpacity(0.8),
         child: Container(
           child: Column(
             children: [
