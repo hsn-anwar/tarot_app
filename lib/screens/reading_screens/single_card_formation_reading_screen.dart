@@ -164,7 +164,7 @@ class _SingleCardFormationScreenState extends State<SingleCardFormationScreen>
                             springController: _translateController,
                             child: Spring.scale(
                               start: 1,
-                              end: 1.2,
+                              end: 1.1,
                               springController: _scaleController,
                               child: Pedestals(
                                 zoom: zoomTableTop,

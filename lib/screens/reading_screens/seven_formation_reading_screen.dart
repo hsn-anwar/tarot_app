@@ -42,10 +42,21 @@ class _SevenFormationReadingScreenState
   bool cardOneSelected = false;
   bool cardTwoSelected = false;
   bool cardThreeSelected = false;
+  bool cardFourSelected = false;
+  bool cardFiveSelected = false;
+  bool cardSixSelected = false;
+  bool cardSevenSelected = false;
 
   GlobalKey<FlipCardState> cardKey1 = GlobalKey<FlipCardState>();
   GlobalKey<FlipCardState> cardKey2 = GlobalKey<FlipCardState>();
   GlobalKey<FlipCardState> cardKey3 = GlobalKey<FlipCardState>();
+  GlobalKey<FlipCardState> cardKey4 = GlobalKey<FlipCardState>();
+  GlobalKey<FlipCardState> cardKey5 = GlobalKey<FlipCardState>();
+  GlobalKey<FlipCardState> cardKey6 = GlobalKey<FlipCardState>();
+  GlobalKey<FlipCardState> cardKey7 = GlobalKey<FlipCardState>();
+
+  SpringController _translateController2 =
+      SpringController(initialAnim: Motion.pause);
 
   List<String> words = [];
   int wordIndex = 0;
@@ -124,21 +135,37 @@ class _SevenFormationReadingScreenState
                             springController: _translateController,
                             child: Spring.scale(
                               start: 1,
-                              end: 1.2,
+                              end: 1.1,
                               springController: _scaleController,
                               child: Pedestals(
                                 zoom: zoomTableTop,
                               ),
                             ),
                           ),
-                          Spring.scale(
-                              start: 1,
-                              end: 1.5,
-                              springController: _scaleController,
-                              child: TableTop(),
-                              animStatus: (AnimStatus status) {
-                                print('scale: $status');
-                              }),
+                          Spring.translate(
+                            beginOffset: Offset.zero,
+                            endOffset: Offset(0, -100),
+                            springController: _translateController2,
+                            animDuration: Duration(seconds: 1),
+                            animStatus: (AnimStatus status) {
+                              if (status == AnimStatus.completed) {
+                                _translateController2.play(
+                                    motion: Motion.pause);
+                              }
+                              if (status == AnimStatus.dismissed) {
+                                _translateController2.play(
+                                    motion: Motion.pause);
+                              }
+                            },
+                            child: Spring.scale(
+                                start: 1,
+                                end: 1.5,
+                                springController: _scaleController,
+                                child: TableTop(),
+                                animStatus: (AnimStatus status) {
+                                  print('scale: $status');
+                                }),
+                          ),
                           // SingleLight(lightSize: !zoomTableTop ? 15 : 20),
                           // First Row
                           // Left --> Right
@@ -195,71 +222,94 @@ class _SevenFormationReadingScreenState
                 ],
               ),
               isCardSelected ? BackgroundBlur() : Container(),
-              // AnimatedBackground(
-              //   alignmentX: !zoomTableTop ? -0.39 : -0.5,
-              //   alignmentY: !zoomTableTop ? 0.27 : -0.19,
-              //   cardKey: cardKey1,
-              //   cardSize: !zoomTableTop ? 11 : 15,
-              //   cardDescription: "desc desc desc desc",
-              //   characterImagePath: CharacterCardPath.adrasteia,
-              //   title: cardOneSelected ? words[0] : '',
-              //   onAnimateCallback: (bool value) => onCardOneTapped(value),
-              // ),
-              // AnimatedBackground(
-              //   alignmentX: !zoomTableTop ? 0.39 : 0.5,
-              //   alignmentY: !zoomTableTop ? 0.27 : -0.19,
-              //   cardKey: cardKey2,
-              //   cardSize: !zoomTableTop ? 11 : 15,
-              //   cardDescription: "desc desc desc desc",
-              //   characterImagePath: CharacterCardPath.earth,
-              //   title: cardTwoSelected ? words[1] : '',
-              //   onAnimateCallback: (bool value) => onCardTwoTapped(value),
-              // ),
-              // AnimatedBackground(
-              //   alignmentX: !zoomTableTop ? 0.8 : 0.8,
-              //   alignmentY: !zoomTableTop ? 0.56 : 0.2,
-              //   cardKey: cardKey3,
-              //   cardSize: !zoomTableTop ? 15 : 20,
-              //   cardDescription: "desc desc desc desc",
-              //   characterImagePath: CharacterCardPath.ambael,
-              //   title: cardThreeSelected ? words[2] : '',
-              //   onAnimateCallback: (bool value) => onCardThreeTapped(value),
-              // ),
+              // First Row
+              // Left --> Right
+              AnimatedBackground(
+                alignmentX: !zoomTableTop ? -0.37 : -0.45,
+                alignmentY: !zoomTableTop ? 0.27 : -0.19,
+                cardKey: cardKey1,
+                cardSize: !zoomTableTop ? 11 : 15,
+                cardDescription: "desc desc desc desc",
+                characterImagePath: CharacterCardPath.adrasteia,
+                title: cardOneSelected ? words[0] : '',
+                onAnimateCallback: (bool value) => onCardOneTapped(value),
+                showCard: showCardOne(),
+              ),
+              AnimatedBackground(
+                alignmentX: !zoomTableTop ? 0.39 : 0.47,
+                alignmentY: !zoomTableTop ? 0.27 : -0.19,
+                cardKey: cardKey2,
+                cardSize: !zoomTableTop ? 11 : 15,
+                cardDescription: "desc desc desc desc",
+                characterImagePath: CharacterCardPath.earth,
+                title: cardTwoSelected ? words[1] : '',
+                onAnimateCallback: (bool value) => onCardTwoTapped(value),
+                showCard: showCardTwo(),
+              ),
+              // Second Row
+              // Left --> Right
+              AnimatedBackground(
+                alignmentX: !zoomTableTop ? -0.65 : -0.95,
+                alignmentY: !zoomTableTop ? 0.46 : 0.15,
+                cardKey: cardKey3,
+                cardSize: !zoomTableTop ? 11 : 15,
+                cardDescription: "desc desc desc desc",
+                characterImagePath: CharacterCardPath.ambael,
+                title: cardThreeSelected ? words[2] : '',
+                onAnimateCallback: (bool value) => onCardThreeTapped(value),
+                showCard: showCardThree(),
+              ),
+              AnimatedBackground(
+                alignmentX: !zoomTableTop ? 0 : 0,
+                alignmentY: !zoomTableTop ? 0.46 : 0.15,
+                cardKey: cardKey4,
+                cardSize: !zoomTableTop ? 11 : 15,
+                cardDescription: "desc desc desc desc",
+                characterImagePath: CharacterCardPath.ambael,
+                title: cardThreeSelected ? words[3] : '',
+                onAnimateCallback: (bool value) => onCardFourTapped(value),
+                showCard: showCardFour(),
+              ),
+              AnimatedBackground(
+                alignmentX: !zoomTableTop ? 0.66 : 0.95,
+                alignmentY: !zoomTableTop ? 0.46 : 0.15,
+                cardKey: cardKey5,
+                cardSize: !zoomTableTop ? 11 : 15,
+                cardDescription: "desc desc desc desc",
+                characterImagePath: CharacterCardPath.ambael,
+                title: cardThreeSelected ? words[4] : '',
+                onAnimateCallback: (bool value) => onCardFiveTapped(value),
+                showCard: showCardFive(),
+              ),
+              // Third row
+              // Left --> Right
+              AnimatedBackground(
+                alignmentX: !zoomTableTop ? -0.37 : -0.45,
+                alignmentY: !zoomTableTop ? 0.65 : 0.45,
+                cardKey: cardKey6,
+                cardSize: !zoomTableTop ? 11 : 15,
+                cardDescription: "desc desc desc desc",
+                characterImagePath: CharacterCardPath.adrasteia,
+                title: cardOneSelected ? words[5] : '',
+                onAnimateCallback: (bool value) => onCardSixTapped(value),
+                showCard: showCardSix(),
+              ),
+              AnimatedBackground(
+                alignmentX: !zoomTableTop ? 0.39 : 0.47,
+                alignmentY: !zoomTableTop ? 0.65 : 0.45,
+                cardKey: cardKey7,
+                cardSize: !zoomTableTop ? 11 : 15,
+                cardDescription: "desc desc desc desc",
+                characterImagePath: CharacterCardPath.earth,
+                title: cardTwoSelected ? words[6] : '',
+                onAnimateCallback: (bool value) => onCardSevenTapped(value),
+                showCard: showCardSeven(),
+              ),
             ],
           ),
         ),
       ),
     );
-  }
-
-  void onCardOneTapped(bool value) {
-    print('card 1 tapped');
-    setState(() {
-      isCardSelected = value;
-      cardOneSelected = value;
-      cardTwoSelected = false;
-      cardThreeSelected = false;
-    });
-  }
-
-  void onCardTwoTapped(bool value) {
-    print('card  2 tapped');
-    setState(() {
-      isCardSelected = value;
-      cardOneSelected = false;
-      cardTwoSelected = value;
-      cardThreeSelected = false;
-    });
-  }
-
-  void onCardThreeTapped(bool value) {
-    print('card 3 tapped');
-    setState(() {
-      isCardSelected = value;
-      cardOneSelected = false;
-      cardTwoSelected = false;
-      cardThreeSelected = value;
-    });
   }
 
   void getMessage() {
@@ -288,6 +338,234 @@ class _SevenFormationReadingScreenState
           _translateController.play(motion: Motion.pause);
         });
       });
+    }
+  }
+
+  void animateTableUp(bool value) {
+    if (value) {
+      Future.delayed(const Duration(milliseconds: 800), () {
+        setState(() {
+          _translateController2.play(motion: Motion.play);
+        });
+      });
+    } else {
+      _translateController2.play(motion: Motion.reverse);
+    }
+  }
+
+  void onCardOneTapped(bool value) {
+    animateTableUp(value);
+    print('card 1 tapped');
+    print('oldValue: $cardOneSelected');
+    setState(() {
+      isCardSelected = value;
+      cardOneSelected = value;
+      cardTwoSelected = false;
+      cardThreeSelected = false;
+      cardFourSelected = false;
+      cardFiveSelected = false;
+      cardSixSelected = false;
+      cardSevenSelected = false;
+    });
+    print('cardOneStatus: $cardOneSelected');
+  }
+
+  void onCardTwoTapped(bool value) {
+    animateTableUp(value);
+
+    print('card 1 tapped');
+    print('oldValue: $cardOneSelected');
+    setState(() {
+      isCardSelected = value;
+      cardTwoSelected = value;
+      cardOneSelected = false;
+      cardThreeSelected = false;
+      cardFourSelected = false;
+      cardFiveSelected = false;
+      cardSixSelected = false;
+      cardSevenSelected = false;
+    });
+    print('cardOneStatus: $cardOneSelected');
+  }
+
+  void onCardThreeTapped(bool value) {
+    animateTableUp(value);
+
+    print('card 1 tapped');
+    print('oldValue: $cardOneSelected');
+    setState(() {
+      isCardSelected = value;
+      cardThreeSelected = value;
+      cardOneSelected = false;
+      cardTwoSelected = false;
+      cardFourSelected = false;
+      cardFiveSelected = false;
+      cardSixSelected = false;
+      cardSevenSelected = false;
+    });
+    print('cardOneStatus: $cardOneSelected');
+  }
+
+  void onCardFourTapped(bool value) {
+    animateTableUp(value);
+
+    print('card 1 tapped');
+    print('oldValue: $cardOneSelected');
+    setState(() {
+      isCardSelected = value;
+      cardFourSelected = value;
+      cardOneSelected = false;
+      cardTwoSelected = false;
+      cardThreeSelected = false;
+      cardFiveSelected = false;
+      cardSixSelected = false;
+      cardSevenSelected = false;
+    });
+    print('cardOneStatus: $cardOneSelected');
+  }
+
+  void onCardFiveTapped(bool value) {
+    animateTableUp(value);
+
+    print('card 1 tapped');
+    print('oldValue: $cardOneSelected');
+    setState(() {
+      isCardSelected = value;
+      cardFiveSelected = value;
+      cardOneSelected = false;
+      cardTwoSelected = false;
+      cardThreeSelected = false;
+      cardFourSelected = false;
+      cardSixSelected = false;
+      cardSevenSelected = false;
+    });
+    print('cardOneStatus: $cardOneSelected');
+  }
+
+  void onCardSixTapped(bool value) {
+    animateTableUp(value);
+
+    print('card 1 tapped');
+    print('oldValue: $cardOneSelected');
+    setState(() {
+      isCardSelected = value;
+      cardSixSelected = value;
+      cardOneSelected = false;
+      cardTwoSelected = false;
+      cardThreeSelected = false;
+      cardFourSelected = false;
+      cardFiveSelected = false;
+      cardSevenSelected = false;
+    });
+    print('cardOneStatus: $cardOneSelected');
+  }
+
+  void onCardSevenTapped(bool value) {
+    animateTableUp(value);
+
+    print('card 1 tapped');
+    print('oldValue: $cardOneSelected');
+    setState(() {
+      isCardSelected = value;
+      cardSevenSelected = value;
+      cardOneSelected = false;
+      cardTwoSelected = false;
+      cardThreeSelected = false;
+      cardFourSelected = false;
+      cardFiveSelected = false;
+      cardSixSelected = false;
+    });
+    print('cardOneStatus: $cardOneSelected');
+  }
+
+  bool showCardOne() {
+    if (cardTwoSelected ||
+        cardThreeSelected ||
+        cardFourSelected ||
+        cardFiveSelected ||
+        cardSixSelected ||
+        cardSevenSelected) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  bool showCardTwo() {
+    if (cardOneSelected ||
+        cardThreeSelected ||
+        cardFourSelected ||
+        cardFiveSelected ||
+        cardSixSelected ||
+        cardSevenSelected) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  bool showCardThree() {
+    if (cardOneSelected ||
+        cardTwoSelected ||
+        cardFourSelected ||
+        cardFiveSelected ||
+        cardSixSelected ||
+        cardSevenSelected) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  bool showCardFour() {
+    if (cardOneSelected ||
+        cardTwoSelected ||
+        cardThreeSelected ||
+        cardFiveSelected ||
+        cardSixSelected ||
+        cardSevenSelected) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  bool showCardFive() {
+    if (cardOneSelected ||
+        cardTwoSelected ||
+        cardThreeSelected ||
+        cardFourSelected ||
+        cardSixSelected ||
+        cardSevenSelected) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  bool showCardSix() {
+    if (cardOneSelected ||
+        cardTwoSelected ||
+        cardThreeSelected ||
+        cardFourSelected ||
+        cardFiveSelected ||
+        cardSevenSelected) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  bool showCardSeven() {
+    if (cardOneSelected ||
+        cardTwoSelected ||
+        cardThreeSelected ||
+        cardFourSelected ||
+        cardFiveSelected ||
+        cardSixSelected) {
+      return false;
+    } else {
+      return true;
     }
   }
 }

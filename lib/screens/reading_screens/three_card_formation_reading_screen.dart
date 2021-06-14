@@ -123,7 +123,7 @@ class _ThreeCardFormationScreenState extends State<ThreeCardFormationScreen> {
                             endOffset: Offset(0, -50),
                             springController: _translateController,
                             child: Spring.scale(
-                              start: 1,
+                              start: 0.9,
                               end: 1.1,
                               springController: _scaleController,
                               child: Pedestals(
@@ -204,7 +204,7 @@ class _ThreeCardFormationScreenState extends State<ThreeCardFormationScreen> {
               //           ),
               AnimatedBackground(
                 alignmentX: 0,
-                alignmentY: !zoomTableTop ? 0.23 : -0.1,
+                alignmentY: !zoomTableTop ? 0.3 : -0.1,
                 cardKey: cardKey1,
                 cardSize: !zoomTableTop ? 15 : 20,
                 cardDescription: "desc desc desc desc",
@@ -214,7 +214,7 @@ class _ThreeCardFormationScreenState extends State<ThreeCardFormationScreen> {
                 showCard: cardTwoSelected || cardThreeSelected ? false : true,
               ),
               AnimatedBackground(
-                alignmentX: !zoomTableTop ? -0.8 : -0.8,
+                alignmentX: !zoomTableTop ? -0.5 : -0.8,
                 alignmentY: !zoomTableTop ? 0.56 : 0.2,
                 cardKey: cardKey2,
                 cardSize: !zoomTableTop ? 15 : 20,
@@ -225,7 +225,7 @@ class _ThreeCardFormationScreenState extends State<ThreeCardFormationScreen> {
                 showCard: cardOneSelected || cardThreeSelected ? false : true,
               ),
               AnimatedBackground(
-                alignmentX: !zoomTableTop ? 0.8 : 0.8,
+                alignmentX: !zoomTableTop ? 0.5 : 0.8,
                 alignmentY: !zoomTableTop ? 0.56 : 0.2,
                 cardKey: cardKey3,
                 cardSize: !zoomTableTop ? 15 : 20,

@@ -318,7 +318,7 @@ class Menu extends StatelessWidget {
                   decoration: BoxDecoration(
                     image: DecorationImage(
                       image: AssetImage(ImagePath.settingsOverlay),
-                      fit: BoxFit.cover,
+                      fit: BoxFit.fill,
                     ),
                   ),
                   child: Column(
