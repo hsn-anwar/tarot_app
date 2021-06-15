@@ -156,15 +156,15 @@ class _ThreeCardFormationScreenState extends State<ThreeCardFormationScreen> {
                                 }),
                           ),
                           // SingleLight(lightSize: !zoomTableTop ? 15 : 20),
-                          Light(
+                          DeactivatedLight(
                             alignment: Alignment(0, -0.35),
                             zoom: zoomTableTop,
                           ),
-                          Light(
+                          DeactivatedLight(
                             alignment: Alignment(0.8, 0.35),
                             zoom: zoomTableTop,
                           ),
-                          Light(
+                          DeactivatedLight(
                             alignment: Alignment(-0.8, 0.35),
                             zoom: zoomTableTop,
                           )

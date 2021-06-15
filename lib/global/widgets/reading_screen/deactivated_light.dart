@@ -3,8 +3,9 @@ import 'package:tarot_app/services/size_config.dart';
 
 import '../../constants.dart';
 
-class Light extends StatelessWidget {
-  const Light({Key key, @required this.alignment, @required this.zoom})
+class DeactivatedLight extends StatelessWidget {
+  const DeactivatedLight(
+      {Key key, @required this.alignment, @required this.zoom})
       : super(key: key);
   final Alignment alignment;
   final bool zoom;

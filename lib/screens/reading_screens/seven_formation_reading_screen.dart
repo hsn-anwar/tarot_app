@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:circle_list/circle_list.dart';
 import 'package:flip_card/flip_card.dart';
 import 'package:flutter/cupertino.dart';
@@ -13,8 +11,6 @@ import 'package:tarot_app/global/widgets/reading_screen/pedestals.dart';
 import 'package:tarot_app/global/widgets/reading_screen/table_top.dart';
 import 'package:tarot_app/global/widgets/reading_screen/text_title.dart';
 import 'package:tarot_app/global/widgets/top_bar.dart';
-import 'package:tarot_app/screens/card_reveal.dart';
-import 'package:tarot_app/screens/reading_screens/seven_card_formation_reading_screen_2.dart';
 import 'package:tarot_app/services/size_config.dart';
 
 class SevenFormationReadingScreen extends StatefulWidget {
@@ -61,7 +57,28 @@ class _SevenFormationReadingScreenState
   List<String> words = [];
   int wordIndex = 0;
 
-  SpringController _fadeController =
+  SpringController _lightFadeController =
+      SpringController(initialAnim: Motion.pause);
+
+  SpringController _cardFadeController1 =
+      SpringController(initialAnim: Motion.pause);
+
+  SpringController _cardFadeController2 =
+      SpringController(initialAnim: Motion.pause);
+
+  SpringController _cardFadeController3 =
+      SpringController(initialAnim: Motion.pause);
+
+  SpringController _cardFadeController4 =
+      SpringController(initialAnim: Motion.pause);
+
+  SpringController _cardFadeController5 =
+      SpringController(initialAnim: Motion.pause);
+
+  SpringController _cardFadeController6 =
+      SpringController(initialAnim: Motion.pause);
+
+  SpringController _cardFadeController7 =
       SpringController(initialAnim: Motion.pause);
 
   @override
@@ -170,55 +187,6 @@ class _SevenFormationReadingScreenState
                                   print('scale: $status');
                                 }),
                           ),
-                          // // SingleLight(lightSize: !zoomTableTop ? 15 : 20),
-                          // // First Row
-                          // // Left --> Right
-                          // DeactivatedLight(
-                          //   alignment: !zoomTableTop
-                          //       ? Alignment(-0.4, -0.3)
-                          //       : Alignment(-0.5, -0.5),
-                          //   zoom: zoomTableTop,
-                          // ),
-                          // DeactivatedLight(
-                          //   alignment: !zoomTableTop
-                          //       ? Alignment(0.4, -0.3)
-                          //       : Alignment(0.5, -0.5),
-                          //   zoom: zoomTableTop,
-                          // ),
-                          // // Second Row
-                          // // Right --> Left
-                          // DeactivatedLight(
-                          //   alignment: !zoomTableTop
-                          //       ? Alignment(0.7, 0.15)
-                          //       : Alignment(1, 0.2),
-                          //   zoom: zoomTableTop,
-                          // ),
-                          // DeactivatedLight(
-                          //   alignment: !zoomTableTop
-                          //       ? Alignment(0.0, 0.15)
-                          //       : Alignment(0.0, 0.2),
-                          //   zoom: zoomTableTop,
-                          // ),
-                          // DeactivatedLight(
-                          //   alignment: !zoomTableTop
-                          //       ? Alignment(-0.7, 0.15)
-                          //       : Alignment(-1, 0.2),
-                          //   zoom: zoomTableTop,
-                          // ),
-                          // // Third Row
-                          // // Left --> Right
-                          // DeactivatedLight(
-                          //   alignment: !zoomTableTop
-                          //       ? Alignment(-0.4, 0.56)
-                          //       : Alignment(-0.5, 0.9),
-                          //   zoom: zoomTableTop,
-                          // ),
-                          // DeactivatedLight(
-                          //   alignment: !zoomTableTop
-                          //       ? Alignment(0.4, 0.56)
-                          //       : Alignment(0.5, 0.9),
-                          //   zoom: zoomTableTop,
-                          // ),
                         ],
                       ),
                     ),
@@ -238,6 +206,8 @@ class _SevenFormationReadingScreenState
                 title: cardOneSelected ? words[0] : '',
                 onAnimateCallback: (bool value) => onCardOneTapped(value),
                 showCard: showCardOne(),
+                springController: _cardFadeController1,
+                isCardFocused: showCardOne,
               ),
               AnimatedBackground(
                 alignmentX: !zoomTableTop ? 0.325 : 0.49,
@@ -249,6 +219,8 @@ class _SevenFormationReadingScreenState
                 title: cardTwoSelected ? words[1] : '',
                 onAnimateCallback: (bool value) => onCardTwoTapped(value),
                 showCard: showCardTwo(),
+                springController: _cardFadeController2,
+                isCardFocused: showCardTwo,
               ),
               // Second Row
               // Left --> Right
@@ -262,6 +234,8 @@ class _SevenFormationReadingScreenState
                 title: cardThreeSelected ? words[2] : '',
                 onAnimateCallback: (bool value) => onCardThreeTapped(value),
                 showCard: showCardThree(),
+                springController: _cardFadeController3,
+                isCardFocused: showCardThree,
               ),
               AnimatedBackground(
                 alignmentX: !zoomTableTop ? 0 : 0,
@@ -273,6 +247,8 @@ class _SevenFormationReadingScreenState
                 title: cardThreeSelected ? words[3] : '',
                 onAnimateCallback: (bool value) => onCardFourTapped(value),
                 showCard: showCardFour(),
+                springController: _cardFadeController4,
+                isCardFocused: showCardFour,
               ),
               AnimatedBackground(
                 alignmentX: !zoomTableTop ? 0.65 : 0.95,
@@ -284,6 +260,8 @@ class _SevenFormationReadingScreenState
                 title: cardThreeSelected ? words[4] : '',
                 onAnimateCallback: (bool value) => onCardFiveTapped(value),
                 showCard: showCardFive(),
+                springController: _cardFadeController5,
+                isCardFocused: showCardFive,
               ),
               // Third row
               // Left --> Right
@@ -297,6 +275,8 @@ class _SevenFormationReadingScreenState
                 title: cardOneSelected ? words[5] : '',
                 onAnimateCallback: (bool value) => onCardSixTapped(value),
                 showCard: showCardSix(),
+                springController: _cardFadeController6,
+                isCardFocused: showCardSix,
               ),
               AnimatedBackground(
                 alignmentX: !zoomTableTop ? 0.33 : 0.49,
@@ -308,12 +288,14 @@ class _SevenFormationReadingScreenState
                 title: cardTwoSelected ? words[6] : '',
                 onAnimateCallback: (bool value) => onCardSevenTapped(value),
                 showCard: showCardSeven(),
+                springController: _cardFadeController7,
+                isCardFocused: showCardSeven,
               ),
               Spring.blink(
-                springController: _fadeController,
+                springController: _lightFadeController,
                 startOpacity: 1,
                 endOpacity: 0,
-                animDuration: Duration(milliseconds: isCardSelected ? 1000 : 0),
+                animDuration: Duration(milliseconds: isCardSelected ? 700 : 0),
                 child: SevenFormationLight(
                   alignment: !zoomTableTop
                       ? Alignment(-0.35, 0.38)
@@ -323,10 +305,10 @@ class _SevenFormationReadingScreenState
               ),
 
               Spring.blink(
-                springController: _fadeController,
+                springController: _lightFadeController,
                 startOpacity: 1,
                 endOpacity: 0,
-                animDuration: Duration(milliseconds: isCardSelected ? 1000 : 0),
+                animDuration: Duration(milliseconds: isCardSelected ? 700 : 0),
                 child: SevenFormationLight(
                   alignment: !zoomTableTop
                       ? Alignment(0.35, 0.38)
@@ -335,10 +317,10 @@ class _SevenFormationReadingScreenState
                 ),
               ),
               Spring.blink(
-                springController: _fadeController,
+                springController: _lightFadeController,
                 startOpacity: 1,
                 endOpacity: 0,
-                animDuration: Duration(milliseconds: isCardSelected ? 1000 : 0),
+                animDuration: Duration(milliseconds: isCardSelected ? 700 : 0),
                 child: SevenFormationLight(
                   alignment: !zoomTableTop
                       ? Alignment(-0.7, 0.58)
@@ -347,10 +329,10 @@ class _SevenFormationReadingScreenState
                 ),
               ),
               Spring.blink(
-                springController: _fadeController,
+                springController: _lightFadeController,
                 startOpacity: 1,
                 endOpacity: 0,
-                animDuration: Duration(milliseconds: isCardSelected ? 1000 : 0),
+                animDuration: Duration(milliseconds: isCardSelected ? 700 : 0),
                 child: SevenFormationLight(
                   alignment: !zoomTableTop
                       ? Alignment(-0.01, 0.58)
@@ -359,10 +341,10 @@ class _SevenFormationReadingScreenState
                 ),
               ),
               Spring.blink(
-                springController: _fadeController,
+                springController: _lightFadeController,
                 startOpacity: 1,
                 endOpacity: 0,
-                animDuration: Duration(milliseconds: isCardSelected ? 1000 : 0),
+                animDuration: Duration(milliseconds: isCardSelected ? 700 : 0),
                 child: SevenFormationLight(
                   alignment: !zoomTableTop
                       ? Alignment(0.7, 0.58)
@@ -371,10 +353,10 @@ class _SevenFormationReadingScreenState
                 ),
               ),
               Spring.blink(
-                springController: _fadeController,
+                springController: _lightFadeController,
                 startOpacity: 1,
                 endOpacity: 0,
-                animDuration: Duration(milliseconds: isCardSelected ? 1000 : 0),
+                animDuration: Duration(milliseconds: isCardSelected ? 700 : 0),
                 child: SevenFormationLight(
                   alignment: !zoomTableTop
                       ? Alignment(-0.35, 0.8)
@@ -383,15 +365,30 @@ class _SevenFormationReadingScreenState
                 ),
               ),
               Spring.blink(
-                springController: _fadeController,
+                springController: _lightFadeController,
                 startOpacity: 1,
                 endOpacity: 0,
-                animDuration: Duration(milliseconds: isCardSelected ? 1000 : 0),
+                animDuration: Duration(milliseconds: isCardSelected ? 700 : 0),
                 child: SevenFormationLight(
                   alignment: !zoomTableTop
                       ? Alignment(0.35, 0.8)
                       : Alignment(0.535, 0.65),
                   zoom: zoomTableTop,
+                ),
+              ),
+              Center(
+                child: Card(
+                  color: Color.fromARGB(255, 54, 27, 68).withOpacity(0.7),
+                  shape: RoundedRectangleBorder(
+                      side: new BorderSide(color: Colors.purple, width: 2.0),
+                      borderRadius: BorderRadius.circular(8.0)),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      'Obstacle',
+                      style: TextStyle(color: Colors.white, fontSize: 12),
+                    ),
+                  ),
                 ),
               ),
             ],
@@ -432,7 +429,7 @@ class _SevenFormationReadingScreenState
 
   void animateTableUp(bool value) {
     if (value) {
-      _fadeController.play(motion: Motion.play);
+      _lightFadeController.play(motion: Motion.play);
 
       Future.delayed(const Duration(milliseconds: 800), () {
         setState(() {
@@ -440,7 +437,7 @@ class _SevenFormationReadingScreenState
         });
       });
     } else {
-      _fadeController.play(motion: Motion.reverse);
+      _lightFadeController.play(motion: Motion.reverse);
 
       _translateController2.play(motion: Motion.reverse);
     }
@@ -450,6 +447,25 @@ class _SevenFormationReadingScreenState
     animateTableUp(value);
     print('card 1 tapped');
     print('oldValue: $cardOneSelected');
+
+    if (value) {
+      // _cardFadeController1.play(motion: Motion.play);
+      _cardFadeController2.play(motion: Motion.play);
+      _cardFadeController3.play(motion: Motion.play);
+      _cardFadeController4.play(motion: Motion.play);
+      _cardFadeController5.play(motion: Motion.play);
+      _cardFadeController6.play(motion: Motion.play);
+      _cardFadeController7.play(motion: Motion.play);
+    } else {
+      // _cardFadeController1.play(motion: Motion.reverse);
+      _cardFadeController2.play(motion: Motion.reverse);
+      _cardFadeController3.play(motion: Motion.reverse);
+      _cardFadeController4.play(motion: Motion.reverse);
+      _cardFadeController5.play(motion: Motion.reverse);
+      _cardFadeController6.play(motion: Motion.reverse);
+      _cardFadeController7.play(motion: Motion.reverse);
+    }
+
     setState(() {
       isCardSelected = value;
       cardOneSelected = value;
@@ -468,6 +484,26 @@ class _SevenFormationReadingScreenState
 
     print('card 1 tapped');
     print('oldValue: $cardOneSelected');
+
+    print(value);
+
+    if (value) {
+      _cardFadeController1.play(motion: Motion.play);
+      // _cardFadeController2.play(motion: Motion.play);
+      _cardFadeController3.play(motion: Motion.play);
+      _cardFadeController4.play(motion: Motion.play);
+      _cardFadeController5.play(motion: Motion.play);
+      _cardFadeController6.play(motion: Motion.play);
+      _cardFadeController7.play(motion: Motion.play);
+    } else {
+      _cardFadeController1.play(motion: Motion.reverse);
+      // _cardFadeController2.play(motion: Motion.reverse);
+      _cardFadeController3.play(motion: Motion.reverse);
+      _cardFadeController4.play(motion: Motion.reverse);
+      _cardFadeController5.play(motion: Motion.reverse);
+      _cardFadeController6.play(motion: Motion.reverse);
+      _cardFadeController7.play(motion: Motion.reverse);
+    }
     setState(() {
       isCardSelected = value;
       cardTwoSelected = value;
@@ -486,6 +522,24 @@ class _SevenFormationReadingScreenState
 
     print('card 1 tapped');
     print('oldValue: $cardOneSelected');
+    if (value) {
+      _cardFadeController1.play(motion: Motion.play);
+      _cardFadeController2.play(motion: Motion.play);
+      // _cardFadeController3.play(motion: Motion.play);
+      _cardFadeController4.play(motion: Motion.play);
+      _cardFadeController5.play(motion: Motion.play);
+      _cardFadeController6.play(motion: Motion.play);
+      _cardFadeController7.play(motion: Motion.play);
+    } else {
+      _cardFadeController1.play(motion: Motion.reverse);
+      _cardFadeController2.play(motion: Motion.reverse);
+      // _cardFadeController3.play(motion: Motion.reverse);
+      _cardFadeController4.play(motion: Motion.reverse);
+      _cardFadeController5.play(motion: Motion.reverse);
+      _cardFadeController6.play(motion: Motion.reverse);
+      _cardFadeController7.play(motion: Motion.reverse);
+    }
+
     setState(() {
       isCardSelected = value;
       cardThreeSelected = value;
@@ -504,6 +558,25 @@ class _SevenFormationReadingScreenState
 
     print('card 1 tapped');
     print('oldValue: $cardOneSelected');
+
+    if (value) {
+      _cardFadeController1.play(motion: Motion.play);
+      _cardFadeController2.play(motion: Motion.play);
+      _cardFadeController3.play(motion: Motion.play);
+      // _cardFadeController4.play(motion: Motion.play);
+      _cardFadeController5.play(motion: Motion.play);
+      _cardFadeController6.play(motion: Motion.play);
+      _cardFadeController7.play(motion: Motion.play);
+    } else {
+      _cardFadeController1.play(motion: Motion.reverse);
+      _cardFadeController2.play(motion: Motion.reverse);
+      _cardFadeController3.play(motion: Motion.reverse);
+      // _cardFadeController4.play(motion: Motion.reverse);
+      _cardFadeController5.play(motion: Motion.reverse);
+      _cardFadeController6.play(motion: Motion.reverse);
+      _cardFadeController7.play(motion: Motion.reverse);
+    }
+
     setState(() {
       isCardSelected = value;
       cardFourSelected = value;
@@ -522,6 +595,25 @@ class _SevenFormationReadingScreenState
 
     print('card 1 tapped');
     print('oldValue: $cardOneSelected');
+
+    if (value) {
+      _cardFadeController1.play(motion: Motion.play);
+      _cardFadeController2.play(motion: Motion.play);
+      _cardFadeController3.play(motion: Motion.play);
+      _cardFadeController4.play(motion: Motion.play);
+      // _cardFadeController5.play(motion: Motion.play);
+      _cardFadeController6.play(motion: Motion.play);
+      _cardFadeController7.play(motion: Motion.play);
+    } else {
+      _cardFadeController1.play(motion: Motion.reverse);
+      _cardFadeController2.play(motion: Motion.reverse);
+      _cardFadeController3.play(motion: Motion.reverse);
+      _cardFadeController4.play(motion: Motion.reverse);
+      // _cardFadeController5.play(motion: Motion.reverse);
+      _cardFadeController6.play(motion: Motion.reverse);
+      _cardFadeController7.play(motion: Motion.reverse);
+    }
+
     setState(() {
       isCardSelected = value;
       cardFiveSelected = value;
@@ -540,6 +632,25 @@ class _SevenFormationReadingScreenState
 
     print('card 1 tapped');
     print('oldValue: $cardOneSelected');
+
+    if (value) {
+      _cardFadeController1.play(motion: Motion.play);
+      _cardFadeController2.play(motion: Motion.play);
+      _cardFadeController3.play(motion: Motion.play);
+      _cardFadeController4.play(motion: Motion.play);
+      _cardFadeController5.play(motion: Motion.play);
+      // _cardFadeController6.play(motion: Motion.play);
+      _cardFadeController7.play(motion: Motion.play);
+    } else {
+      _cardFadeController1.play(motion: Motion.reverse);
+      _cardFadeController2.play(motion: Motion.reverse);
+      _cardFadeController3.play(motion: Motion.reverse);
+      _cardFadeController4.play(motion: Motion.reverse);
+      _cardFadeController5.play(motion: Motion.reverse);
+      // _cardFadeController6.play(motion: Motion.reverse);
+      _cardFadeController7.play(motion: Motion.reverse);
+    }
+
     setState(() {
       isCardSelected = value;
       cardSixSelected = value;
@@ -558,6 +669,25 @@ class _SevenFormationReadingScreenState
 
     print('card 1 tapped');
     print('oldValue: $cardOneSelected');
+
+    if (value) {
+      _cardFadeController1.play(motion: Motion.play);
+      _cardFadeController2.play(motion: Motion.play);
+      _cardFadeController3.play(motion: Motion.play);
+      _cardFadeController4.play(motion: Motion.play);
+      _cardFadeController5.play(motion: Motion.play);
+      _cardFadeController6.play(motion: Motion.play);
+      // _cardFadeController7.play(motion: Motion.play);
+    } else {
+      _cardFadeController1.play(motion: Motion.reverse);
+      _cardFadeController2.play(motion: Motion.reverse);
+      _cardFadeController3.play(motion: Motion.reverse);
+      _cardFadeController4.play(motion: Motion.reverse);
+      _cardFadeController5.play(motion: Motion.reverse);
+      _cardFadeController6.play(motion: Motion.reverse);
+      // _cardFadeController7.play(motion: Motion.reverse);
+    }
+
     setState(() {
       isCardSelected = value;
       cardSevenSelected = value;
