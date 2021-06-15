@@ -61,11 +61,11 @@ class _AnimatedCardState extends State<AnimatedCard> {
                     width: SizeConfig.screenWidth,
                   )
                 : Image.asset(
-                    CharacterCardPath.diana,
+                    EnglishCharacterCardPath.diana,
                     width: SizeConfig.screenWidth,
                   ),
             back: Image.asset(
-              CharacterCardPath.diana,
+              EnglishCharacterCardPath.diana,
               width: SizeConfig.screenWidth,
             ),
           ),

@@ -61,6 +61,9 @@ class _SevenFormationReadingScreenState
   List<String> words = [];
   int wordIndex = 0;
 
+  SpringController _fadeController =
+      SpringController(initialAnim: Motion.pause);
+
   @override
   void initState() {
     getMessage();
@@ -160,61 +163,62 @@ class _SevenFormationReadingScreenState
                             child: Spring.scale(
                                 start: 1,
                                 end: 1.5,
+                                animDuration: Duration(milliseconds: 800),
                                 springController: _scaleController,
                                 child: TableTop(),
                                 animStatus: (AnimStatus status) {
                                   print('scale: $status');
                                 }),
                           ),
-                          // SingleLight(lightSize: !zoomTableTop ? 15 : 20),
-                          // First Row
-                          // Left --> Right
-                          DeactivatedLight(
-                            alignment: !zoomTableTop
-                                ? Alignment(-0.4, -0.3)
-                                : Alignment(-0.5, -0.5),
-                            zoom: zoomTableTop,
-                          ),
-                          DeactivatedLight(
-                            alignment: !zoomTableTop
-                                ? Alignment(0.4, -0.3)
-                                : Alignment(0.5, -0.5),
-                            zoom: zoomTableTop,
-                          ),
-                          // Second Row
-                          // Right --> Left
-                          DeactivatedLight(
-                            alignment: !zoomTableTop
-                                ? Alignment(0.7, 0.15)
-                                : Alignment(1, 0.2),
-                            zoom: zoomTableTop,
-                          ),
-                          DeactivatedLight(
-                            alignment: !zoomTableTop
-                                ? Alignment(0.0, 0.15)
-                                : Alignment(0.0, 0.2),
-                            zoom: zoomTableTop,
-                          ),
-                          DeactivatedLight(
-                            alignment: !zoomTableTop
-                                ? Alignment(-0.7, 0.15)
-                                : Alignment(-1, 0.2),
-                            zoom: zoomTableTop,
-                          ),
-                          // Third Row
-                          // Left --> Right
-                          DeactivatedLight(
-                            alignment: !zoomTableTop
-                                ? Alignment(-0.4, 0.56)
-                                : Alignment(-0.5, 0.9),
-                            zoom: zoomTableTop,
-                          ),
-                          DeactivatedLight(
-                            alignment: !zoomTableTop
-                                ? Alignment(0.4, 0.56)
-                                : Alignment(0.5, 0.9),
-                            zoom: zoomTableTop,
-                          ),
+                          // // SingleLight(lightSize: !zoomTableTop ? 15 : 20),
+                          // // First Row
+                          // // Left --> Right
+                          // DeactivatedLight(
+                          //   alignment: !zoomTableTop
+                          //       ? Alignment(-0.4, -0.3)
+                          //       : Alignment(-0.5, -0.5),
+                          //   zoom: zoomTableTop,
+                          // ),
+                          // DeactivatedLight(
+                          //   alignment: !zoomTableTop
+                          //       ? Alignment(0.4, -0.3)
+                          //       : Alignment(0.5, -0.5),
+                          //   zoom: zoomTableTop,
+                          // ),
+                          // // Second Row
+                          // // Right --> Left
+                          // DeactivatedLight(
+                          //   alignment: !zoomTableTop
+                          //       ? Alignment(0.7, 0.15)
+                          //       : Alignment(1, 0.2),
+                          //   zoom: zoomTableTop,
+                          // ),
+                          // DeactivatedLight(
+                          //   alignment: !zoomTableTop
+                          //       ? Alignment(0.0, 0.15)
+                          //       : Alignment(0.0, 0.2),
+                          //   zoom: zoomTableTop,
+                          // ),
+                          // DeactivatedLight(
+                          //   alignment: !zoomTableTop
+                          //       ? Alignment(-0.7, 0.15)
+                          //       : Alignment(-1, 0.2),
+                          //   zoom: zoomTableTop,
+                          // ),
+                          // // Third Row
+                          // // Left --> Right
+                          // DeactivatedLight(
+                          //   alignment: !zoomTableTop
+                          //       ? Alignment(-0.4, 0.56)
+                          //       : Alignment(-0.5, 0.9),
+                          //   zoom: zoomTableTop,
+                          // ),
+                          // DeactivatedLight(
+                          //   alignment: !zoomTableTop
+                          //       ? Alignment(0.4, 0.56)
+                          //       : Alignment(0.5, 0.9),
+                          //   zoom: zoomTableTop,
+                          // ),
                         ],
                       ),
                     ),
@@ -225,23 +229,23 @@ class _SevenFormationReadingScreenState
               // First Row
               // Left --> Right
               AnimatedBackground(
-                alignmentX: !zoomTableTop ? -0.37 : -0.45,
-                alignmentY: !zoomTableTop ? 0.27 : -0.19,
+                alignmentX: !zoomTableTop ? -0.32 : -0.47,
+                alignmentY: !zoomTableTop ? 0.3 : -0.12,
                 cardKey: cardKey1,
                 cardSize: !zoomTableTop ? 11 : 15,
                 cardDescription: "desc desc desc desc",
-                characterImagePath: CharacterCardPath.adrasteia,
+                characterImagePath: EnglishCharacterCardPath.adrasteia,
                 title: cardOneSelected ? words[0] : '',
                 onAnimateCallback: (bool value) => onCardOneTapped(value),
                 showCard: showCardOne(),
               ),
               AnimatedBackground(
-                alignmentX: !zoomTableTop ? 0.39 : 0.47,
-                alignmentY: !zoomTableTop ? 0.27 : -0.19,
+                alignmentX: !zoomTableTop ? 0.325 : 0.49,
+                alignmentY: !zoomTableTop ? 0.3 : -0.12,
                 cardKey: cardKey2,
                 cardSize: !zoomTableTop ? 11 : 15,
                 cardDescription: "desc desc desc desc",
-                characterImagePath: CharacterCardPath.earth,
+                characterImagePath: EnglishCharacterCardPath.earth,
                 title: cardTwoSelected ? words[1] : '',
                 onAnimateCallback: (bool value) => onCardTwoTapped(value),
                 showCard: showCardTwo(),
@@ -249,34 +253,34 @@ class _SevenFormationReadingScreenState
               // Second Row
               // Left --> Right
               AnimatedBackground(
-                alignmentX: !zoomTableTop ? -0.65 : -0.95,
-                alignmentY: !zoomTableTop ? 0.46 : 0.15,
+                alignmentX: !zoomTableTop ? -0.64 : -0.95,
+                alignmentY: !zoomTableTop ? 0.49 : 0.2,
                 cardKey: cardKey3,
                 cardSize: !zoomTableTop ? 11 : 15,
                 cardDescription: "desc desc desc desc",
-                characterImagePath: CharacterCardPath.ambael,
+                characterImagePath: EnglishCharacterCardPath.ambael,
                 title: cardThreeSelected ? words[2] : '',
                 onAnimateCallback: (bool value) => onCardThreeTapped(value),
                 showCard: showCardThree(),
               ),
               AnimatedBackground(
                 alignmentX: !zoomTableTop ? 0 : 0,
-                alignmentY: !zoomTableTop ? 0.46 : 0.15,
+                alignmentY: !zoomTableTop ? 0.49 : 0.2,
                 cardKey: cardKey4,
                 cardSize: !zoomTableTop ? 11 : 15,
                 cardDescription: "desc desc desc desc",
-                characterImagePath: CharacterCardPath.ambael,
+                characterImagePath: EnglishCharacterCardPath.ambael,
                 title: cardThreeSelected ? words[3] : '',
                 onAnimateCallback: (bool value) => onCardFourTapped(value),
                 showCard: showCardFour(),
               ),
               AnimatedBackground(
-                alignmentX: !zoomTableTop ? 0.66 : 0.95,
-                alignmentY: !zoomTableTop ? 0.46 : 0.15,
+                alignmentX: !zoomTableTop ? 0.65 : 0.95,
+                alignmentY: !zoomTableTop ? 0.49 : 0.2,
                 cardKey: cardKey5,
                 cardSize: !zoomTableTop ? 11 : 15,
                 cardDescription: "desc desc desc desc",
-                characterImagePath: CharacterCardPath.ambael,
+                characterImagePath: EnglishCharacterCardPath.ambael,
                 title: cardThreeSelected ? words[4] : '',
                 onAnimateCallback: (bool value) => onCardFiveTapped(value),
                 showCard: showCardFive(),
@@ -284,26 +288,111 @@ class _SevenFormationReadingScreenState
               // Third row
               // Left --> Right
               AnimatedBackground(
-                alignmentX: !zoomTableTop ? -0.37 : -0.45,
-                alignmentY: !zoomTableTop ? 0.65 : 0.45,
+                alignmentX: !zoomTableTop ? -0.32 : -0.47,
+                alignmentY: !zoomTableTop ? 0.7 : 0.5,
                 cardKey: cardKey6,
                 cardSize: !zoomTableTop ? 11 : 15,
                 cardDescription: "desc desc desc desc",
-                characterImagePath: CharacterCardPath.adrasteia,
+                characterImagePath: EnglishCharacterCardPath.adrasteia,
                 title: cardOneSelected ? words[5] : '',
                 onAnimateCallback: (bool value) => onCardSixTapped(value),
                 showCard: showCardSix(),
               ),
               AnimatedBackground(
-                alignmentX: !zoomTableTop ? 0.39 : 0.47,
-                alignmentY: !zoomTableTop ? 0.65 : 0.45,
+                alignmentX: !zoomTableTop ? 0.33 : 0.49,
+                alignmentY: !zoomTableTop ? 0.7 : 0.5,
                 cardKey: cardKey7,
                 cardSize: !zoomTableTop ? 11 : 15,
                 cardDescription: "desc desc desc desc",
-                characterImagePath: CharacterCardPath.earth,
+                characterImagePath: EnglishCharacterCardPath.earth,
                 title: cardTwoSelected ? words[6] : '',
                 onAnimateCallback: (bool value) => onCardSevenTapped(value),
                 showCard: showCardSeven(),
+              ),
+              Spring.blink(
+                springController: _fadeController,
+                startOpacity: 1,
+                endOpacity: 0,
+                animDuration: Duration(milliseconds: isCardSelected ? 1000 : 0),
+                child: SevenFormationLight(
+                  alignment: !zoomTableTop
+                      ? Alignment(-0.35, 0.38)
+                      : Alignment(-0.535, -0.02),
+                  zoom: zoomTableTop,
+                ),
+              ),
+
+              Spring.blink(
+                springController: _fadeController,
+                startOpacity: 1,
+                endOpacity: 0,
+                animDuration: Duration(milliseconds: isCardSelected ? 1000 : 0),
+                child: SevenFormationLight(
+                  alignment: !zoomTableTop
+                      ? Alignment(0.35, 0.38)
+                      : Alignment(0.535, -0.02),
+                  zoom: zoomTableTop,
+                ),
+              ),
+              Spring.blink(
+                springController: _fadeController,
+                startOpacity: 1,
+                endOpacity: 0,
+                animDuration: Duration(milliseconds: isCardSelected ? 1000 : 0),
+                child: SevenFormationLight(
+                  alignment: !zoomTableTop
+                      ? Alignment(-0.7, 0.58)
+                      : Alignment(-1.07, 0.32),
+                  zoom: zoomTableTop,
+                ),
+              ),
+              Spring.blink(
+                springController: _fadeController,
+                startOpacity: 1,
+                endOpacity: 0,
+                animDuration: Duration(milliseconds: isCardSelected ? 1000 : 0),
+                child: SevenFormationLight(
+                  alignment: !zoomTableTop
+                      ? Alignment(-0.01, 0.58)
+                      : Alignment(-0.01, 0.32),
+                  zoom: zoomTableTop,
+                ),
+              ),
+              Spring.blink(
+                springController: _fadeController,
+                startOpacity: 1,
+                endOpacity: 0,
+                animDuration: Duration(milliseconds: isCardSelected ? 1000 : 0),
+                child: SevenFormationLight(
+                  alignment: !zoomTableTop
+                      ? Alignment(0.7, 0.58)
+                      : Alignment(1.05, 0.32),
+                  zoom: zoomTableTop,
+                ),
+              ),
+              Spring.blink(
+                springController: _fadeController,
+                startOpacity: 1,
+                endOpacity: 0,
+                animDuration: Duration(milliseconds: isCardSelected ? 1000 : 0),
+                child: SevenFormationLight(
+                  alignment: !zoomTableTop
+                      ? Alignment(-0.35, 0.8)
+                      : Alignment(-0.535, 0.65),
+                  zoom: zoomTableTop,
+                ),
+              ),
+              Spring.blink(
+                springController: _fadeController,
+                startOpacity: 1,
+                endOpacity: 0,
+                animDuration: Duration(milliseconds: isCardSelected ? 1000 : 0),
+                child: SevenFormationLight(
+                  alignment: !zoomTableTop
+                      ? Alignment(0.35, 0.8)
+                      : Alignment(0.535, 0.65),
+                  zoom: zoomTableTop,
+                ),
               ),
             ],
           ),
@@ -343,12 +432,16 @@ class _SevenFormationReadingScreenState
 
   void animateTableUp(bool value) {
     if (value) {
+      _fadeController.play(motion: Motion.play);
+
       Future.delayed(const Duration(milliseconds: 800), () {
         setState(() {
           _translateController2.play(motion: Motion.play);
         });
       });
     } else {
+      _fadeController.play(motion: Motion.reverse);
+
       _translateController2.play(motion: Motion.reverse);
     }
   }

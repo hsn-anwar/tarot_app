@@ -23,217 +23,434 @@ class BrowseCardsScreen extends StatefulWidget {
 class _BrowseCardsScreenState extends State<BrowseCardsScreen> {
   List<CharacterCard> characterCardsList1 = [
     CharacterCard(
-        path: CharacterCardPath.ambael,
+        path: EnglishCharacterCardPath.ambael,
         description: "ambael_desc".tr(),
         name: 'ambael'),
     CharacterCard(
-        path: CharacterCardPath.adrasteia,
+        path: EnglishCharacterCardPath.adrasteia,
         description: 'adrasteia_desc'.tr(),
         name: 'adrasteia'),
     CharacterCard(
-        path: CharacterCardPath.diana,
+        path: EnglishCharacterCardPath.diana,
         description: 'diana_desc'.tr(),
         name: 'diana'),
     CharacterCard(
-        path: CharacterCardPath.earth,
+        path: EnglishCharacterCardPath.earth,
         description: 'earth_desc'.tr(),
         name: 'earth'),
   ];
   List<CharacterCard> characterCardsList2 = [
     CharacterCard(
-        path: CharacterCardPath.ambael,
+        path: EnglishCharacterCardPath.ambael,
         description: "ambael_desc".tr(),
         name: 'ambael1'),
     CharacterCard(
-        path: CharacterCardPath.adrasteia,
+        path: EnglishCharacterCardPath.adrasteia,
         description: 'adrasteia_desc'.tr(),
         name: 'adrasteia1'),
     CharacterCard(
-        path: CharacterCardPath.diana,
+        path: EnglishCharacterCardPath.diana,
         description: 'diana_desc'.tr(),
         name: 'diana1'),
     CharacterCard(
-        path: CharacterCardPath.earth,
+        path: EnglishCharacterCardPath.earth,
         description: 'earth_desc'.tr(),
         name: 'earth1'),
   ];
   List<CharacterCard> characterCardsList3 = [
     CharacterCard(
-        path: CharacterCardPath.ambael,
+        path: EnglishCharacterCardPath.ambael,
         description: "ambael_desc".tr(),
         name: 'ambael2'),
     CharacterCard(
-        path: CharacterCardPath.adrasteia,
+        path: EnglishCharacterCardPath.adrasteia,
         description: 'adrasteia_desc'.tr(),
         name: 'adrasteia2'),
     CharacterCard(
-        path: CharacterCardPath.diana,
+        path: EnglishCharacterCardPath.diana,
         description: 'diana_desc'.tr(),
         name: 'diana2'),
     CharacterCard(
-        path: CharacterCardPath.earth,
+        path: EnglishCharacterCardPath.earth,
         description: 'earth_desc'.tr(),
         name: 'earth2'),
   ];
   List<CharacterCard> characterCardsList4 = [
     CharacterCard(
-        path: CharacterCardPath.ambael,
+        path: EnglishCharacterCardPath.ambael,
         description: "ambael_desc".tr(),
         name: 'ambael3'),
     CharacterCard(
-        path: CharacterCardPath.adrasteia,
+        path: EnglishCharacterCardPath.adrasteia,
         description: 'adrasteia_desc'.tr(),
         name: 'adrasteia3'),
     CharacterCard(
-        path: CharacterCardPath.diana,
+        path: EnglishCharacterCardPath.diana,
         description: 'diana_desc'.tr(),
         name: 'diana3'),
     CharacterCard(
-        path: CharacterCardPath.earth,
+        path: EnglishCharacterCardPath.earth,
         description: 'earth_desc'.tr(),
         name: 'earth3'),
   ];
   List<CharacterCard> characterCardsList5 = [
     CharacterCard(
-        path: CharacterCardPath.ambael,
+        path: EnglishCharacterCardPath.ambael,
         description: "ambael_desc".tr(),
         name: 'ambael4'),
     CharacterCard(
-        path: CharacterCardPath.adrasteia,
+        path: EnglishCharacterCardPath.adrasteia,
         description: 'adrasteia_desc'.tr(),
         name: 'adrasteia4'),
     CharacterCard(
-        path: CharacterCardPath.diana,
+        path: EnglishCharacterCardPath.diana,
         description: 'diana_desc'.tr(),
         name: 'diana4'),
     CharacterCard(
-        path: CharacterCardPath.earth,
+        path: EnglishCharacterCardPath.earth,
         description: 'earth_desc'.tr(),
         name: 'earth4'),
   ];
   List<CharacterCard> characterCardsList6 = [
     CharacterCard(
-        path: CharacterCardPath.ambael,
+        path: EnglishCharacterCardPath.ambael,
         description: "ambael_desc".tr(),
         name: 'ambael5'),
     CharacterCard(
-        path: CharacterCardPath.adrasteia,
+        path: EnglishCharacterCardPath.adrasteia,
         description: 'adrasteia_desc'.tr(),
         name: 'adrasteia5'),
     CharacterCard(
-        path: CharacterCardPath.diana,
+        path: EnglishCharacterCardPath.diana,
         description: 'diana_desc'.tr(),
         name: 'diana5'),
     CharacterCard(
-        path: CharacterCardPath.earth,
+        path: EnglishCharacterCardPath.earth,
         description: 'earth_desc'.tr(),
         name: 'earth5'),
   ];
   List<CharacterCard> characterCardsList7 = [
     CharacterCard(
-        path: CharacterCardPath.ambael,
+        path: EnglishCharacterCardPath.ambael,
         description: "ambael_desc".tr(),
         name: 'ambael6'),
     CharacterCard(
-        path: CharacterCardPath.adrasteia,
+        path: EnglishCharacterCardPath.adrasteia,
         description: 'adrasteia_desc'.tr(),
         name: 'adrasteia6'),
     CharacterCard(
-        path: CharacterCardPath.diana,
+        path: EnglishCharacterCardPath.diana,
         description: 'diana_desc'.tr(),
         name: 'diana6'),
     CharacterCard(
-        path: CharacterCardPath.earth,
+        path: EnglishCharacterCardPath.earth,
         description: 'earth_desc'.tr(),
         name: 'earth6'),
   ];
   List<CharacterCard> characterCardsList8 = [
     CharacterCard(
-        path: CharacterCardPath.ambael,
+        path: EnglishCharacterCardPath.ambael,
         description: "ambael_desc".tr(),
         name: 'ambael7'),
     CharacterCard(
-        path: CharacterCardPath.adrasteia,
+        path: EnglishCharacterCardPath.adrasteia,
         description: 'adrasteia_desc'.tr(),
         name: 'adrasteia7'),
     CharacterCard(
-        path: CharacterCardPath.diana,
+        path: EnglishCharacterCardPath.diana,
         description: 'diana_desc'.tr(),
         name: 'diana7'),
     CharacterCard(
-        path: CharacterCardPath.earth,
+        path: EnglishCharacterCardPath.earth,
         description: 'earth_desc'.tr(),
         name: 'earth7'),
   ];
   List<CharacterCard> characterCardsList9 = [
     CharacterCard(
-        path: CharacterCardPath.ambael,
+        path: EnglishCharacterCardPath.ambael,
         description: "ambael_desc".tr(),
         name: 'ambael8'),
     CharacterCard(
-        path: CharacterCardPath.adrasteia,
+        path: EnglishCharacterCardPath.adrasteia,
         description: 'adrasteia_desc'.tr(),
         name: 'adrasteia8'),
     CharacterCard(
-        path: CharacterCardPath.diana,
+        path: EnglishCharacterCardPath.diana,
         description: 'diana_desc'.tr(),
         name: 'diana8'),
     CharacterCard(
-        path: CharacterCardPath.earth,
+        path: EnglishCharacterCardPath.earth,
         description: 'earth_desc'.tr(),
         name: 'earth8'),
   ];
   List<CharacterCard> characterCardsList10 = [
     CharacterCard(
-        path: CharacterCardPath.ambael,
+        path: EnglishCharacterCardPath.ambael,
         description: "ambael_desc".tr(),
         name: 'ambael9'),
     CharacterCard(
-        path: CharacterCardPath.adrasteia,
+        path: EnglishCharacterCardPath.adrasteia,
         description: 'adrasteia_desc'.tr(),
         name: 'adrasteia9'),
     CharacterCard(
-        path: CharacterCardPath.diana,
+        path: EnglishCharacterCardPath.diana,
         description: 'diana_desc'.tr(),
         name: 'diana9'),
     CharacterCard(
-        path: CharacterCardPath.earth,
+        path: EnglishCharacterCardPath.earth,
         description: 'earth_desc'.tr(),
         name: 'earth9'),
   ];
   List<CharacterCard> characterCardsList11 = [
     CharacterCard(
-        path: CharacterCardPath.ambael,
+        path: EnglishCharacterCardPath.ambael,
         description: "ambael_desc".tr(),
         name: 'ambael10'),
     CharacterCard(
-        path: CharacterCardPath.adrasteia,
+        path: EnglishCharacterCardPath.adrasteia,
         description: 'adrasteia_desc'.tr(),
         name: 'adrasteia10'),
     CharacterCard(
-        path: CharacterCardPath.diana,
+        path: EnglishCharacterCardPath.diana,
         description: 'diana_desc'.tr(),
         name: 'diana10'),
     CharacterCard(
-        path: CharacterCardPath.earth,
+        path: EnglishCharacterCardPath.earth,
         description: 'earth_desc'.tr(),
         name: 'earth10'),
   ];
   List<CharacterCard> characterCardsList12 = [
     CharacterCard(
-        path: CharacterCardPath.ambael,
+        path: EnglishCharacterCardPath.ambael,
         description: "ambael_desc".tr(),
         name: 'ambael11'),
     CharacterCard(
-        path: CharacterCardPath.adrasteia,
+        path: EnglishCharacterCardPath.adrasteia,
         description: 'adrasteia_desc'.tr(),
         name: 'adrasteia11'),
     CharacterCard(
-        path: CharacterCardPath.diana,
+        path: EnglishCharacterCardPath.diana,
         description: 'diana_desc'.tr(),
         name: 'diana11'),
     CharacterCard(
-        path: CharacterCardPath.earth,
+        path: EnglishCharacterCardPath.earth,
+        description: 'earth_desc'.tr(),
+        name: 'earth11'),
+  ];
+
+  List<CharacterCard> deCharacterCardsList1 = [
+    CharacterCard(
+        path: DeutschCharacterCardPath.ambael,
+        description: "ambael_desc".tr(),
+        name: 'ambael'),
+    CharacterCard(
+        path: DeutschCharacterCardPath.adrasteia,
+        description: 'adrasteia_desc'.tr(),
+        name: 'adrasteia'),
+    CharacterCard(
+        path: DeutschCharacterCardPath.diana,
+        description: 'diana_desc'.tr(),
+        name: 'diana'),
+    CharacterCard(
+        path: DeutschCharacterCardPath.earth,
+        description: 'earth_desc'.tr(),
+        name: 'earth'),
+  ];
+  List<CharacterCard> deCharacterCardsList2 = [
+    CharacterCard(
+        path: DeutschCharacterCardPath.ambael,
+        description: "ambael_desc".tr(),
+        name: 'ambael1'),
+    CharacterCard(
+        path: DeutschCharacterCardPath.adrasteia,
+        description: 'adrasteia_desc'.tr(),
+        name: 'adrasteia1'),
+    CharacterCard(
+        path: DeutschCharacterCardPath.diana,
+        description: 'diana_desc'.tr(),
+        name: 'diana1'),
+    CharacterCard(
+        path: DeutschCharacterCardPath.earth,
+        description: 'earth_desc'.tr(),
+        name: 'earth1'),
+  ];
+  List<CharacterCard> deCharacterCardsList3 = [
+    CharacterCard(
+        path: DeutschCharacterCardPath.ambael,
+        description: "ambael_desc".tr(),
+        name: 'ambael2'),
+    CharacterCard(
+        path: DeutschCharacterCardPath.adrasteia,
+        description: 'adrasteia_desc'.tr(),
+        name: 'adrasteia2'),
+    CharacterCard(
+        path: DeutschCharacterCardPath.diana,
+        description: 'diana_desc'.tr(),
+        name: 'diana2'),
+    CharacterCard(
+        path: DeutschCharacterCardPath.earth,
+        description: 'earth_desc'.tr(),
+        name: 'earth2'),
+  ];
+  List<CharacterCard> deCharacterCardsList4 = [
+    CharacterCard(
+        path: DeutschCharacterCardPath.ambael,
+        description: "ambael_desc".tr(),
+        name: 'ambael3'),
+    CharacterCard(
+        path: DeutschCharacterCardPath.adrasteia,
+        description: 'adrasteia_desc'.tr(),
+        name: 'adrasteia3'),
+    CharacterCard(
+        path: DeutschCharacterCardPath.diana,
+        description: 'diana_desc'.tr(),
+        name: 'diana3'),
+    CharacterCard(
+        path: DeutschCharacterCardPath.earth,
+        description: 'earth_desc'.tr(),
+        name: 'earth3'),
+  ];
+  List<CharacterCard> deCharacterCardsList5 = [
+    CharacterCard(
+        path: DeutschCharacterCardPath.ambael,
+        description: "ambael_desc".tr(),
+        name: 'ambael4'),
+    CharacterCard(
+        path: DeutschCharacterCardPath.adrasteia,
+        description: 'adrasteia_desc'.tr(),
+        name: 'adrasteia4'),
+    CharacterCard(
+        path: DeutschCharacterCardPath.diana,
+        description: 'diana_desc'.tr(),
+        name: 'diana4'),
+    CharacterCard(
+        path: DeutschCharacterCardPath.earth,
+        description: 'earth_desc'.tr(),
+        name: 'earth4'),
+  ];
+  List<CharacterCard> deCharacterCardsList6 = [
+    CharacterCard(
+        path: DeutschCharacterCardPath.ambael,
+        description: "ambael_desc".tr(),
+        name: 'ambael5'),
+    CharacterCard(
+        path: DeutschCharacterCardPath.adrasteia,
+        description: 'adrasteia_desc'.tr(),
+        name: 'adrasteia5'),
+    CharacterCard(
+        path: DeutschCharacterCardPath.diana,
+        description: 'diana_desc'.tr(),
+        name: 'diana5'),
+    CharacterCard(
+        path: DeutschCharacterCardPath.earth,
+        description: 'earth_desc'.tr(),
+        name: 'earth5'),
+  ];
+  List<CharacterCard> deCharacterCardsList7 = [
+    CharacterCard(
+        path: DeutschCharacterCardPath.ambael,
+        description: "ambael_desc".tr(),
+        name: 'ambael6'),
+    CharacterCard(
+        path: DeutschCharacterCardPath.adrasteia,
+        description: 'adrasteia_desc'.tr(),
+        name: 'adrasteia6'),
+    CharacterCard(
+        path: DeutschCharacterCardPath.diana,
+        description: 'diana_desc'.tr(),
+        name: 'diana6'),
+    CharacterCard(
+        path: DeutschCharacterCardPath.earth,
+        description: 'earth_desc'.tr(),
+        name: 'earth6'),
+  ];
+  List<CharacterCard> deCharacterCardsList8 = [
+    CharacterCard(
+        path: DeutschCharacterCardPath.ambael,
+        description: "ambael_desc".tr(),
+        name: 'ambael7'),
+    CharacterCard(
+        path: DeutschCharacterCardPath.adrasteia,
+        description: 'adrasteia_desc'.tr(),
+        name: 'adrasteia7'),
+    CharacterCard(
+        path: DeutschCharacterCardPath.diana,
+        description: 'diana_desc'.tr(),
+        name: 'diana7'),
+    CharacterCard(
+        path: DeutschCharacterCardPath.earth,
+        description: 'earth_desc'.tr(),
+        name: 'earth7'),
+  ];
+  List<CharacterCard> deCharacterCardsList9 = [
+    CharacterCard(
+        path: DeutschCharacterCardPath.ambael,
+        description: "ambael_desc".tr(),
+        name: 'ambael8'),
+    CharacterCard(
+        path: DeutschCharacterCardPath.adrasteia,
+        description: 'adrasteia_desc'.tr(),
+        name: 'adrasteia8'),
+    CharacterCard(
+        path: DeutschCharacterCardPath.diana,
+        description: 'diana_desc'.tr(),
+        name: 'diana8'),
+    CharacterCard(
+        path: DeutschCharacterCardPath.earth,
+        description: 'earth_desc'.tr(),
+        name: 'earth8'),
+  ];
+  List<CharacterCard> deCharacterCardsList10 = [
+    CharacterCard(
+        path: DeutschCharacterCardPath.ambael,
+        description: "ambael_desc".tr(),
+        name: 'ambael9'),
+    CharacterCard(
+        path: DeutschCharacterCardPath.adrasteia,
+        description: 'adrasteia_desc'.tr(),
+        name: 'adrasteia9'),
+    CharacterCard(
+        path: DeutschCharacterCardPath.diana,
+        description: 'diana_desc'.tr(),
+        name: 'diana9'),
+    CharacterCard(
+        path: DeutschCharacterCardPath.earth,
+        description: 'earth_desc'.tr(),
+        name: 'earth9'),
+  ];
+  List<CharacterCard> deCharacterCardsList11 = [
+    CharacterCard(
+        path: DeutschCharacterCardPath.ambael,
+        description: "ambael_desc".tr(),
+        name: 'ambael10'),
+    CharacterCard(
+        path: DeutschCharacterCardPath.adrasteia,
+        description: 'adrasteia_desc'.tr(),
+        name: 'adrasteia10'),
+    CharacterCard(
+        path: DeutschCharacterCardPath.diana,
+        description: 'diana_desc'.tr(),
+        name: 'diana10'),
+    CharacterCard(
+        path: DeutschCharacterCardPath.earth,
+        description: 'earth_desc'.tr(),
+        name: 'earth10'),
+  ];
+  List<CharacterCard> deCharacterCardsList12 = [
+    CharacterCard(
+        path: DeutschCharacterCardPath.ambael,
+        description: "ambael_desc".tr(),
+        name: 'ambael11'),
+    CharacterCard(
+        path: DeutschCharacterCardPath.adrasteia,
+        description: 'adrasteia_desc'.tr(),
+        name: 'adrasteia11'),
+    CharacterCard(
+        path: DeutschCharacterCardPath.diana,
+        description: 'diana_desc'.tr(),
+        name: 'diana11'),
+    CharacterCard(
+        path: DeutschCharacterCardPath.earth,
         description: 'earth_desc'.tr(),
         name: 'earth11'),
   ];
@@ -279,10 +496,63 @@ class _BrowseCardsScreenState extends State<BrowseCardsScreen> {
     });
   }
 
+  List characterList1 = [];
+  List characterList2 = [];
+  List characterList3 = [];
+  List characterList4 = [];
+  List characterList5 = [];
+  List characterList6 = [];
+  List characterList7 = [];
+  List characterList8 = [];
+  List characterList9 = [];
+  List characterList10 = [];
+  List characterList11 = [];
+  List characterList12 = [];
+
   GlobalKey<FlipCardState> cardKey = GlobalKey<FlipCardState>();
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
+    print(context.locale);
+
+    characterList1 = context.locale == Locale('en')
+        ? characterCardsList1
+        : deCharacterCardsList1;
+
+    characterList2 = context.locale == Locale('en')
+        ? characterCardsList2
+        : deCharacterCardsList2;
+    characterList3 = context.locale == Locale('en')
+        ? characterCardsList3
+        : deCharacterCardsList3;
+    characterList4 = context.locale == Locale('en')
+        ? characterCardsList4
+        : deCharacterCardsList4;
+    characterList5 = context.locale == Locale('en')
+        ? characterCardsList5
+        : deCharacterCardsList5;
+    characterList6 = context.locale == Locale('en')
+        ? characterCardsList6
+        : deCharacterCardsList6;
+    characterList7 = context.locale == Locale('en')
+        ? characterCardsList7
+        : deCharacterCardsList7;
+    characterList8 = context.locale == Locale('en')
+        ? characterCardsList8
+        : deCharacterCardsList8;
+    characterList9 = context.locale == Locale('en')
+        ? characterCardsList9
+        : deCharacterCardsList9;
+    characterList10 = context.locale == Locale('en')
+        ? characterCardsList10
+        : deCharacterCardsList10;
+    characterList11 = context.locale == Locale('en')
+        ? characterCardsList11
+        : deCharacterCardsList11;
+    characterList12 = context.locale == Locale('en')
+        ? characterCardsList12
+        : deCharacterCardsList12;
+
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         child: Text('Debug'),
@@ -322,7 +592,7 @@ class _BrowseCardsScreenState extends State<BrowseCardsScreen> {
                               children: [
                                 TopRack(mode: TopRackMode.rackOne),
                                 CardRow(
-                                  cards: characterCardsList1,
+                                  cards: characterList1,
                                   onCardTapped: (CharacterCard card) =>
                                       onCardTapped(card),
                                 ),
@@ -340,7 +610,7 @@ class _BrowseCardsScreenState extends State<BrowseCardsScreen> {
                               children: [
                                 TopRack(mode: TopRackMode.rackTwo),
                                 CardRow(
-                                  cards: characterCardsList2,
+                                  cards: characterList2,
                                   onCardTapped: (CharacterCard card) =>
                                       onCardTapped(card),
                                 ),
@@ -358,7 +628,7 @@ class _BrowseCardsScreenState extends State<BrowseCardsScreen> {
                               children: [
                                 TopRack(mode: TopRackMode.rackOne),
                                 CardRow(
-                                  cards: characterCardsList3,
+                                  cards: characterList3,
                                   onCardTapped: (CharacterCard card) =>
                                       onCardTapped(card),
                                 ),
@@ -373,7 +643,7 @@ class _BrowseCardsScreenState extends State<BrowseCardsScreen> {
                               children: [
                                 TopRack(mode: TopRackMode.rackTwo),
                                 CardRow(
-                                  cards: characterCardsList4,
+                                  cards: characterList4,
                                   onCardTapped: (CharacterCard card) =>
                                       onCardTapped(card),
                                 ),
@@ -391,7 +661,7 @@ class _BrowseCardsScreenState extends State<BrowseCardsScreen> {
                               children: [
                                 TopRack(mode: TopRackMode.rackOne),
                                 CardRow(
-                                  cards: characterCardsList5,
+                                  cards: characterList5,
                                   onCardTapped: (CharacterCard card) =>
                                       onCardTapped(card),
                                 ),
@@ -409,7 +679,7 @@ class _BrowseCardsScreenState extends State<BrowseCardsScreen> {
                               children: [
                                 TopRack(mode: TopRackMode.rackTwo),
                                 CardRow(
-                                  cards: characterCardsList6,
+                                  cards: characterList6,
                                   onCardTapped: (CharacterCard card) =>
                                       onCardTapped(card),
                                 ),
@@ -427,7 +697,7 @@ class _BrowseCardsScreenState extends State<BrowseCardsScreen> {
                               children: [
                                 TopRack(mode: TopRackMode.rackOne),
                                 CardRow(
-                                  cards: characterCardsList7,
+                                  cards: characterList7,
                                   onCardTapped: (CharacterCard card) =>
                                       onCardTapped(card),
                                 ),
@@ -445,7 +715,7 @@ class _BrowseCardsScreenState extends State<BrowseCardsScreen> {
                               children: [
                                 TopRack(mode: TopRackMode.rackTwo),
                                 CardRow(
-                                  cards: characterCardsList8,
+                                  cards: characterList8,
                                   onCardTapped: (CharacterCard card) =>
                                       onCardTapped(card),
                                 ),
@@ -463,7 +733,7 @@ class _BrowseCardsScreenState extends State<BrowseCardsScreen> {
                               children: [
                                 TopRack(mode: TopRackMode.rackOne),
                                 CardRow(
-                                  cards: characterCardsList9,
+                                  cards: characterList9,
                                   onCardTapped: (CharacterCard card) =>
                                       onCardTapped(card),
                                 ),
@@ -481,7 +751,7 @@ class _BrowseCardsScreenState extends State<BrowseCardsScreen> {
                               children: [
                                 TopRack(mode: TopRackMode.rackTwo),
                                 CardRow(
-                                  cards: characterCardsList10,
+                                  cards: characterList10,
                                   onCardTapped: (CharacterCard card) =>
                                       onCardTapped(card),
                                 ),
@@ -499,7 +769,7 @@ class _BrowseCardsScreenState extends State<BrowseCardsScreen> {
                               children: [
                                 TopRack(mode: TopRackMode.rackOne),
                                 CardRow(
-                                  cards: characterCardsList11,
+                                  cards: characterList11,
                                   onCardTapped: (CharacterCard card) =>
                                       onCardTapped(card),
                                 ),
@@ -517,7 +787,7 @@ class _BrowseCardsScreenState extends State<BrowseCardsScreen> {
                               children: [
                                 TopRack(mode: TopRackMode.rackTwo),
                                 CardRow(
-                                  cards: characterCardsList12,
+                                  cards: characterList12,
                                   onCardTapped: (CharacterCard card) =>
                                       onCardTapped(card),
                                 ),

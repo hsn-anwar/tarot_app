@@ -156,15 +156,15 @@ class _ThreeCardFormationScreenState extends State<ThreeCardFormationScreen> {
                                 }),
                           ),
                           // SingleLight(lightSize: !zoomTableTop ? 15 : 20),
-                          DeactivatedLight(
+                          Light(
                             alignment: Alignment(0, -0.35),
                             zoom: zoomTableTop,
                           ),
-                          DeactivatedLight(
+                          Light(
                             alignment: Alignment(0.8, 0.35),
                             zoom: zoomTableTop,
                           ),
-                          DeactivatedLight(
+                          Light(
                             alignment: Alignment(-0.8, 0.35),
                             zoom: zoomTableTop,
                           )
@@ -175,40 +175,13 @@ class _ThreeCardFormationScreenState extends State<ThreeCardFormationScreen> {
                 ],
               ),
               isCardSelected ? BackgroundBlur() : Container(),
-              // !isCardSelected
-              //     ? cardOne()
-              //     : cardOneSelected && !cardTwoSelected && !cardThreeSelected
-              //         ? cardOne()
-              //         : Container(
-              //             color: Colors.pink,
-              //             height: 50,
-              //             width: 50,
-              //           ),
-              // !isCardSelected
-              //     ? cardTwo()
-              //     : !cardOneSelected && cardTwoSelected && !cardThreeSelected
-              //         ? cardTwo()
-              //         : Container(
-              //             color: Colors.red,
-              //             height: 50,
-              //             width: 50,
-              //           ),
-              // !isCardSelected
-              //     ? cardThree()
-              //     : !cardOneSelected && !cardTwoSelected && cardThreeSelected
-              //         ? cardThree()
-              //         : Container(
-              //             color: Colors.green,
-              //             height: 50,
-              //             width: 50,
-              //           ),
               AnimatedBackground(
                 alignmentX: 0,
                 alignmentY: !zoomTableTop ? 0.3 : -0.1,
                 cardKey: cardKey1,
                 cardSize: !zoomTableTop ? 15 : 20,
                 cardDescription: "desc desc desc desc",
-                characterImagePath: CharacterCardPath.adrasteia,
+                characterImagePath: EnglishCharacterCardPath.adrasteia,
                 title: cardOneSelected ? words[0] : '',
                 onAnimateCallback: (bool value) => onCardOneTapped(value),
                 showCard: cardTwoSelected || cardThreeSelected ? false : true,
@@ -219,7 +192,7 @@ class _ThreeCardFormationScreenState extends State<ThreeCardFormationScreen> {
                 cardKey: cardKey2,
                 cardSize: !zoomTableTop ? 15 : 20,
                 cardDescription: "desc desc desc desc",
-                characterImagePath: CharacterCardPath.earth,
+                characterImagePath: EnglishCharacterCardPath.earth,
                 title: cardTwoSelected ? words[1] : '',
                 onAnimateCallback: (bool value) => onCardTwoTapped(value),
                 showCard: cardOneSelected || cardThreeSelected ? false : true,
@@ -230,7 +203,7 @@ class _ThreeCardFormationScreenState extends State<ThreeCardFormationScreen> {
                 cardKey: cardKey3,
                 cardSize: !zoomTableTop ? 15 : 20,
                 cardDescription: "desc desc desc desc",
-                characterImagePath: CharacterCardPath.ambael,
+                characterImagePath: EnglishCharacterCardPath.ambael,
                 title: cardThreeSelected ? words[2] : '',
                 onAnimateCallback: (bool value) => onCardThreeTapped(value),
                 showCard: cardOneSelected || cardTwoSelected ? false : true,
@@ -342,7 +315,7 @@ class _ThreeCardFormationScreenState extends State<ThreeCardFormationScreen> {
       cardKey: cardKey1,
       cardSize: !zoomTableTop ? 15 : 20,
       cardDescription: "desc desc desc desc",
-      characterImagePath: CharacterCardPath.adrasteia,
+      characterImagePath: EnglishCharacterCardPath.adrasteia,
       title: cardOneSelected ? words[0] : '',
       onAnimateCallback: (bool value) => onCardOneTapped(value),
       showCard: true,
@@ -356,7 +329,7 @@ class _ThreeCardFormationScreenState extends State<ThreeCardFormationScreen> {
       cardKey: cardKey2,
       cardSize: !zoomTableTop ? 15 : 20,
       cardDescription: "desc desc desc desc",
-      characterImagePath: CharacterCardPath.earth,
+      characterImagePath: EnglishCharacterCardPath.earth,
       title: cardTwoSelected ? words[1] : '',
       onAnimateCallback: (bool value) => onCardTwoTapped(value),
       showCard: true,
@@ -370,7 +343,7 @@ class _ThreeCardFormationScreenState extends State<ThreeCardFormationScreen> {
       cardKey: cardKey3,
       cardSize: !zoomTableTop ? 15 : 20,
       cardDescription: "desc desc desc desc",
-      characterImagePath: CharacterCardPath.ambael,
+      characterImagePath: EnglishCharacterCardPath.ambael,
       title: cardThreeSelected ? words[2] : '',
       onAnimateCallback: (bool value) => onCardThreeTapped(value),
       showCard: true,

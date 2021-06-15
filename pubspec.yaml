@@ -36,6 +36,8 @@ flutter:
     - assets/
     - assets/images/
     - assets/characters/
+    - assets/characters/en/
+    - assets/characters/de/
     - assets/fonts/
     - assets/music/
     - assets/translations/

@@ -31,12 +31,20 @@ class ImagePath {
   static const String settingsOverlay = kImagePath + 'Settings Overlay.png';
 }
 
-class CharacterCardPath {
-  static const String kImagePath = 'assets/characters/';
-  static const String ambael = kImagePath + 'Ambael.png';
-  static const String adrasteia = kImagePath + 'Adrasteia.png';
-  static const String diana = kImagePath + 'Diana.png';
-  static const String earth = kImagePath + 'Earth.png';
+class EnglishCharacterCardPath {
+  static String kImagePath = 'assets/characters/en/';
+  static String ambael = kImagePath + 'Ambael.png';
+  static String adrasteia = kImagePath + 'Adrasteia.png';
+  static String diana = kImagePath + 'Diana.png';
+  static String earth = kImagePath + 'Earth.png';
+}
+
+class DeutschCharacterCardPath {
+  static String kImagePath = 'assets/characters/de/';
+  static String ambael = kImagePath + 'Ambael.png';
+  static String adrasteia = kImagePath + 'Adrasteia.png';
+  static String diana = kImagePath + 'Diana.png';
+  static String earth = kImagePath + 'Earth.png';
 }
 
 class MusicPath {

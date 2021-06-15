@@ -40,7 +40,7 @@ class _SingleCardFormationScreenState extends State<SingleCardFormationScreen>
 
   bool animateContainer = false;
 
-  String selectedCard = CharacterCardPath.adrasteia;
+  String selectedCard = EnglishCharacterCardPath.adrasteia;
   GlobalKey<FlipCardState> cardKey = GlobalKey<FlipCardState>();
   bool isOneRevealed = false;
   bool zoomTableTop = false;
@@ -48,9 +48,9 @@ class _SingleCardFormationScreenState extends State<SingleCardFormationScreen>
   bool isFormationCompleted = false;
   int formation = 0;
 
-  String selectedCard1 = CharacterCardPath.adrasteia;
-  String selectedCard2 = CharacterCardPath.earth;
-  String selectedCard3 = CharacterCardPath.diana;
+  String selectedCard1 = EnglishCharacterCardPath.adrasteia;
+  String selectedCard2 = EnglishCharacterCardPath.earth;
+  String selectedCard3 = EnglishCharacterCardPath.diana;
 
   bool isCardOneTapped = false;
 
@@ -210,7 +210,7 @@ class _SingleCardFormationScreenState extends State<SingleCardFormationScreen>
                 cardSize: !zoomTableTop ? 15 : 20,
                 alignmentY: zoomTableTop ? 0.0 : 0.4,
                 cardDescription: "desc desc desc desc",
-                characterImagePath: CharacterCardPath.adrasteia,
+                characterImagePath: EnglishCharacterCardPath.adrasteia,
                 title: widget.message,
                 onAnimateCallback: (bool value) {
                   if (value) {
