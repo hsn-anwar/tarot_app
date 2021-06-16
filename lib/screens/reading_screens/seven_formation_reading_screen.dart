@@ -3,8 +3,10 @@ import 'package:flip_card/flip_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:spring/spring.dart';
+import 'package:tarot_app/global/buttons/setting_button.dart';
 import 'package:tarot_app/global/constants.dart';
 import 'package:tarot_app/global/widgets/background_blur.dart';
+import 'package:tarot_app/global/widgets/menu.dart';
 import 'package:tarot_app/global/widgets/reading_screen/animated_background.dart';
 import 'package:tarot_app/global/widgets/reading_screen/deactivated_light.dart';
 import 'package:tarot_app/global/widgets/reading_screen/pedestals.dart';
@@ -50,6 +52,14 @@ class _SevenFormationReadingScreenState
   GlobalKey<FlipCardState> cardKey5 = GlobalKey<FlipCardState>();
   GlobalKey<FlipCardState> cardKey6 = GlobalKey<FlipCardState>();
   GlobalKey<FlipCardState> cardKey7 = GlobalKey<FlipCardState>();
+
+  bool cardOneRevealed = false;
+  bool cardTwoRevealed = false;
+  bool cardThreeRevealed = false;
+  bool cardFourRevealed = false;
+  bool cardFiveRevealed = false;
+  bool cardSixRevealed = false;
+  bool cardSevenRevealed = false;
 
   SpringController _translateController2 =
       SpringController(initialAnim: Motion.pause);
@@ -154,7 +164,7 @@ class _SevenFormationReadingScreenState
                             endOffset: Offset(0, -50),
                             springController: _translateController,
                             child: Spring.scale(
-                              start: 1,
+                              start: 0.9,
                               end: 1.1,
                               springController: _scaleController,
                               child: Pedestals(
@@ -236,6 +246,7 @@ class _SevenFormationReadingScreenState
                 showCard: showCardThree(),
                 springController: _cardFadeController3,
                 isCardFocused: showCardThree,
+                // tableTranslationController: null,
               ),
               AnimatedBackground(
                 alignmentX: !zoomTableTop ? 0 : 0,
@@ -303,10 +314,6 @@ class _SevenFormationReadingScreenState
                   zoom: zoomTableTop,
                 ),
               ),
-              CardIntention(
-                alignment: Alignment(-0.31, 0.15),
-                intention: 'Obstacle',
-              ),
 
               Spring.blink(
                 springController: _lightFadeController,
@@ -320,10 +327,7 @@ class _SevenFormationReadingScreenState
                   zoom: zoomTableTop,
                 ),
               ),
-              CardIntention(
-                alignment: Alignment(0.31, 0.15),
-                intention: 'Root',
-              ),
+
               Spring.blink(
                 springController: _lightFadeController,
                 startOpacity: 1,
@@ -336,10 +340,7 @@ class _SevenFormationReadingScreenState
                   zoom: zoomTableTop,
                 ),
               ),
-              CardIntention(
-                alignment: Alignment(-0.6, 0.33),
-                intention: 'Root',
-              ),
+
               Spring.blink(
                 springController: _lightFadeController,
                 startOpacity: 1,
@@ -352,6 +353,7 @@ class _SevenFormationReadingScreenState
                   zoom: zoomTableTop,
                 ),
               ),
+
               Spring.blink(
                 springController: _lightFadeController,
                 startOpacity: 1,
@@ -364,6 +366,7 @@ class _SevenFormationReadingScreenState
                   zoom: zoomTableTop,
                 ),
               ),
+
               Spring.blink(
                 springController: _lightFadeController,
                 startOpacity: 1,
@@ -376,6 +379,7 @@ class _SevenFormationReadingScreenState
                   zoom: zoomTableTop,
                 ),
               ),
+
               Spring.blink(
                 springController: _lightFadeController,
                 startOpacity: 1,
@@ -388,12 +392,117 @@ class _SevenFormationReadingScreenState
                   zoom: zoomTableTop,
                 ),
               ),
-              // CardIntention(),
-              // CardIntention(),
-              // CardIntention(),
-              // CardIntention(),
-              // CardIntention(),
-              // CardIntention(),
+              // cardOneRevealed
+              //     ? CardIntention(
+              //         alignment: Alignment(-0.55, -0.24),
+              //         intention: words[0],
+              //         isCardSelected: isCardSelected,
+              //         controller: _lightFadeController,
+              //       )
+              //     : Container(),
+              // cardTwoRevealed
+              //     ? CardIntention(
+              //         alignment: Alignment(0.56, -0.24),
+              //         intention: words[1],
+              //         isCardSelected: isCardSelected,
+              //         controller: _lightFadeController,
+              //       )
+              //     : Container(),
+              // cardThreeRevealed
+              //     ? CardIntention(
+              //         alignment: Alignment(-1.1, 0.07),
+              //         intention: words[2],
+              //         isCardSelected: isCardSelected,
+              //         controller: _lightFadeController,
+              //       )
+              //     : Container(),
+              // cardFourRevealed
+              //     ? CardIntention(
+              //         alignment: Alignment(0, 0.07),
+              //         intention: words[3],
+              //         isCardSelected: isCardSelected,
+              //         controller: _lightFadeController,
+              //       )
+              //     : Container(),
+              // cardFiveRevealed
+              //     ? CardIntention(
+              //         alignment: Alignment(1.17, 0.07),
+              //         intention: words[4],
+              //         controller: _lightFadeController,
+              //         isCardSelected: isCardSelected,
+              //       )
+              //     : Container(),
+              // cardSixSelected
+              //     ? CardIntention(
+              //         alignment: Alignment(-0.57, 0.36),
+              //         intention: words[5],
+              //         controller: _lightFadeController,
+              //         isCardSelected: isCardSelected,
+              //       )
+              //     : Container(),
+              // cardSevenSelected
+              //     ? CardIntention(
+              //         alignment: Alignment(0.57, 0.36),
+              //         intention: words[5],
+              //         controller: _lightFadeController,
+              //         isCardSelected: isCardSelected,
+              //       )
+              //     : Container(),
+              CardIntention(
+                alignment: Alignment(-0.55, -0.24),
+                intention: words[0],
+                isCardSelected: isCardSelected,
+                controller: _lightFadeController,
+                isCardRevealed: cardOneRevealed,
+              ),
+              CardIntention(
+                alignment: Alignment(0.56, -0.24),
+                intention: words[1],
+                isCardSelected: isCardSelected,
+                controller: _lightFadeController,
+                isCardRevealed: cardTwoRevealed,
+              ),
+              CardIntention(
+                alignment: Alignment(-1.1, 0.07),
+                intention: words[2],
+                isCardSelected: isCardSelected,
+                controller: _lightFadeController,
+                isCardRevealed: cardThreeRevealed,
+              ),
+              CardIntention(
+                alignment: Alignment(0, 0.07),
+                intention: words[3],
+                isCardSelected: isCardSelected,
+                controller: _lightFadeController,
+                isCardRevealed: cardFourRevealed,
+              ),
+              CardIntention(
+                alignment: Alignment(1.17, 0.07),
+                intention: words[4],
+                controller: _lightFadeController,
+                isCardSelected: isCardSelected,
+                isCardRevealed: cardFiveRevealed,
+              ),
+
+              CardIntention(
+                alignment: Alignment(-0.57, 0.36),
+                intention: words[5],
+                controller: _lightFadeController,
+                isCardSelected: isCardSelected,
+                isCardRevealed: cardSixRevealed,
+              ),
+
+              CardIntention(
+                alignment: Alignment(0.57, 0.36),
+                intention: words[5],
+                controller: _lightFadeController,
+                isCardSelected: isCardSelected,
+                isCardRevealed: cardSevenRevealed,
+              ),
+              // Menu(
+              //   showSettingMenu: showSettingMenu,
+              // ),
+              // GestureDetector(onTap: showMenu, child: SettingIcon()),
             ],
           ),
         ),
@@ -431,6 +540,7 @@ class _SevenFormationReadingScreenState
   }
 
   void animateTableUp(bool value) {
+    print(value);
     if (value) {
       _lightFadeController.play(motion: Motion.play);
 
@@ -441,7 +551,6 @@ class _SevenFormationReadingScreenState
       });
     } else {
       _lightFadeController.play(motion: Motion.reverse);
-
       _translateController2.play(motion: Motion.reverse);
     }
   }
@@ -461,6 +570,10 @@ class _SevenFormationReadingScreenState
       _cardFadeController7.play(motion: Motion.play);
     } else {
       // _cardFadeController1.play(motion: Motion.reverse);
+      Future.delayed(Duration(seconds: 1), () {});
+      setState(() {
+        cardOneRevealed = true;
+      });
       _cardFadeController2.play(motion: Motion.reverse);
       _cardFadeController3.play(motion: Motion.reverse);
       _cardFadeController4.play(motion: Motion.reverse);
@@ -510,6 +623,8 @@ class _SevenFormationReadingScreenState
     setState(() {
       isCardSelected = value;
       cardTwoSelected = value;
+      cardTwoRevealed = true;
+
       cardOneSelected = false;
       cardThreeSelected = false;
       cardFourSelected = false;
@@ -546,6 +661,8 @@ class _SevenFormationReadingScreenState
     setState(() {
       isCardSelected = value;
       cardThreeSelected = value;
+      cardThreeRevealed = true;
+
       cardOneSelected = false;
       cardTwoSelected = false;
       cardFourSelected = false;
@@ -583,6 +700,8 @@ class _SevenFormationReadingScreenState
     setState(() {
       isCardSelected = value;
       cardFourSelected = value;
+      cardFourRevealed = true;
+
       cardOneSelected = false;
       cardTwoSelected = false;
       cardThreeSelected = false;
@@ -620,6 +739,8 @@ class _SevenFormationReadingScreenState
     setState(() {
       isCardSelected = value;
       cardFiveSelected = value;
+      cardFiveRevealed = true;
+
       cardOneSelected = false;
       cardTwoSelected = false;
       cardThreeSelected = false;
@@ -657,6 +778,8 @@ class _SevenFormationReadingScreenState
     setState(() {
       isCardSelected = value;
       cardSixSelected = value;
+      cardSixRevealed = true;
+
       cardOneSelected = false;
       cardTwoSelected = false;
       cardThreeSelected = false;
@@ -694,6 +817,8 @@ class _SevenFormationReadingScreenState
     setState(() {
       isCardSelected = value;
       cardSevenSelected = value;
+      cardSevenRevealed = true;
+
       cardOneSelected = false;
       cardTwoSelected = false;
       cardThreeSelected = false;
@@ -798,27 +923,49 @@ class _SevenFormationReadingScreenState
 
 class CardIntention extends StatelessWidget {
   const CardIntention(
-      {Key key, @required this.alignment, @required this.intention})
+      {Key key,
+      @required this.alignment,
+      @required this.intention,
+      @required this.isCardSelected,
+      @required this.isCardRevealed,
+      @required this.controller})
       : super(key: key);
   final Alignment alignment;
   final String intention;
+  final bool isCardSelected;
+  final SpringController controller;
+  final bool isCardRevealed;
   @override
   Widget build(BuildContext context) {
-    return Align(
-      alignment: this.alignment,
-      child: Card(
-        color: Color.fromARGB(255, 54, 27, 68).withOpacity(0.7),
-        shape: RoundedRectangleBorder(
-            side: new BorderSide(color: Colors.purple, width: 2.0),
-            borderRadius: BorderRadius.circular(8.0)),
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Text(
-            this.intention,
-            style: TextStyle(color: Colors.white, fontSize: 11),
-          ),
-        ),
-      ),
-    );
+    return this.isCardRevealed
+        ? Spring.blink(
+            springController: this.controller,
+            startOpacity: 1,
+            endOpacity: 0,
+            animDuration: Duration(milliseconds: isCardSelected ? 800 : 0),
+            child: Align(
+              alignment: this.alignment,
+              child: Container(
+                alignment: Alignment(0, 0),
+                width: SizeConfig.blockSizeHorizontal * 30,
+                height: SizeConfig.blockSizeVertical * 5,
+                // color: Colors.red,
+                child: Card(
+                  color: Color.fromARGB(255, 54, 27, 68).withOpacity(0.7),
+                  shape: RoundedRectangleBorder(
+                      side: new BorderSide(color: Colors.purple, width: 2.0),
+                      borderRadius: BorderRadius.circular(8.0)),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      this.intention,
+                      style: TextStyle(color: Colors.white, fontSize: 11),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          )
+        : Container();
   }
 }

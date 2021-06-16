@@ -63,8 +63,10 @@ class SevenFormationLight extends StatelessWidget {
       child: AnimatedContainer(
         width: SizeConfig.blockSizeHorizontal * (!this.zoom ? 18 : 22),
         duration: Duration(seconds: 1),
-        child: Image.asset(
-          ImagePath.kCardLightActive,
+        child: IgnorePointer(
+          child: Image.asset(
+            ImagePath.kCardLightActive,
+          ),
         ),
       ),
     );

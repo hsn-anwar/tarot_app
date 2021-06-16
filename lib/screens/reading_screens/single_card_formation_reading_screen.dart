@@ -164,7 +164,7 @@ class _SingleCardFormationScreenState extends State<SingleCardFormationScreen>
                             animDuration: Duration(milliseconds: 500),
                             springController: _translateController,
                             child: Spring.scale(
-                              start: 1,
+                              start: 0.9,
                               end: 1.1,
                               springController: _scaleController,
                               child: Pedestals(
@@ -215,7 +215,7 @@ class _SingleCardFormationScreenState extends State<SingleCardFormationScreen>
                   return true;
                 },
                 springController: _cardFadeController1,
-                tableTranslationController: _translateController2,
+                // tableTranslationController: _translateController2,
               ),
               Spring.blink(
                 springController: _lightFadeController,

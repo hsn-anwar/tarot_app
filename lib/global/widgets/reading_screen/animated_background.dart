@@ -20,7 +20,6 @@ class AnimatedBackground extends StatefulWidget {
     @required this.showCard,
     @required this.isCardFocused,
     @required this.springController,
-    @required this.tableTranslationController,
   }) : super(key: key);
   final GlobalKey<FlipCardState> cardKey;
   final double alignmentX;
@@ -35,7 +34,6 @@ class AnimatedBackground extends StatefulWidget {
   final String title;
 
   final bool showCard;
-  final SpringController tableTranslationController;
 
   @override
   _AnimatedBackgroundState createState() => _AnimatedBackgroundState();
@@ -88,6 +86,8 @@ class _AnimatedBackgroundState extends State<AnimatedBackground> {
   bool isCardRevealed = false;
 
   bool showTitle = false;
+
+  bool swipeDownFlag = true;
 
   @override
   Widget build(BuildContext context) {
@@ -215,10 +215,14 @@ class _AnimatedBackgroundState extends State<AnimatedBackground> {
                           });
                         }
                       },
+                      onVerticalDragEnd: (details) {
+                        swipeDownFlag = true;
+                      },
                       onVerticalDragUpdate: (details) {
                         int sensitivity = 0;
-                        if (details.delta.dy > sensitivity) {
+                        if (details.delta.dy > sensitivity && swipeDownFlag) {
                           // _opacityController.play(motion: Motion.reverse);
+                          swipeDownFlag = false;
                           _opacityController.play(motion: Motion.reverse);
                           setState(() {
                             showTitle = false;
@@ -226,8 +230,7 @@ class _AnimatedBackgroundState extends State<AnimatedBackground> {
                             showCardInfo = false;
                             animateCard = false;
                           });
-                          widget.tableTranslationController
-                              .play(motion: Motion.reverse);
+                          // widget.tableTranslationController.play(motion: Motion.reverse);
                           widget.onAnimateCallback(animateCard);
                         } else if (details.delta.dy < -sensitivity) {
                           // Up Swipe
