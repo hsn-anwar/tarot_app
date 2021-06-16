@@ -20,6 +20,7 @@ class AnimatedBackground extends StatefulWidget {
     @required this.showCard,
     @required this.isCardFocused,
     @required this.springController,
+    @required this.tableTranslationController,
   }) : super(key: key);
   final GlobalKey<FlipCardState> cardKey;
   final double alignmentX;
@@ -34,6 +35,7 @@ class AnimatedBackground extends StatefulWidget {
   final String title;
 
   final bool showCard;
+  final SpringController tableTranslationController;
 
   @override
   _AnimatedBackgroundState createState() => _AnimatedBackgroundState();
@@ -42,6 +44,8 @@ class AnimatedBackground extends StatefulWidget {
 class _AnimatedBackgroundState extends State<AnimatedBackground> {
   bool showButtons = false;
   bool showCardInfo = false;
+  SpringController _opacityController =
+      SpringController(initialAnim: Motion.pause);
 
   void toggleShowCardInfo() {
     setState(() {
@@ -68,7 +72,6 @@ class _AnimatedBackgroundState extends State<AnimatedBackground> {
     _opacityController.play(motion: Motion.reverse);
     setState(() {
       showTitle = false;
-      print('called');
       showButtons = false;
       showCardInfo = false;
       animateCard = false;
@@ -83,8 +86,6 @@ class _AnimatedBackgroundState extends State<AnimatedBackground> {
 
   bool animateCard = false;
   bool isCardRevealed = false;
-  SpringController _opacityController =
-      SpringController(initialAnim: Motion.pause);
 
   bool showTitle = false;
 
@@ -217,8 +218,17 @@ class _AnimatedBackgroundState extends State<AnimatedBackground> {
                       onVerticalDragUpdate: (details) {
                         int sensitivity = 0;
                         if (details.delta.dy > sensitivity) {
+                          // _opacityController.play(motion: Motion.reverse);
                           _opacityController.play(motion: Motion.reverse);
-                          unFocusCard();
+                          setState(() {
+                            showTitle = false;
+                            showButtons = false;
+                            showCardInfo = false;
+                            animateCard = false;
+                          });
+                          widget.tableTranslationController
+                              .play(motion: Motion.reverse);
+                          widget.onAnimateCallback(animateCard);
                         } else if (details.delta.dy < -sensitivity) {
                           // Up Swipe
                         }
@@ -226,7 +236,6 @@ class _AnimatedBackgroundState extends State<AnimatedBackground> {
                       onTap: () {
                         setState(() {
                           if (!animateCard) {
-                            print('tapped');
                             animateCard = true;
                             showTitle = true;
                             if (animateCard) initializeScreen();
@@ -276,9 +285,11 @@ class _AnimatedBackgroundState extends State<AnimatedBackground> {
                     child: Stack(
                       children: [
                         Center(
-                          child: Image.asset(
-                            ImagePath.kCardReadingOverlay,
-                            height: SizeConfig.blockSizeVertical * 75,
+                          child: IgnorePointer(
+                            child: Image.asset(
+                              ImagePath.kCardReadingOverlay,
+                              height: SizeConfig.blockSizeVertical * 75,
+                            ),
                           ),
                         ),
                       ],

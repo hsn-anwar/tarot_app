@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:tarot_app/global/constants.dart';
 import 'package:tarot_app/global/widgets/background_blur.dart';
 import 'package:tarot_app/global/widgets/reading_screen/animated_background.dart';
+import 'package:tarot_app/global/widgets/reading_screen/deactivated_light.dart';
 import 'package:tarot_app/global/widgets/reading_screen/pedestals.dart';
 import 'package:tarot_app/global/widgets/reading_screen/table_top.dart';
 import 'package:tarot_app/global/widgets/reading_screen/text_title.dart';
@@ -54,9 +55,7 @@ class _SingleCardFormationScreenState extends State<SingleCardFormationScreen>
 
   bool isCardOneTapped = false;
 
-  void getMessage() {
-    print(widget.message);
-  }
+  void getMessage() {}
 
   @override
   void initState() {
@@ -69,6 +68,8 @@ class _SingleCardFormationScreenState extends State<SingleCardFormationScreen>
     super.dispose();
   }
 
+  SpringController _cardFadeController1 =
+      SpringController(initialAnim: Motion.pause);
   SpringController _scaleController =
       SpringController(initialAnim: Motion.pause);
   SpringController _translateController =
@@ -77,6 +78,8 @@ class _SingleCardFormationScreenState extends State<SingleCardFormationScreen>
   SpringController _translateController2 =
       SpringController(initialAnim: Motion.pause);
 
+  SpringController _lightFadeController =
+      SpringController(initialAnim: Motion.pause);
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -148,9 +151,7 @@ class _SingleCardFormationScreenState extends State<SingleCardFormationScreen>
                     beginOffset: Offset.zero,
                     endOffset: Offset(0, -110),
                     springController: _translateController,
-                    animStatus: (AnimStatus status) {
-                      print('translate: $status');
-                    },
+                    animStatus: (AnimStatus status) {},
                     child: Container(
                       alignment: Alignment.bottomCenter,
                       height: SizeConfig.blockSizeVertical * 50,
@@ -177,7 +178,6 @@ class _SingleCardFormationScreenState extends State<SingleCardFormationScreen>
                             springController: _translateController2,
                             animDuration: Duration(seconds: 1),
                             animStatus: (AnimStatus status) {
-                              print(status);
                               if (status == AnimStatus.completed) {
                                 _translateController2.play(
                                     motion: Motion.pause);
@@ -192,11 +192,8 @@ class _SingleCardFormationScreenState extends State<SingleCardFormationScreen>
                                 end: 1.5,
                                 springController: _scaleController,
                                 child: TableTop(),
-                                animStatus: (AnimStatus status) {
-                                  print('scale: $status');
-                                }),
+                                animStatus: (AnimStatus status) {}),
                           ),
-                          SingleLight(lightSize: !zoomTableTop ? 15 : 20),
                         ],
                       ),
                     ),
@@ -207,27 +204,35 @@ class _SingleCardFormationScreenState extends State<SingleCardFormationScreen>
               AnimatedBackground(
                 alignmentX: 0,
                 cardKey: cardKey,
-                cardSize: !zoomTableTop ? 15 : 20,
-                alignmentY: zoomTableTop ? 0.0 : 0.4,
+                cardSize: !zoomTableTop ? 19 : 23,
+                alignmentY: !zoomTableTop ? 0.45 : 0.11,
                 cardDescription: "desc desc desc desc",
                 characterImagePath: EnglishCharacterCardPath.adrasteia,
                 title: widget.message,
-                onAnimateCallback: (bool value) {
-                  if (value) {
-                    Future.delayed(const Duration(milliseconds: 800), () {
-                      setState(() {
-                        _translateController2.play(motion: Motion.play);
-                      });
-                    });
-                  } else {
-                    _translateController2.play(motion: Motion.reverse);
-                  }
-                  print('card tapped');
-                  setState(() {
-                    isCardOneTapped = value;
-                  });
-                },
+                onAnimateCallback: (bool value) => onAnimate(value),
                 showCard: true,
+                isCardFocused: () {
+                  return true;
+                },
+                springController: _cardFadeController1,
+                tableTranslationController: _translateController2,
+              ),
+              Spring.blink(
+                springController: _lightFadeController,
+                startOpacity: 1,
+                endOpacity: 0,
+                animDuration: Duration(milliseconds: isCardOneTapped ? 700 : 0),
+                animStatus: (AnimStatus _status) {
+                  // if (_status == AnimStatus.completed ||
+                  //     _status == AnimStatus.dismissed)
+                  //   _lightFadeController.play(motion: Motion.pause);
+                },
+                child: SingleFormationLight(
+                  alignment: !zoomTableTop
+                      ? Alignment(0, 0.6)
+                      : Alignment(-0.01, 0.27),
+                  zoom: zoomTableTop,
+                ),
               ),
             ],
           ),
@@ -235,22 +240,25 @@ class _SingleCardFormationScreenState extends State<SingleCardFormationScreen>
       ),
     );
   }
-}
 
-class SingleLight extends StatelessWidget {
-  const SingleLight({Key key, this.lightSize}) : super(key: key);
-  final double lightSize;
+  void animateTableUp(bool value) {
+    if (value) {
+      _lightFadeController.play(motion: Motion.play);
+      Future.delayed(const Duration(milliseconds: 800), () {
+        setState(() {
+          _translateController2.play(motion: Motion.play);
+        });
+      });
+    } else {
+      _lightFadeController.play(motion: Motion.reverse);
+      _translateController2.play(motion: Motion.reverse);
+    }
+  }
 
-  @override
-  Widget build(BuildContext context) {
-    return Align(
-      child: AnimatedContainer(
-        width: SizeConfig.blockSizeHorizontal * lightSize,
-        duration: Duration(seconds: 1),
-        child: Image.asset(
-          ImagePath.kCardLightActive,
-        ),
-      ),
-    );
+  void onAnimate(bool value) {
+    animateTableUp(value);
+    setState(() {
+      isCardOneTapped = value;
+    });
   }
 }

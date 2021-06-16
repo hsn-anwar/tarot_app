@@ -44,11 +44,22 @@ class _ThreeCardFormationScreenState extends State<ThreeCardFormationScreen> {
   GlobalKey<FlipCardState> cardKey1 = GlobalKey<FlipCardState>();
   GlobalKey<FlipCardState> cardKey2 = GlobalKey<FlipCardState>();
   GlobalKey<FlipCardState> cardKey3 = GlobalKey<FlipCardState>();
+  SpringController _lightFadeController =
+      SpringController(initialAnim: Motion.pause);
 
   SpringController _translateController2 =
       SpringController(initialAnim: Motion.pause);
   List<String> words = [];
   int wordIndex = 0;
+
+  SpringController _cardFadeController1 =
+      SpringController(initialAnim: Motion.pause);
+
+  SpringController _cardFadeController2 =
+      SpringController(initialAnim: Motion.pause);
+
+  SpringController _cardFadeController3 =
+      SpringController(initialAnim: Motion.pause);
 
   @override
   void initState() {
@@ -156,18 +167,6 @@ class _ThreeCardFormationScreenState extends State<ThreeCardFormationScreen> {
                                 }),
                           ),
                           // SingleLight(lightSize: !zoomTableTop ? 15 : 20),
-                          DeactivatedLight(
-                            alignment: Alignment(0, -0.35),
-                            zoom: zoomTableTop,
-                          ),
-                          DeactivatedLight(
-                            alignment: Alignment(0.8, 0.35),
-                            zoom: zoomTableTop,
-                          ),
-                          DeactivatedLight(
-                            alignment: Alignment(-0.8, 0.35),
-                            zoom: zoomTableTop,
-                          )
                         ],
                       ),
                     ),
@@ -177,36 +176,78 @@ class _ThreeCardFormationScreenState extends State<ThreeCardFormationScreen> {
               isCardSelected ? BackgroundBlur() : Container(),
               AnimatedBackground(
                 alignmentX: 0,
-                alignmentY: !zoomTableTop ? 0.3 : -0.1,
+                alignmentY: !zoomTableTop ? 0.28 : -0.04,
                 cardKey: cardKey1,
-                cardSize: !zoomTableTop ? 15 : 20,
+                cardSize: !zoomTableTop ? 16 : 20,
                 cardDescription: "desc desc desc desc",
                 characterImagePath: EnglishCharacterCardPath.adrasteia,
                 title: cardOneSelected ? words[0] : '',
                 onAnimateCallback: (bool value) => onCardOneTapped(value),
                 showCard: cardTwoSelected || cardThreeSelected ? false : true,
+                springController: _cardFadeController1,
+                isCardFocused: showCardOne,
               ),
               AnimatedBackground(
-                alignmentX: !zoomTableTop ? -0.5 : -0.8,
-                alignmentY: !zoomTableTop ? 0.56 : 0.2,
+                alignmentX: !zoomTableTop ? -0.42 : -0.6,
+                alignmentY: !zoomTableTop ? 0.57 : 0.39,
                 cardKey: cardKey2,
-                cardSize: !zoomTableTop ? 15 : 20,
+                cardSize: !zoomTableTop ? 16 : 20,
                 cardDescription: "desc desc desc desc",
                 characterImagePath: EnglishCharacterCardPath.earth,
                 title: cardTwoSelected ? words[1] : '',
                 onAnimateCallback: (bool value) => onCardTwoTapped(value),
                 showCard: cardOneSelected || cardThreeSelected ? false : true,
+                springController: _cardFadeController2,
+                isCardFocused: showCardTwo,
               ),
               AnimatedBackground(
-                alignmentX: !zoomTableTop ? 0.5 : 0.8,
-                alignmentY: !zoomTableTop ? 0.56 : 0.2,
+                alignmentX: !zoomTableTop ? 0.45 : 0.62,
+                alignmentY: !zoomTableTop ? 0.57 : 0.39,
                 cardKey: cardKey3,
-                cardSize: !zoomTableTop ? 15 : 20,
+                cardSize: !zoomTableTop ? 16 : 20,
                 cardDescription: "desc desc desc desc",
                 characterImagePath: EnglishCharacterCardPath.ambael,
                 title: cardThreeSelected ? words[2] : '',
                 onAnimateCallback: (bool value) => onCardThreeTapped(value),
                 showCard: cardOneSelected || cardTwoSelected ? false : true,
+                springController: _cardFadeController3,
+                isCardFocused: showCardThree,
+              ),
+              Spring.blink(
+                springController: _lightFadeController,
+                startOpacity: 1,
+                endOpacity: 0,
+                animDuration: Duration(milliseconds: isCardSelected ? 700 : 0),
+                child: ThreeFormationLight(
+                  alignment: !zoomTableTop
+                      ? Alignment(-0.01, 0.4)
+                      : Alignment(-0.01, 0.1),
+                  zoom: zoomTableTop,
+                ),
+              ),
+              Spring.blink(
+                springController: _lightFadeController,
+                startOpacity: 1,
+                endOpacity: 0,
+                animDuration: Duration(milliseconds: isCardSelected ? 700 : 0),
+                child: ThreeFormationLight(
+                  alignment: !zoomTableTop
+                      ? Alignment(-0.5, 0.72)
+                      : Alignment(-0.7, 0.55),
+                  zoom: zoomTableTop,
+                ),
+              ),
+              Spring.blink(
+                springController: _lightFadeController,
+                startOpacity: 1,
+                endOpacity: 0,
+                animDuration: Duration(milliseconds: isCardSelected ? 700 : 0),
+                child: ThreeFormationLight(
+                  alignment: !zoomTableTop
+                      ? Alignment(0.5, 0.72)
+                      : Alignment(0.7, 0.55),
+                  zoom: zoomTableTop,
+                ),
               ),
             ],
           ),
@@ -215,18 +256,58 @@ class _ThreeCardFormationScreenState extends State<ThreeCardFormationScreen> {
     );
   }
 
-  void onCardOneTapped(bool value) {
+  bool showCardOne() {
+    // cardTwoSelected || cardThreeSelected ? false : true,
+
+    if (cardTwoSelected || cardThreeSelected)
+      return false;
+    else
+      return true;
+  }
+
+  bool showCardTwo() {
+    if (cardOneSelected || cardThreeSelected)
+      return false;
+    else
+      return true;
+  }
+
+  bool showCardThree() {
+    if (cardOneSelected || cardTwoSelected)
+      return false;
+    else
+      return true;
+  }
+
+  void animateTableUp(bool value) {
     if (value) {
+      _lightFadeController.play(motion: Motion.play);
+
       Future.delayed(const Duration(milliseconds: 800), () {
         setState(() {
           _translateController2.play(motion: Motion.play);
         });
       });
     } else {
+      _lightFadeController.play(motion: Motion.reverse);
+
       _translateController2.play(motion: Motion.reverse);
     }
-    print('card 1 tapped');
-    print('oldValue: $cardOneSelected');
+  }
+
+  void onCardOneTapped(bool value) {
+    animateTableUp(value);
+
+    if (value) {
+      // _cardFadeController1.play(motion: Motion.play);
+      _cardFadeController2.play(motion: Motion.play);
+      _cardFadeController3.play(motion: Motion.play);
+    } else {
+      // _cardFadeController1.play(motion: Motion.reverse);
+      _cardFadeController2.play(motion: Motion.reverse);
+      _cardFadeController3.play(motion: Motion.reverse);
+    }
+
     setState(() {
       isCardSelected = value;
       cardOneSelected = value;
@@ -237,17 +318,16 @@ class _ThreeCardFormationScreenState extends State<ThreeCardFormationScreen> {
   }
 
   void onCardTwoTapped(bool value) {
+    animateTableUp(value);
     if (value) {
-      Future.delayed(const Duration(milliseconds: 800), () {
-        setState(() {
-          _translateController2.play(motion: Motion.play);
-        });
-      });
+      _cardFadeController1.play(motion: Motion.play);
+      // _cardFadeController2.play(motion: Motion.play);
+      _cardFadeController3.play(motion: Motion.play);
     } else {
-      _translateController2.play(motion: Motion.reverse);
+      _cardFadeController1.play(motion: Motion.reverse);
+      // _cardFadeController2.play(motion: Motion.reverse);
+      _cardFadeController3.play(motion: Motion.reverse);
     }
-    print('card  2 tapped');
-    print('cardOneStatus: $cardTwoSelected');
     setState(() {
       isCardSelected = value;
       cardOneSelected = false;
@@ -259,17 +339,16 @@ class _ThreeCardFormationScreenState extends State<ThreeCardFormationScreen> {
   }
 
   void onCardThreeTapped(bool value) {
-    print('cardOneStatus: $cardThreeSelected');
+    animateTableUp(value);
     if (value) {
-      Future.delayed(const Duration(milliseconds: 800), () {
-        setState(() {
-          _translateController2.play(motion: Motion.play);
-        });
-      });
+      _cardFadeController1.play(motion: Motion.play);
+      _cardFadeController2.play(motion: Motion.play);
+      // _cardFadeController3.play(motion: Motion.play);
     } else {
-      _translateController2.play(motion: Motion.reverse);
+      _cardFadeController1.play(motion: Motion.reverse);
+      _cardFadeController2.play(motion: Motion.reverse);
+      // _cardFadeController3.play(motion: Motion.reverse);
     }
-    print('card 3 tapped');
     setState(() {
       isCardSelected = value;
       cardOneSelected = false;
@@ -306,47 +385,5 @@ class _ThreeCardFormationScreenState extends State<ThreeCardFormationScreen> {
         });
       });
     }
-  }
-
-  Widget cardOne() {
-    return AnimatedBackground(
-      alignmentX: 0,
-      alignmentY: !zoomTableTop ? 0.23 : -0.1,
-      cardKey: cardKey1,
-      cardSize: !zoomTableTop ? 15 : 20,
-      cardDescription: "desc desc desc desc",
-      characterImagePath: EnglishCharacterCardPath.adrasteia,
-      title: cardOneSelected ? words[0] : '',
-      onAnimateCallback: (bool value) => onCardOneTapped(value),
-      showCard: true,
-    );
-  }
-
-  Widget cardTwo() {
-    return AnimatedBackground(
-      alignmentX: !zoomTableTop ? -0.8 : -0.8,
-      alignmentY: !zoomTableTop ? 0.56 : 0.2,
-      cardKey: cardKey2,
-      cardSize: !zoomTableTop ? 15 : 20,
-      cardDescription: "desc desc desc desc",
-      characterImagePath: EnglishCharacterCardPath.earth,
-      title: cardTwoSelected ? words[1] : '',
-      onAnimateCallback: (bool value) => onCardTwoTapped(value),
-      showCard: true,
-    );
-  }
-
-  Widget cardThree() {
-    return AnimatedBackground(
-      alignmentX: !zoomTableTop ? 0.8 : 0.8,
-      alignmentY: !zoomTableTop ? 0.56 : 0.2,
-      cardKey: cardKey3,
-      cardSize: !zoomTableTop ? 15 : 20,
-      cardDescription: "desc desc desc desc",
-      characterImagePath: EnglishCharacterCardPath.ambael,
-      title: cardThreeSelected ? words[2] : '',
-      onAnimateCallback: (bool value) => onCardThreeTapped(value),
-      showCard: true,
-    );
   }
 }

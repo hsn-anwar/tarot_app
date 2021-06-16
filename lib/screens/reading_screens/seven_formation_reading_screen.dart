@@ -198,9 +198,9 @@ class _SevenFormationReadingScreenState
               // Left --> Right
               AnimatedBackground(
                 alignmentX: !zoomTableTop ? -0.32 : -0.47,
-                alignmentY: !zoomTableTop ? 0.3 : -0.12,
+                alignmentY: !zoomTableTop ? 0.3 : -0.08,
                 cardKey: cardKey1,
-                cardSize: !zoomTableTop ? 11 : 15,
+                cardSize: !zoomTableTop ? 11 : 13,
                 cardDescription: "desc desc desc desc",
                 characterImagePath: EnglishCharacterCardPath.adrasteia,
                 title: cardOneSelected ? words[0] : '',
@@ -211,9 +211,9 @@ class _SevenFormationReadingScreenState
               ),
               AnimatedBackground(
                 alignmentX: !zoomTableTop ? 0.325 : 0.49,
-                alignmentY: !zoomTableTop ? 0.3 : -0.12,
+                alignmentY: !zoomTableTop ? 0.3 : -0.08,
                 cardKey: cardKey2,
-                cardSize: !zoomTableTop ? 11 : 15,
+                cardSize: !zoomTableTop ? 11 : 13,
                 cardDescription: "desc desc desc desc",
                 characterImagePath: EnglishCharacterCardPath.earth,
                 title: cardTwoSelected ? words[1] : '',
@@ -226,9 +226,9 @@ class _SevenFormationReadingScreenState
               // Left --> Right
               AnimatedBackground(
                 alignmentX: !zoomTableTop ? -0.64 : -0.95,
-                alignmentY: !zoomTableTop ? 0.49 : 0.2,
+                alignmentY: !zoomTableTop ? 0.49 : 0.24,
                 cardKey: cardKey3,
-                cardSize: !zoomTableTop ? 11 : 15,
+                cardSize: !zoomTableTop ? 11 : 13,
                 cardDescription: "desc desc desc desc",
                 characterImagePath: EnglishCharacterCardPath.ambael,
                 title: cardThreeSelected ? words[2] : '',
@@ -239,9 +239,9 @@ class _SevenFormationReadingScreenState
               ),
               AnimatedBackground(
                 alignmentX: !zoomTableTop ? 0 : 0,
-                alignmentY: !zoomTableTop ? 0.49 : 0.2,
+                alignmentY: !zoomTableTop ? 0.49 : 0.24,
                 cardKey: cardKey4,
-                cardSize: !zoomTableTop ? 11 : 15,
+                cardSize: !zoomTableTop ? 11 : 13,
                 cardDescription: "desc desc desc desc",
                 characterImagePath: EnglishCharacterCardPath.ambael,
                 title: cardThreeSelected ? words[3] : '',
@@ -252,9 +252,9 @@ class _SevenFormationReadingScreenState
               ),
               AnimatedBackground(
                 alignmentX: !zoomTableTop ? 0.65 : 0.95,
-                alignmentY: !zoomTableTop ? 0.49 : 0.2,
+                alignmentY: !zoomTableTop ? 0.49 : 0.24,
                 cardKey: cardKey5,
-                cardSize: !zoomTableTop ? 11 : 15,
+                cardSize: !zoomTableTop ? 11 : 13,
                 cardDescription: "desc desc desc desc",
                 characterImagePath: EnglishCharacterCardPath.ambael,
                 title: cardThreeSelected ? words[4] : '',
@@ -267,9 +267,9 @@ class _SevenFormationReadingScreenState
               // Left --> Right
               AnimatedBackground(
                 alignmentX: !zoomTableTop ? -0.32 : -0.47,
-                alignmentY: !zoomTableTop ? 0.7 : 0.5,
+                alignmentY: !zoomTableTop ? 0.7 : 0.55,
                 cardKey: cardKey6,
-                cardSize: !zoomTableTop ? 11 : 15,
+                cardSize: !zoomTableTop ? 11 : 13,
                 cardDescription: "desc desc desc desc",
                 characterImagePath: EnglishCharacterCardPath.adrasteia,
                 title: cardOneSelected ? words[5] : '',
@@ -280,9 +280,9 @@ class _SevenFormationReadingScreenState
               ),
               AnimatedBackground(
                 alignmentX: !zoomTableTop ? 0.33 : 0.49,
-                alignmentY: !zoomTableTop ? 0.7 : 0.5,
+                alignmentY: !zoomTableTop ? 0.7 : 0.55,
                 cardKey: cardKey7,
-                cardSize: !zoomTableTop ? 11 : 15,
+                cardSize: !zoomTableTop ? 11 : 13,
                 cardDescription: "desc desc desc desc",
                 characterImagePath: EnglishCharacterCardPath.earth,
                 title: cardTwoSelected ? words[6] : '',
@@ -303,6 +303,10 @@ class _SevenFormationReadingScreenState
                   zoom: zoomTableTop,
                 ),
               ),
+              CardIntention(
+                alignment: Alignment(-0.31, 0.15),
+                intention: 'Obstacle',
+              ),
 
               Spring.blink(
                 springController: _lightFadeController,
@@ -316,6 +320,10 @@ class _SevenFormationReadingScreenState
                   zoom: zoomTableTop,
                 ),
               ),
+              CardIntention(
+                alignment: Alignment(0.31, 0.15),
+                intention: 'Root',
+              ),
               Spring.blink(
                 springController: _lightFadeController,
                 startOpacity: 1,
@@ -327,6 +335,10 @@ class _SevenFormationReadingScreenState
                       : Alignment(-1.07, 0.32),
                   zoom: zoomTableTop,
                 ),
+              ),
+              CardIntention(
+                alignment: Alignment(-0.6, 0.33),
+                intention: 'Root',
               ),
               Spring.blink(
                 springController: _lightFadeController,
@@ -376,21 +388,12 @@ class _SevenFormationReadingScreenState
                   zoom: zoomTableTop,
                 ),
               ),
-              Center(
-                child: Card(
-                  color: Color.fromARGB(255, 54, 27, 68).withOpacity(0.7),
-                  shape: RoundedRectangleBorder(
-                      side: new BorderSide(color: Colors.purple, width: 2.0),
-                      borderRadius: BorderRadius.circular(8.0)),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      'Obstacle',
-                      style: TextStyle(color: Colors.white, fontSize: 12),
-                    ),
-                  ),
-                ),
-              ),
+              // CardIntention(),
+              // CardIntention(),
+              // CardIntention(),
+              // CardIntention(),
+              // CardIntention(),
+              // CardIntention(),
             ],
           ),
         ),
@@ -790,5 +793,32 @@ class _SevenFormationReadingScreenState
     } else {
       return true;
     }
+  }
+}
+
+class CardIntention extends StatelessWidget {
+  const CardIntention(
+      {Key key, @required this.alignment, @required this.intention})
+      : super(key: key);
+  final Alignment alignment;
+  final String intention;
+  @override
+  Widget build(BuildContext context) {
+    return Align(
+      alignment: this.alignment,
+      child: Card(
+        color: Color.fromARGB(255, 54, 27, 68).withOpacity(0.7),
+        shape: RoundedRectangleBorder(
+            side: new BorderSide(color: Colors.purple, width: 2.0),
+            borderRadius: BorderRadius.circular(8.0)),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text(
+            this.intention,
+            style: TextStyle(color: Colors.white, fontSize: 11),
+          ),
+        ),
+      ),
+    );
   }
 }
