@@ -88,6 +88,8 @@ class _AnimatedBackgroundState extends State<AnimatedBackground> {
   bool showTitle = false;
 
   bool swipeDownFlag = true;
+  bool swipeLeftFlag = false;
+  bool swipeRightFlag = false;
 
   @override
   Widget build(BuildContext context) {
@@ -197,18 +199,28 @@ class _AnimatedBackgroundState extends State<AnimatedBackground> {
                   child: AnimatedContainer(
                     width: !animateCard
                         ? SizeConfig.blockSizeHorizontal * widget.cardSize
-                        : SizeConfig.screenWidth,
+                        : SizeConfig.screenHeight >= 820
+                            ? SizeConfig.screenHeight
+                            : SizeConfig.blockSizeHorizontal * 85,
                     duration: Duration(seconds: 1),
                     child: GestureDetector(
+                      onHorizontalDragEnd: (details) {
+                        swipeRightFlag = true;
+                        swipeLeftFlag = true;
+                      },
                       onHorizontalDragUpdate: (details) {
                         // Note: Sensitivity is integer used when you don't want to mess up vertical drag
                         int sensitivity = 0;
-                        if (details.delta.dx > sensitivity) {
+                        if (details.delta.dx > sensitivity && swipeRightFlag) {
                           print('swipe right');
+                          swipeRightFlag = false;
                           setState(() {
                             showCardInfo = false;
                           });
-                        } else if (details.delta.dx < -sensitivity) {
+                        } else if (details.delta.dx < -sensitivity &&
+                            swipeLeftFlag) {
+                          swipeLeftFlag = false;
+
                           print('swipe left');
                           setState(() {
                             showCardInfo = true;
@@ -251,6 +263,8 @@ class _AnimatedBackgroundState extends State<AnimatedBackground> {
                                 isCardRevealed = true;
                               });
                             }
+                          } else {
+                            print(SizeConfig.screenHeight);
                           }
                         });
                       },
@@ -261,11 +275,12 @@ class _AnimatedBackgroundState extends State<AnimatedBackground> {
                         front: !isCardRevealed
                             ? Image.asset(
                                 ImagePath.kCardBack,
-                                width: SizeConfig.screenWidth,
+
+                                // width: SizeConfig.screenWidth,
                               )
                             : Image.asset(
                                 widget.characterImagePath,
-                                width: SizeConfig.screenWidth,
+                                // width: SizeConfig.screenWidth,
                               ),
                         back: Image.asset(
                           widget.characterImagePath,

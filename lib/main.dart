@@ -5,6 +5,7 @@ import 'package:tarot_app/screens/card_reveal.dart';
 import 'package:tarot_app/screens/formation_screen.dart';
 import 'package:tarot_app/screens/home_screen.dart';
 import 'package:tarot_app/screens/reading_screens/single_card_formation_reading_screen.dart';
+import 'package:tarot_app/screens/splash_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -34,7 +35,7 @@ class MyApp extends StatelessWidget {
         HomeScreen.id: (context) => HomeScreen(),
         FormationScreen.id: (context) => FormationScreen(),
         BrowseCardsScreen.id: (context) => BrowseCardsScreen(),
-        // SplashScreen.id: (context) => SplashScreen(),
+        SplashScreen.id: (context) => SplashScreen(),
         CardRevealScreen.id: (context) => CardRevealScreen(),
         SingleCardFormationScreen.id: (context) => SingleCardFormationScreen(),
       },

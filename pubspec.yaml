@@ -35,6 +35,7 @@ flutter:
   assets:
     - assets/
     - assets/images/
+    - assets/splash/
     - assets/characters/
     - assets/characters/en/
     - assets/characters/de/

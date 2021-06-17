@@ -13,6 +13,7 @@ import 'package:tarot_app/global/widgets/reading_screen/pedestals.dart';
 import 'package:tarot_app/global/widgets/reading_screen/table_top.dart';
 import 'package:tarot_app/global/widgets/reading_screen/text_title.dart';
 import 'package:tarot_app/global/widgets/top_bar.dart';
+import 'package:tarot_app/services/music_service.dart';
 import 'package:tarot_app/services/size_config.dart';
 
 class SevenFormationReadingScreen extends StatefulWidget {
@@ -499,15 +500,25 @@ class _SevenFormationReadingScreenState
                 isCardSelected: isCardSelected,
                 isCardRevealed: cardSevenRevealed,
               ),
-              // Menu(
-              //   showSettingMenu: showSettingMenu,
-              // ),
-              // GestureDetector(onTap: showMenu, child: SettingIcon()),
+              Menu(
+                showSettingMenu: showSettingMenu,
+              ),
+              GestureDetector(onTap: showMenu, child: SettingIcon()),
             ],
           ),
         ),
       ),
     );
+  }
+
+  bool showSettingMenu = false;
+
+  void showMenu() {
+    print('tapped');
+    print(MusicService.instance.musicFile);
+    setState(() {
+      showSettingMenu = !showSettingMenu;
+    });
   }
 
   void getMessage() {

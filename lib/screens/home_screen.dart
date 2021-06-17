@@ -43,8 +43,24 @@ class _HomeScreenState extends State<HomeScreen> {
     print('sadasdasd');
   }
 
+  bool _showSplashScreen = true;
+
+  void dismissSplashScreen() {
+    Future.delayed(Duration(milliseconds: 8000), () {
+      setState(() {
+        _showSplashScreen = false;
+      });
+    });
+    // Future.delayed(Duration(seconds: 9), () {
+    //   setState(() {
+    //     _hideSPlashScreen = true;
+    //   });
+    // });
+  }
+
   @override
   void initState() {
+    dismissSplashScreen();
     initializeBackgroundMusic();
     super.initState();
   }
@@ -56,80 +72,100 @@ class _HomeScreenState extends State<HomeScreen> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           setState(() {
-            // Navigator.pushNamed(context, SplashScreen.id);
+            Navigator.pushNamed(context, SplashScreen.id);
           });
         },
         child: Text('DEBUG'),
       ),
-      body: BackgroundTemplate(
-        child: Stack(
-          children: [
-            Column(
+      body: Stack(
+        children: [
+          BackgroundTemplate(
+            child: Stack(
               children: [
-                SizedBox(height: SizeConfig.blockSizeVertical * 10),
-                Container(
-                  child: Image.asset(
-                    ImagePath.kLogoIcon,
-                    width: SizeConfig.blockSizeVertical * 20,
-                  ),
-                ),
-                SizedBox(height: SizeConfig.blockSizeVertical * 5),
-                Text(
-                  "title".tr(),
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontFamily: CustomFonts.sherlock,
-                    fontSize: SizeConfig.blockSizeHorizontal * 11,
-                    color: Colors.white,
-                  ),
-                ),
-                SizedBox(height: SizeConfig.blockSizeVertical * 5),
-                Text(
-                  "home_welcoming_text".tr(),
-                  style: TextStyle(
-                    fontSize: 22,
-                    color: Colors.white,
-                  ),
-                ),
-                SizedBox(height: SizeConfig.blockSizeVertical * 10),
-                RoundedButton(
-                  title: "start_a_reading".tr(),
-                  onPressed: () =>
-                      Navigator.pushNamed(context, FormationScreen.id),
-                ),
-                SizedBox(height: SizeConfig.blockSizeVertical * 2),
-                Container(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container(
-                          width: SizeConfig.blockSizeHorizontal * 10,
-                          child: Image.asset(ImagePath.kBrowseCardIcon)),
-                      SizedBox(
-                        width: SizeConfig.blockSizeHorizontal * 3,
+                Column(
+                  children: [
+                    SizedBox(height: SizeConfig.blockSizeVertical * 10),
+                    Container(
+                      child: Image.asset(
+                        ImagePath.kLogoIcon,
+                        width: SizeConfig.blockSizeVertical * 20,
                       ),
-                      TextButton(
-                        onPressed: () =>
-                            Navigator.pushNamed(context, BrowseCardsScreen.id),
-                        child: Text(
-                          'browse_cards'.tr(),
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w700,
-                              fontSize: 14),
-                        ),
-                      )
-                    ],
-                  ),
+                    ),
+                    SizedBox(height: SizeConfig.blockSizeVertical * 5),
+                    Text(
+                      "title".tr(),
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontFamily: CustomFonts.sherlock,
+                        fontSize: SizeConfig.blockSizeHorizontal * 11,
+                        color: Colors.white,
+                      ),
+                    ),
+                    SizedBox(height: SizeConfig.blockSizeVertical * 5),
+                    Text(
+                      "home_welcoming_text".tr(),
+                      style: TextStyle(
+                        fontSize: 22,
+                        color: Colors.white,
+                      ),
+                    ),
+                    SizedBox(height: SizeConfig.blockSizeVertical * 10),
+                    RoundedButton(
+                      title: "start_a_reading".tr(),
+                      onPressed: () =>
+                          Navigator.pushNamed(context, FormationScreen.id),
+                    ),
+                    SizedBox(height: SizeConfig.blockSizeVertical * 2),
+                    Container(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                              width: SizeConfig.blockSizeHorizontal * 10,
+                              child: Image.asset(ImagePath.kBrowseCardIcon)),
+                          SizedBox(
+                            width: SizeConfig.blockSizeHorizontal * 3,
+                          ),
+                          TextButton(
+                            onPressed: () => Navigator.pushNamed(
+                                context, BrowseCardsScreen.id),
+                            child: Text(
+                              'browse_cards'.tr(),
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 14),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
+                Menu(
+                  showSettingMenu: showSettingMenu,
+                ),
+                GestureDetector(onTap: showMenu, child: SettingIcon()),
               ],
             ),
-            Menu(
-              showSettingMenu: showSettingMenu,
+          ),
+          IgnorePointer(
+            ignoring: !_showSplashScreen,
+            child: AnimatedOpacity(
+              opacity: _showSplashScreen ? 1.0 : 0.0,
+              duration: Duration(seconds: 1),
+              child: Container(
+                height: SizeConfig.screenHeight,
+                width: SizeConfig.screenWidth,
+                child: Image.asset(
+                  'assets/splash/Splash.gif',
+                  width: SizeConfig.screenWidth,
+                  fit: BoxFit.fill,
+                ),
+              ),
             ),
-            GestureDetector(onTap: showMenu, child: SettingIcon()),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
