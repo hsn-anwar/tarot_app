@@ -16,6 +16,7 @@ import 'package:tarot_app/services/size_config.dart';
 import 'package:morphable_shape/morphable_shape.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:audioplayers/audioplayers.dart';
+import '';
 
 class HomeScreen extends StatefulWidget {
   static final String id = '/home_screen';
@@ -60,7 +61,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   void initState() {
-    dismissSplashScreen();
+    // dismissSplashScreen();
     initializeBackgroundMusic();
     super.initState();
   }
@@ -84,7 +85,7 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 Column(
                   children: [
-                    SizedBox(height: SizeConfig.blockSizeVertical * 10),
+                    SizedBox(height: SizeConfig.blockSizeVertical * 15),
                     Container(
                       child: Image.asset(
                         ImagePath.kLogoIcon,
@@ -149,22 +150,22 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             ),
           ),
-          IgnorePointer(
-            ignoring: !_showSplashScreen,
-            child: AnimatedOpacity(
-              opacity: _showSplashScreen ? 1.0 : 0.0,
-              duration: Duration(seconds: 1),
-              child: Container(
-                height: SizeConfig.screenHeight,
-                width: SizeConfig.screenWidth,
-                child: Image.asset(
-                  'assets/splash/Splash.gif',
-                  width: SizeConfig.screenWidth,
-                  fit: BoxFit.fill,
-                ),
-              ),
-            ),
-          ),
+          // IgnorePointer(
+          //   ignoring: !_showSplashScreen,
+          //   child: AnimatedOpacity(
+          //     opacity: _showSplashScreen ? 1.0 : 0.0,
+          //     duration: Duration(seconds: 1),
+          //     child: Container(
+          //       height: SizeConfig.screenHeight,
+          //       width: SizeConfig.screenWidth,
+          //       child: Image.asset(
+          //         'assets/splash/Splash.gif',
+          //         width: SizeConfig.screenWidth,
+          //         fit: BoxFit.fill,
+          //       ),
+          //     ),
+          //   ),
+          // ),
         ],
       ),
     );
