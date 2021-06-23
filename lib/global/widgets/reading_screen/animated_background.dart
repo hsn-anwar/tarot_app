@@ -137,6 +137,7 @@ class _AnimatedBackgroundState extends State<AnimatedBackground> {
                           animDuration: Duration(seconds: 1),
                           springController: _opacityController,
                           animStatus: (AnimStatus _status) {
+                            print(_status);
                             if (_status == AnimStatus.completed) {
                               _opacityController.play(motion: Motion.pause);
                             }

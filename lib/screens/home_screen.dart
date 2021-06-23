@@ -133,9 +133,10 @@ class _HomeScreenState extends State<HomeScreen> {
                             child: Text(
                               'browse_cards'.tr(),
                               style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 14),
+                                color: Colors.white,
+                                fontWeight: FontWeight.w700,
+                                fontSize: 14,
+                              ),
                             ),
                           )
                         ],

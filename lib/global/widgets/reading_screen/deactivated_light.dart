@@ -17,8 +17,10 @@ class SingleFormationLight extends StatelessWidget {
       child: AnimatedContainer(
         width: SizeConfig.blockSizeHorizontal * (!this.zoom ? 30 : 35),
         duration: Duration(seconds: 1),
-        child: Image.asset(
-          ImagePath.kCardLightActive,
+        child: IgnorePointer(
+          child: Image.asset(
+            ImagePath.kCardLightActive,
+          ),
         ),
       ),
     );
@@ -40,8 +42,10 @@ class ThreeFormationLight extends StatelessWidget {
       child: AnimatedContainer(
         width: SizeConfig.blockSizeHorizontal * (!this.zoom ? 27 : 30),
         duration: Duration(seconds: 1),
-        child: Image.asset(
-          ImagePath.kCardLightActive,
+        child: IgnorePointer(
+          child: Image.asset(
+            ImagePath.kCardLightActive,
+          ),
         ),
       ),
     );

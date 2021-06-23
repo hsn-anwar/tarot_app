@@ -590,7 +590,7 @@ class _BrowseCardsScreenState extends State<BrowseCardsScreen> {
                             width: double.infinity,
                             child: Stack(
                               children: [
-                                TopRack(mode: TopRackMode.rackOne),
+                                TopRack(),
                                 CardRow(
                                   cards: characterList1,
                                   onCardTapped: (CharacterCard card) =>
@@ -608,7 +608,7 @@ class _BrowseCardsScreenState extends State<BrowseCardsScreen> {
                             width: double.infinity,
                             child: Stack(
                               children: [
-                                TopRack(mode: TopRackMode.rackTwo),
+                                TopRack(),
                                 CardRow(
                                   cards: characterList2,
                                   onCardTapped: (CharacterCard card) =>
@@ -626,7 +626,7 @@ class _BrowseCardsScreenState extends State<BrowseCardsScreen> {
                             width: double.infinity,
                             child: Stack(
                               children: [
-                                TopRack(mode: TopRackMode.rackOne),
+                                TopRack(),
                                 CardRow(
                                   cards: characterList3,
                                   onCardTapped: (CharacterCard card) =>
@@ -641,7 +641,7 @@ class _BrowseCardsScreenState extends State<BrowseCardsScreen> {
                             width: double.infinity,
                             child: Stack(
                               children: [
-                                TopRack(mode: TopRackMode.rackTwo),
+                                TopRack(),
                                 CardRow(
                                   cards: characterList4,
                                   onCardTapped: (CharacterCard card) =>
@@ -659,7 +659,7 @@ class _BrowseCardsScreenState extends State<BrowseCardsScreen> {
                             width: double.infinity,
                             child: Stack(
                               children: [
-                                TopRack(mode: TopRackMode.rackOne),
+                                TopRack(),
                                 CardRow(
                                   cards: characterList5,
                                   onCardTapped: (CharacterCard card) =>
@@ -677,7 +677,7 @@ class _BrowseCardsScreenState extends State<BrowseCardsScreen> {
                             width: double.infinity,
                             child: Stack(
                               children: [
-                                TopRack(mode: TopRackMode.rackTwo),
+                                TopRack(),
                                 CardRow(
                                   cards: characterList6,
                                   onCardTapped: (CharacterCard card) =>
@@ -695,7 +695,7 @@ class _BrowseCardsScreenState extends State<BrowseCardsScreen> {
                             width: double.infinity,
                             child: Stack(
                               children: [
-                                TopRack(mode: TopRackMode.rackOne),
+                                TopRack(),
                                 CardRow(
                                   cards: characterList7,
                                   onCardTapped: (CharacterCard card) =>
@@ -713,7 +713,7 @@ class _BrowseCardsScreenState extends State<BrowseCardsScreen> {
                             width: double.infinity,
                             child: Stack(
                               children: [
-                                TopRack(mode: TopRackMode.rackTwo),
+                                TopRack(),
                                 CardRow(
                                   cards: characterList8,
                                   onCardTapped: (CharacterCard card) =>
@@ -731,7 +731,7 @@ class _BrowseCardsScreenState extends State<BrowseCardsScreen> {
                             width: double.infinity,
                             child: Stack(
                               children: [
-                                TopRack(mode: TopRackMode.rackOne),
+                                TopRack(),
                                 CardRow(
                                   cards: characterList9,
                                   onCardTapped: (CharacterCard card) =>
@@ -749,7 +749,7 @@ class _BrowseCardsScreenState extends State<BrowseCardsScreen> {
                             width: double.infinity,
                             child: Stack(
                               children: [
-                                TopRack(mode: TopRackMode.rackTwo),
+                                TopRack(),
                                 CardRow(
                                   cards: characterList10,
                                   onCardTapped: (CharacterCard card) =>
@@ -767,7 +767,7 @@ class _BrowseCardsScreenState extends State<BrowseCardsScreen> {
                             width: double.infinity,
                             child: Stack(
                               children: [
-                                TopRack(mode: TopRackMode.rackOne),
+                                TopRack(),
                                 CardRow(
                                   cards: characterList11,
                                   onCardTapped: (CharacterCard card) =>
@@ -785,7 +785,7 @@ class _BrowseCardsScreenState extends State<BrowseCardsScreen> {
                             width: double.infinity,
                             child: Stack(
                               children: [
-                                TopRack(mode: TopRackMode.rackTwo),
+                                TopRack(),
                                 CardRow(
                                   cards: characterList12,
                                   onCardTapped: (CharacterCard card) =>
@@ -1045,11 +1045,8 @@ class TopVine extends StatelessWidget {
   }
 }
 
-enum TopRackMode { rackOne, rackTwo }
-
 class TopRack extends StatelessWidget {
-  const TopRack({Key key, @required this.mode}) : super(key: key);
-  final TopRackMode mode;
+  const TopRack({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -1058,9 +1055,7 @@ class TopRack extends StatelessWidget {
       child: Container(
         width: double.infinity,
         child: Image.asset(
-          mode == TopRackMode.rackOne
-              ? ImagePath.kCardRackOne
-              : ImagePath.kCardRackOne,
+          ImagePath.kCardRackOne,
           fit: BoxFit.fitWidth,
         ),
       ),

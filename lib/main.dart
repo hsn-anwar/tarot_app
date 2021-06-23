@@ -18,10 +18,27 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
-
+  Image myImage1;
+  Image myImage2;
+  Image myImage3;
+  Image myImage4;
+  List<String> splashScreenImages = [
+    'assets/images/splash_logo1.png',
+    'assets/images/splash_logo2.png',
+    'assets/images/splash_logo3.png',
+    'assets/images/splash_logo4.png'
+  ];
   @override
   Widget build(BuildContext context) {
+    myImage1 = Image.asset(splashScreenImages[0], gaplessPlayback: true);
+    myImage2 = Image.asset(splashScreenImages[1], gaplessPlayback: true);
+    myImage3 = Image.asset(splashScreenImages[2], gaplessPlayback: true);
+    myImage4 = Image.asset(splashScreenImages[3], gaplessPlayback: true);
+    precacheImage(myImage1.image, context);
+    precacheImage(myImage2.image, context);
+    precacheImage(myImage3.image, context);
+    precacheImage(myImage4.image, context);
+
     return MaterialApp(
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
@@ -30,7 +47,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           // primarySwatch: Colors.blue,
           ),
-      home: HomeScreen(),
+      home: SplashScreen(),
       routes: {
         HomeScreen.id: (context) => HomeScreen(),
         FormationScreen.id: (context) => FormationScreen(),
