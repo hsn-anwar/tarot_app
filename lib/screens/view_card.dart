@@ -60,9 +60,10 @@ class _ViewCardState extends State<ViewCard> {
       },
       child: Scaffold(
         body: BackgroundTemplate(
+          blur: true,
           child: Stack(
             children: [
-              BackgroundBlur(),
+              // BackgroundBlur(),
               AnimatedPositioned(
                 bottom: !showButtons
                     ? SizeConfig.blockSizeVertical * 15

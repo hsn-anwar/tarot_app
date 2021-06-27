@@ -144,6 +144,23 @@ class _SingleCardFormationScreenState extends State<SingleCardFormationScreen>
                           ),
                         ),
                       ),
+                      Spring.translate(
+                        beginOffset: Offset(0, 50),
+                        endOffset: Offset(0, -1000),
+                        animDuration: Duration(seconds: 2),
+                        springController: _translateController,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            'Scroll thorough the cards and pick the \nones that call out to you',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                              fontFamily: CustomFonts.malgun,
+                            ),
+                          ),
+                        ),
+                      ),
                       TitleText(
                         message: widget.message,
                       ),

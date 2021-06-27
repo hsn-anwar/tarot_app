@@ -166,7 +166,7 @@ class _AnimatedBackgroundState extends State<AnimatedBackground> {
                 AnimatedPositioned(
                   bottom: !showButtons
                       ? SizeConfig.blockSizeVertical * 15
-                      : SizeConfig.blockSizeVertical * 4,
+                      : SizeConfig.blockSizeVertical * 5,
                   child: Visibility(
                     visible: showButtons,
                     child: Container(
@@ -200,7 +200,7 @@ class _AnimatedBackgroundState extends State<AnimatedBackground> {
                   child: AnimatedContainer(
                     width: !animateCard
                         ? SizeConfig.blockSizeHorizontal * widget.cardSize
-                        : SizeConfig.screenHeight >= 820
+                        : SizeConfig.screenHeight >= 780
                             ? SizeConfig.screenHeight
                             : SizeConfig.blockSizeHorizontal * 85,
                     duration: Duration(seconds: 1),
@@ -296,14 +296,16 @@ class _AnimatedBackgroundState extends State<AnimatedBackground> {
                           widget.alignmentX,
                           widget.alignmentY,
                         )
-                      : Alignment.center,
+                      : Alignment(0, -0.25),
                 ),
                 Visibility(
                   visible: showCardInfo,
-                  child: Center(
+                  child: Align(
+                    alignment: Alignment(0, -0.25),
                     child: Stack(
                       children: [
-                        Center(
+                        Align(
+                          alignment: Alignment(0, -0.25),
                           child: IgnorePointer(
                             child: Image.asset(
                               ImagePath.kCardReadingOverlay,
@@ -317,7 +319,7 @@ class _AnimatedBackgroundState extends State<AnimatedBackground> {
                 ),
                 Positioned(
                   left: SizeConfig.blockSizeHorizontal * 25,
-                  top: SizeConfig.blockSizeVertical * 27,
+                  top: SizeConfig.blockSizeVertical * 20,
                   child: Visibility(
                     visible: showCardInfo,
                     child: Container(

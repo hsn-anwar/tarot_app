@@ -67,6 +67,7 @@ class _IntentionsScreenState extends State<IntentionsScreen> {
     SizeConfig().init(context);
     return Scaffold(
       body: BackgroundTemplate(
+        blur: true,
         child: Stack(
           children: [
             BackgroundBlur(),
@@ -204,25 +205,19 @@ class SingleCardSpreadButtons extends StatelessWidget {
                         ? threeCardIntentions[index].tr()
                         : sevenCardIntentions[index].tr(),
                 onPressed: () {
-                  // if (this.formation == 1) {
-                  //   print(singleCardIntentions[index]);
-                  // } else if (this.formation == 3) {
-                  //   print(threeCardIntentions[index]);
-                  // } else {
-                  //   print(sevenCardIntentions[index]);
-                  // }
-
                   Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => StartReadingScreen(
-                                cardFormation: this.formation,
-                                message: this.formation == 1
-                                    ? singleCardIntentions[index].tr()
-                                    : this.formation == 3
-                                        ? threeCardIntentions[index].tr()
-                                        : sevenCardIntentions[index].tr(),
-                              )));
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => StartReadingScreen(
+                        cardFormation: this.formation,
+                        message: this.formation == 1
+                            ? singleCardIntentions[index].tr()
+                            : this.formation == 3
+                                ? threeCardIntentions[index].tr()
+                                : sevenCardIntentions[index].tr(),
+                      ),
+                    ),
+                  );
                 },
               ),
             ],

@@ -9,6 +9,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'dart:ui';
 import 'package:morphable_shape/morphable_shape.dart';
 import 'package:tarot_app/enums/language.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class MusicToggleButtons extends StatefulWidget {
   @override
@@ -286,6 +287,9 @@ class Menu extends StatelessWidget {
   final double _sigmaX = 4; // from 0-10
   final double _sigmaY = 4; // from 0-10
   final double _opacity = 0.2; // from 0-1.0
+
+  final String _url = 'https://www.google.com';
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -371,8 +375,11 @@ class Menu extends StatelessWidget {
                                 style: TextStyle(color: Colors.white),
                               ),
                               InkWell(
-                                onTap: () {
+                                onTap: () async {
                                   print('tapped');
+                                  await canLaunch(_url)
+                                      ? await launch(_url)
+                                      : throw 'Could not launch $_url';
                                 },
                                 child: Text(
                                   'Privacy Policy',

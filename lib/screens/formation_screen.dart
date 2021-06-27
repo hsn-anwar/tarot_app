@@ -54,9 +54,10 @@ class _FormationScreenState extends State<FormationScreen> {
     SizeConfig().init(context);
     return Scaffold(
       body: BackgroundTemplate(
+        blur: true,
         child: Stack(
           children: [
-            BackgroundBlur(),
+            // BackgroundBlur(),
             Column(
               children: [
                 TopBar(

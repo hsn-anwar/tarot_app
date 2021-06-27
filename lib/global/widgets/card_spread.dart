@@ -113,11 +113,14 @@ class _CardSpreadState extends State<CardSpread> {
             height: 15.0,
           ),
           this.widget.opPressed != null
-              ? RoundedButton(
-                  title: 'start_reading'.tr(),
-                  onPressed: this.widget.opPressed,
-                  width: 40,
-                  height: 6,
+              ? Padding(
+                  padding: const EdgeInsets.only(bottom: 32.0),
+                  child: RoundedButton(
+                    title: 'start_reading'.tr(),
+                    onPressed: this.widget.opPressed,
+                    width: 40,
+                    height: 6,
+                  ),
                 )
               : Container(),
         ],

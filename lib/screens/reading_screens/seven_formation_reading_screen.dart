@@ -6,6 +6,7 @@ import 'package:spring/spring.dart';
 import 'package:tarot_app/global/buttons/setting_button.dart';
 import 'package:tarot_app/global/constants.dart';
 import 'package:tarot_app/global/widgets/background_blur.dart';
+import 'package:tarot_app/global/widgets/card_intention.dart';
 import 'package:tarot_app/global/widgets/menu.dart';
 import 'package:tarot_app/global/widgets/reading_screen/animated_background.dart';
 import 'package:tarot_app/global/widgets/reading_screen/deactivated_light.dart';
@@ -103,7 +104,10 @@ class _SevenFormationReadingScreenState
     SizeConfig().init(context);
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: debug,
+        onPressed: () {
+          debug();
+          print(SizeConfig.screenHeight);
+        },
       ),
       body: Container(
         width: SizeConfig.screenWidth,
@@ -514,7 +518,6 @@ class _SevenFormationReadingScreenState
                   isCardRevealed: cardFiveRevealed,
                 ),
               ),
-
               Spring.blink(
                 springController: _lightFadeController,
                 startOpacity: 1,
@@ -528,7 +531,6 @@ class _SevenFormationReadingScreenState
                   isCardRevealed: cardSixRevealed,
                 ),
               ),
-
               Spring.blink(
                 springController: _lightFadeController,
                 startOpacity: 1,
@@ -971,54 +973,5 @@ class _SevenFormationReadingScreenState
     } else {
       return true;
     }
-  }
-}
-
-class CardIntention extends StatelessWidget {
-  const CardIntention(
-      {Key key,
-      @required this.alignment,
-      @required this.intention,
-      @required this.isCardSelected,
-      @required this.isCardRevealed,
-      @required this.controller})
-      : super(key: key);
-  final Alignment alignment;
-  final String intention;
-  final bool isCardSelected;
-  final SpringController controller;
-  final bool isCardRevealed;
-  @override
-  Widget build(BuildContext context) {
-    return this.isCardRevealed
-        ? Spring.blink(
-            springController: this.controller,
-            startOpacity: 1,
-            endOpacity: 0,
-            animDuration: Duration(milliseconds: isCardSelected ? 800 : 0),
-            child: Align(
-              alignment: this.alignment,
-              child: Container(
-                alignment: Alignment(0, 0),
-                width: SizeConfig.blockSizeHorizontal * 30,
-                height: SizeConfig.blockSizeVertical * 5,
-                // color: Colors.red,
-                child: Card(
-                  color: Color.fromARGB(255, 54, 27, 68).withOpacity(0.7),
-                  shape: RoundedRectangleBorder(
-                      side: new BorderSide(color: Colors.purple, width: 2.0),
-                      borderRadius: BorderRadius.circular(8.0)),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      this.intention,
-                      style: TextStyle(color: Colors.white, fontSize: 11),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          )
-        : Container();
   }
 }

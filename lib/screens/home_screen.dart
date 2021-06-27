@@ -81,6 +81,7 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Stack(
         children: [
           BackgroundTemplate(
+            blur: false,
             child: Stack(
               children: [
                 Column(
@@ -88,7 +89,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     SizedBox(height: SizeConfig.blockSizeVertical * 15),
                     Container(
                       child: Image.asset(
-                        ImagePath.kLogoIcon,
+                        'assets/images/splash_logo4.png',
                         width: SizeConfig.blockSizeVertical * 20,
                       ),
                     ),

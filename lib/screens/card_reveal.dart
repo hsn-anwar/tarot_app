@@ -38,9 +38,10 @@ class _CardRevealScreenState extends State<CardRevealScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: BackgroundTemplate(
+        blur: true,
         child: Stack(
           children: [
-            BackgroundBlur(),
+            // BackgroundBlur(),
             Center(
               child: FlipCard(
                   key: cardKey,

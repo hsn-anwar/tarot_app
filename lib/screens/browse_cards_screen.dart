@@ -561,6 +561,7 @@ class _BrowseCardsScreenState extends State<BrowseCardsScreen> {
         },
       ),
       body: BackgroundTemplate(
+        blur: false,
         child: Stack(
           children: [
             Column(
@@ -591,6 +592,7 @@ class _BrowseCardsScreenState extends State<BrowseCardsScreen> {
                             child: Stack(
                               children: [
                                 TopRack(),
+                                // NameRow(),
                                 CardRow(
                                   cards: characterList1,
                                   onCardTapped: (CharacterCard card) =>
@@ -890,6 +892,54 @@ class _BrowseCardsScreenState extends State<BrowseCardsScreen> {
           ],
         ),
       ),
+    );
+  }
+}
+
+class NameRow extends StatelessWidget {
+  const NameRow({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Align(
+          alignment: Alignment.topCenter,
+          child: Container(
+            width: SizeConfig.blockSizeHorizontal * 25,
+            height: SizeConfig.blockSizeHorizontal * 25,
+            child: Text(
+              "card name",
+              style: TextStyle(fontSize: 22, color: Colors.red),
+            ),
+          ),
+        ),
+        Align(
+          alignment: Alignment.topCenter,
+          child: Container(
+            width: SizeConfig.blockSizeHorizontal * 25,
+            height: SizeConfig.blockSizeHorizontal * 25,
+            child: Text("card name"),
+          ),
+        ),
+        Align(
+          alignment: Alignment.topCenter,
+          child: Container(
+            width: SizeConfig.blockSizeHorizontal * 25,
+            height: SizeConfig.blockSizeHorizontal * 25,
+            child: Text("card name"),
+          ),
+        ),
+        Align(
+          alignment: Alignment.topCenter,
+          child: Container(
+            width: SizeConfig.blockSizeHorizontal * 25,
+            height: SizeConfig.blockSizeHorizontal * 25,
+            child: Text("card name"),
+          ),
+        ),
+      ],
     );
   }
 }

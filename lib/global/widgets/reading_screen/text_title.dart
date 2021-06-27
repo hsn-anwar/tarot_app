@@ -26,17 +26,6 @@ class TitleText extends StatelessWidget {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(
-              'Scroll thorough the cards and pick the \nones that call out to you',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 18,
-                fontFamily: CustomFonts.malgun,
-              ),
-            ),
-          ),
         ],
       ),
     );

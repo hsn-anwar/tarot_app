@@ -43,6 +43,7 @@ class _StartReadingScreenState extends State<StartReadingScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: BackgroundTemplate(
+        blur: true,
         child: Stack(
           children: [
             Column(
